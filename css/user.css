@@ -1,0 +1,51 @@
+.paper-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  border-bottom: 1px #efefef solid;
+  padding: 2em 0;
+}
+.paper-box .paper-box-image {
+  justify-content: center;
+  display: flex;
+  width: 40%; /* 左右布局时占据 40% 宽度 */
+  order: 1;
+}
+.paper-box .paper-box-image img {
+  max-width: 100%;
+  box-shadow: 3px 3px 6px #888;
+  object-fit: cover;
+}
+.paper-box .paper-box-image .badge {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  position: absolute;
+  margin-top: 0.5em;
+  margin-left: -0.5em;
+  color: #fff;
+  background-color: #00369f;
+  font-size: 0.8em;
+}
+.paper-box .paper-box-text {
+  max-width: 55%; /* 左右布局时占据 55% 宽度 */
+  padding-left: 2em;
+  order: 2;
+}
+@include breakpoint($medium) {
+  flex-direction: column; /* 在小屏设备上变为上下布局 */
+  .paper-box .paper-box-image {
+    justify-content: center;
+    min-width: 100%;
+    max-width: 100%;
+    order: 1;
+  }
+  .paper-box .paper-box-text {
+    justify-content: left;
+    padding-left: 0;
+    max-width: 100%;
+    padding-top: 1em;
+    order: 2;
+  }
+}
