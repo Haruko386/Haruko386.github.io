@@ -2,6 +2,28 @@
 <p>This page is intended only as a collection of notes from the papers and books I have read since 2020.</p>
 </blockquote>
 <hr>
+<p><strong>Towards Zero-Shot Scale-Aware Monocular Depth Estimation</strong> presents a novel framework for <strong>monocular depth estimation</strong>, focusing particularly on addressing the challenges of <strong>scale awareness</strong> and <strong>zero-shot learning</strong>. Monocular depth estimation aims to infer the 3D depth of a scene from a single 2D image without relying on multi-view or other auxiliary data. The proposed model integrates <strong>camera intrinsics embeddings</strong> with image feature representations, leveraging <strong>cross-attention</strong> and <strong>self-attention</strong> mechanisms from the Transformer architecture. By embedding camera parameters into the feature representations, the model maintains high accuracy when dealing with images captured by different devices. Additionally, the model adopts a <strong>zero-shot learning</strong> strategy, allowing depth estimation in unseen environments without requiring specific training data for each new scenario. This approach not only excels in terms of accuracy and generalization but also significantly improves the model’s ability to adapt to scale variations in novel scenes.</p>
+<div style="text-align: center;">
+<img src="https://s2.loli.net/2024/10/06/i6MehPa9LUNHQCZ.png"  style="zoom:50%; box-shadow: 6px 6px 8px #888; border: 0px solid #efefef; border-radius: 12px;"/>
+</div>
+
+
+<h3 id="Key-Innovations-in-the-Paper"><a href="#Key-Innovations-in-the-Paper" class="headerlink" title="Key Innovations in the Paper:"></a>Key Innovations in the Paper:</h3><ol>
+<li><p><strong>Zero-Shot Depth Estimation</strong>: The introduction of a zero-shot learning mechanism enables the model to perform depth estimation in unseen environments, reducing the reliance on large amounts of labeled data.</p>
+</li>
+<li><p><strong>Scale-Aware Mechanism</strong>: A scale-aware model is proposed to handle variations in object size and perspective within a scene, maintaining stable depth estimation despite these changes.</p>
+</li>
+<li><p><strong>Camera Parameter Embeddings</strong>: By embedding the geometric information of the camera into the model, it can better handle data from different camera setups, improving the accuracy of predictions.</p>
+</li>
+<li><p><strong>Optimized Transformer Architecture</strong>: The paper employs an improved Transformer architecture with <strong>cross-attention</strong> and <strong>self-attention</strong> mechanisms, enhancing the fusion of image features and camera intrinsics information.</p>
+</li>
+<li><p><strong>Multi-Modal Input Fusion</strong>: A multi-modal fusion mechanism combining image features and camera geometry is introduced, improving the model’s ability to process diverse data and enhance generalization across various environments.</p>
+</li>
+</ol>
+<p>This paper provides an effective solution for addressing the challenges of generalization, scale awareness, and zero-shot learning in monocular depth estimation by combining multiple innovative techniques.</p>
+<blockquote>
+<p>Time: 2024&#x2F;10&#x2F;6</p>
+</blockquote>
 <p><strong>DeLiRa: Self-Supervised Depth, Light, and Radiance Fields</strong> focuses primarily on 3D reconstruction and novel view synthesis through <strong>self-supervised learning</strong>, jointly estimating scene <strong>depth</strong>, <strong>lighting</strong>, and <strong>radiance fields</strong> to address geometric degradation and improve 3D geometric inference and image synthesis in scenarios with limited viewpoints. Below is a detailed analysis of the study:</p>
 <div style="text-align: center;">
 <img src="https://s2.loli.net/2024/10/04/VRFhcq74Ibk9HPm.png"  style="zoom:50%; box-shadow: 6px 6px 8px #888; border: 0px solid #efefef; border-radius: 12px;"/>
