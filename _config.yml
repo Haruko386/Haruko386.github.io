@@ -22,7 +22,7 @@ repository               : "academicpages/academicpages.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "profile.png"
+  avatar           : "profile.jpg"
   name             : "Guo"
   pronouns         : # example: "she/her"  
   bio              : "ACM enthusiast, game speedrunnner, ping pong amateur, currently a master's student, research in monocular depth estimation based on diffusion model"
