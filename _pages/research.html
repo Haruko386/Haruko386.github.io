@@ -5,4 +5,60 @@ permalink: /research.html
 author_profile: true
 ---
 
-<iframe src="/research/research.html" height="700" width="850" style="border:none;"></iframe>
+{% include base_path %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+
+<body>
+    <h1 class="section-title">Monocular Depth Estimation based on Diffusion Model</h1>
+    
+
+    <h2 class="sub-title">Gallery</h2>
+    <div class="word-content">
+        <h2 class="sub-title">Introduction</h2>
+        <p>
+            Marigold is a diffusion model and associated fine-tuning protocol for monocular depth estimation. Its core
+            principle is to leverage the rich visual knowledge stored in modern generative image models. Our model,
+            derived from Stable Diffusion and
+            fine-tuned with synthetic data, can zero-shot transfer to unseen data, offering state-of-the-art monocular
+            depth estimation results.
+
+        </p>
+        <p> </p>
+        <p>
+            The gallery below presents several images from the internet and a comparison of Marigold with the previous
+            state-of-the-art method LeRes. Use the slider and gestures to reveal details on both sides.
+        </p>
+    </div>
+    <div class="container">
+        <div class="carousel-section">
+            <div class="carousel-wrapper carousel-4-3">
+                <button class="carousel-btn prev" disabled>&lt;</button>
+                <button class="carousel-btn next">&gt;</button>
+                <div class="carousel" id="carousel-4-3">
+                </div>
+                <div class="carousel-nav"></div>
+            </div>
+        </div>
+
+        <div class="carousel-section">
+            <div class="carousel-wrapper carousel-3-4">
+                <button class="carousel-btn prev" disabled>&lt;</button>
+                <button class="carousel-btn next">&gt;</button>
+                <div class="carousel" id="carousel-3-4">
+                </div>
+                <div class="carousel-nav"></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
