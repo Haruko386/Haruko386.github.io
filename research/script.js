@@ -149,37 +149,7 @@ document.addEventListener('DOMContentLoaded', function () {
     `;
     }
 
-    // 全局 IntersectionObserver 实例
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const column = entry.target;
-                const index = parseInt(column.dataset.index);
-                const carouselElement = column.parentElement;
-                const data = carouselElement.id === 'carousel-3-4' ? imageData3_4 : imageData4_3;
-                const visibleColumns = carouselElement.id === 'carousel-3-4' ? 5 : 3;
-
-                // 懒加载图像
-                const placeholders = column.querySelectorAll('.loading-placeholder');
-                placeholders.forEach(placeholder => {
-                    const img = new Image();
-                    img.src = placeholder.dataset.src;
-                    img.onload = () => {
-                        placeholder.style.backgroundImage = `url(${img.src})`;
-                        placeholder.classList.remove('loading-placeholder');
-                    };
-                });
-
-                // 判断是否加载更多列
-                if (
-                    index + visibleColumns >= carouselElement.children.length - 1 &&
-                    carouselElement.children.length < data.length
-                ) {
-                    loadMoreColumns(carouselElement, data, carouselElement.children.length);
-                }
-            }
-        });
-    }, { threshold: 0.1 });
+    const carouselInstances = [];
 
     function loadMoreColumns(carouselElement, data, startIndex) {
         const visibleColumns = carouselElement.id === 'carousel-3-4' ? 5 : 3;
@@ -191,9 +161,39 @@ document.addEventListener('DOMContentLoaded', function () {
             columnDiv.innerHTML = columnHTML;
             columnDiv.dataset.index = i;
             carouselElement.appendChild(columnDiv);
-            observer.observe(columnDiv); // 注册懒加载
+            observer.observe(columnDiv);
         }
+
+        const controller = carouselInstances.find(c => c.carousel === carouselElement);
+        if (controller) controller.initSliders();
     }
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const column = entry.target;
+                const index = parseInt(column.dataset.index);
+                const carouselElement = column.parentElement;
+                const data = carouselElement.id === 'carousel-3-4' ? imageData3_4 : imageData4_3;
+                const visibleColumns = carouselElement.id === 'carousel-3-4' ? 5 : 3;
+
+                const placeholders = column.querySelectorAll('.loading-placeholder');
+                placeholders.forEach(placeholder => {
+                    const img = new Image();
+                    img.src = placeholder.dataset.src;
+                    img.onload = () => {
+                        placeholder.style.backgroundImage = `url(${img.src})`;
+                        placeholder.classList.remove('loading-placeholder');
+                    };
+                });
+
+                if (index + visibleColumns >= carouselElement.children.length - 1 &&
+                    carouselElement.children.length < data.length) {
+                    loadMoreColumns(carouselElement, data, carouselElement.children.length);
+                }
+            }
+        });
+    }, { threshold: 0.1 });
 
     function populateCarousel(carouselElementId, data) {
         const carouselElement = document.getElementById(carouselElementId);
@@ -209,7 +209,7 @@ document.addEventListener('DOMContentLoaded', function () {
             columnDiv.innerHTML = columnHTML;
             columnDiv.dataset.index = i;
             carouselElement.appendChild(columnDiv);
-            observer.observe(columnDiv); // 注册懒加载
+            observer.observe(columnDiv);
         }
     }
 
@@ -232,45 +232,57 @@ document.addEventListener('DOMContentLoaded', function () {
 
         init() {
             this.columns = Array.from(this.carousel.querySelectorAll('.column'));
-
-            // ✅ 修复：我们现在使用全部图片数量作为 totalColumns
             this.totalColumns = this.wrapper.id.includes('3-4') ? imageData3_4.length : imageData4_3.length;
-
             this.initDots();
             this.initSliders();
             this.updateCarousel();
             this.setupEventListeners();
             this.startAutoSlide();
-
-            this.resizeObserver = new ResizeObserver(() => {
-                this.updateCarousel();
-            });
+            this.resizeObserver = new ResizeObserver(() => this.updateCarousel());
             this.resizeObserver.observe(this.wrapper);
         }
 
-
         initDots() {
             this.navDotsContainer.innerHTML = '';
-            const dotCount = this.totalColumns > this.visibleColumns
-                ? this.totalColumns - this.visibleColumns + 1
-                : 1;
+
+            // 分别根据不同类型计算 dot 数量
+            let dotCount;
+            if (this.wrapper.classList.contains('carousel-3-4')) {
+                // 每页 5 列
+                const totalImages = imageData3_4.length;
+                const visible = 5;
+                dotCount = Math.max(1, totalImages - visible + 1);
+            } else {
+                // 每页 3 列
+                const totalImages = imageData4_3.length;
+                const visible = 3;
+                dotCount = Math.max(1, totalImages - visible + 1);
+            }
+
             for (let i = 0; i < dotCount; i++) {
                 const dot = document.createElement('div');
                 dot.classList.add('nav-dot');
-                if (i === 0) dot.classList.add('active');
+                if (i === this.currentIndex) dot.classList.add('active');
                 dot.dataset.index = i;
                 dot.addEventListener('click', () => this.goToColumn(parseInt(dot.dataset.index)));
                 this.navDotsContainer.appendChild(dot);
             }
+
             this.dots = this.navDotsContainer.querySelectorAll('.nav-dot');
         }
+
 
         updateCarousel() {
             const columnWidth = 100 / this.visibleColumns;
             const offset = -this.currentIndex * columnWidth;
             this.carousel.style.transform = `translateX(${offset}%)`;
+            const maxStartIndex = this.wrapper.classList.contains('carousel-3-4')
+                ? Math.max(0, imageData3_4.length - 5)
+                : Math.max(0, imageData4_3.length - 3);
+            this.currentIndex = Math.min(this.currentIndex, maxStartIndex);
             this.prevBtn.disabled = this.currentIndex === 0;
-            this.nextBtn.disabled = this.currentIndex >= this.totalColumns - this.visibleColumns;
+            this.nextBtn.disabled = this.currentIndex >= maxStartIndex;
+
             this.dots?.forEach((dot, index) => {
                 dot.classList.toggle('active', index === this.currentIndex);
             });
@@ -287,22 +299,17 @@ document.addEventListener('DOMContentLoaded', function () {
                 const sliderRect = slider.getBoundingClientRect();
                 const dividerRect = divider.getBoundingClientRect();
                 const percent = (dividerRect.left - sliderRect.left) / sliderRect.width * 100;
-                if (percent < 5) {
-                    leftLabel.style.opacity = '0';
-                    rightLabel.style.opacity = '1';
-                } else if (percent > 95) {
-                    leftLabel.style.opacity = '1';
-                    rightLabel.style.opacity = '0';
-                } else {
-                    leftLabel.style.opacity = '1';
-                    rightLabel.style.opacity = '1';
-                }
+                leftLabel.style.opacity = percent < 5 ? '0' : '1';
+                rightLabel.style.opacity = percent > 95 ? '0' : '1';
             });
         }
 
         initSliders() {
             const sliders = this.wrapper.querySelectorAll('.image-comparison');
             sliders.forEach(slider => {
+                if (slider.dataset.initialized === "true") return;
+                slider.dataset.initialized = "true";
+
                 const divider = slider.querySelector('.divider');
                 const before = slider.querySelector('.image-before');
                 const after = slider.querySelector('.image-after');
@@ -352,7 +359,8 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         nextColumn() {
-            if (this.currentIndex < this.totalColumns - this.visibleColumns) {
+            const maxIndex = Math.max(0, this.carousel.children.length - this.visibleColumns);
+            if (this.currentIndex < maxIndex) {
                 this.currentIndex++;
                 this.updateCarousel();
             }
@@ -368,20 +376,20 @@ document.addEventListener('DOMContentLoaded', function () {
         startAutoSlide() {
             this.stopAutoSlide();
             this.autoSlideInterval = setInterval(() => {
-                if (this.currentIndex < this.totalColumns - this.visibleColumns) {
+                const maxIndex = Math.max(0, this.carousel.children.length - this.visibleColumns);
+                if (this.currentIndex < maxIndex) {
                     this.currentIndex++;
                 } else {
                     this.currentIndex = 0;
                 }
                 this.updateCarousel();
             }, 5000);
+
         }
 
         stopAutoSlide() {
-            if (this.autoSlideInterval) {
-                clearInterval(this.autoSlideInterval);
-                this.autoSlideInterval = null;
-            }
+            clearInterval(this.autoSlideInterval);
+            this.autoSlideInterval = null;
         }
 
         setupEventListeners() {
@@ -390,11 +398,11 @@ document.addEventListener('DOMContentLoaded', function () {
             this.wrapper.addEventListener('mouseenter', () => this.stopAutoSlide());
             this.wrapper.addEventListener('mouseleave', () => this.startAutoSlide());
 
-            let touchStartX = 0;
-            let touchEndX = 0;
+            let touchStartX = 0, touchEndX = 0;
             this.carousel.addEventListener('touchstart', (e) => {
                 touchStartX = e.changedTouches[0].screenX;
             }, { passive: true });
+
             this.carousel.addEventListener('touchend', (e) => {
                 touchEndX = e.changedTouches[0].screenX;
                 this.handleSwipe();
@@ -414,10 +422,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     const carousels = document.querySelectorAll('.carousel-wrapper');
-    const carouselInstances = [];
-    carousels.forEach(wrapper => {
-        carouselInstances.push(new CarouselController(wrapper));
-    });
+    carousels.forEach(wrapper => carouselInstances.push(new CarouselController(wrapper)));
 
     window.addEventListener('beforeunload', () => {
         carouselInstances.forEach(instance => instance.destroy());
