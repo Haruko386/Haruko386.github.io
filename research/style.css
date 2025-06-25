@@ -261,3 +261,10 @@ body {
     justify-content: center;
     color: #999;
 }
+
+.footer-content{
+    text-align: center;
+    margin-top: 50px;
+    padding: 20px;
+    color: #666;
+}
