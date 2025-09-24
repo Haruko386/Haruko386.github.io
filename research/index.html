@@ -587,17 +587,28 @@
             Fine-tuning protocol
           </h3>
 
+          <img id="method_inference" width="100%" src="train.png" alt="Apdepth inference scheme"> 
+
           <p>
             Starting from a pretrained Stable Diffusion, we encode the image <mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" tabindex="0" ctxtmenu_counter="0" style="font-size: 121.4%; position: relative;"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D465 TEX-I"></mjx-c></mjx-mi></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>x</mi></math></mjx-assistive-mml></mjx-container> and depth <mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" tabindex="0" ctxtmenu_counter="1" style="font-size: 121.4%; position: relative;"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D451 TEX-I"></mjx-c></mjx-mi></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>d</mi></math></mjx-assistive-mml></mjx-container> into the latent space
             using the original Stable Diffusion VAE.
-            We fine-tune just the U-Net by optimizing the standard diffusion objective relative to the depth latent code.
-            Image conditioning is achieved by concatenating the two latent codes before feeding them into the U-Net.
-            The first layer of the U-Net is modified to accept concatenated latent codes.
+            We also adapted the U-Net architecture by incorporating an enhancement module, enabling it to achieve satisfactory edge detail even without multi-stage denoising processes.
           </p>
 
-          <img id="method_train" width="100%" src="train.png" alt="Marigold training scheme">
-
           <h3 class="title has-text-centered">
+            Single-Step Inference
+          </h3>
+
+          <img id="method_inference" width="100%" src="infer.png" alt="Apdepth inference scheme"> 
+
+          <p>
+            We have adjusted SD2 to enable single-step inference, thereby significantly reducing inference time. Compare to Marigold, which will cost 24s to infer an image, we only take 120ms, Significantly reduced hardware resource consumption.
+          </p>
+          <p>
+            Through experimental validation, our model requires only 4GB of GPU(Geforce RTX 4090) memory and 5 minutes of inference time on the Nyu Depth v2 dataset.
+          </p>
+
+          <!-- <h3 class="title has-text-centered">
             Inference scheme
           </h3>
 
@@ -608,7 +619,7 @@
             an image, whose 3 channels are averaged to get the final estimation <mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" tabindex="0" ctxtmenu_counter="7" style="font-size: 121.4%; position: relative;"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-texatom texclass="ORD"><mjx-mover><mjx-over style="padding-bottom: 0.105em; padding-left: 0.427em; margin-bottom: -0.531em;"><mjx-mo class="mjx-n" style="width: 0px; margin-left: -0.25em;"><mjx-c class="mjx-c5E"></mjx-c></mjx-mo></mjx-over><mjx-base><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D451 TEX-I"></mjx-c></mjx-mi></mjx-base></mjx-mover></mjx-texatom></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow data-mjx-texclass="ORD"><mover><mi>d</mi><mo stretchy="false">^</mo></mover></mrow></math></mjx-assistive-mml></mjx-container>.
           </p>
 
-          <img id="method_inference" width="100%" src="infer.png" alt="Marigold inference scheme">
+          -->
 
           <!-- <h3 class="title has-text-centered">
             Comparison with other methods
