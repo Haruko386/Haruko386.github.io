@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
-  <meta name="description"
-        content="Depth Estimation based on Diffusion Model.">
+  <meta name="description" content="Depth Estimation based on Diffusion Model.">
   <meta name="keywords" content="ApDepth, Monocular Depth Estimation, Diffusion Models">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>ApDepth: Aiming for Precise Monocular Depth Estimation Based on Diffusion Models</title>
@@ -22,8 +22,7 @@
     gtag('config', 'G-1FWSVCGZTG');
   </script>
 
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
-        rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
 
   <link rel="stylesheet" href="./css/bulma.min.css">
   <link rel="stylesheet" href="./css/bulma-carousel.min.css">
@@ -38,7 +37,7 @@
   <script src="./js/bulma-carousel.min.js"></script>
   <script src="./js/bulma-slider.min.js"></script>
   <script src="./js/fontawesome.all.min.js"></script>
-    <!--MathJax-->
+  <!--MathJax-->
   <script>
     window.MathJax = {
       tex: {
@@ -49,19 +48,21 @@
       }
     };
   </script>
-  <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
+
 <body>
 
-<nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-  <!-- <div class="navbar-menu">
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+    <!-- <div class="navbar-menu">
     <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
       <a class="navbar-item" href="https://keunhong.com">
       <span class="icon">
@@ -91,534 +92,560 @@
     </div>
 
   </div> -->
-</nav>
+  </nav>
 
 
-<section class="hero">
-  <div class="hero-body">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">ApDepth: Aiming for Precise Monocular Depth Estimation Based on Diffusion Models</h1>
-          <div class="is-size-5 publication-authors">
-            <span class="author-block">
-              <a href="https://haruko386.github.io/">haruko386</a>,</span>
-            <span class="author-block">
-              <a href="https://syjz.teacher.360eol.com/teacherBasic/preview?teacherId=23776">Shuai Yuan</a></span>
-          </div>
-
-          <div class="is-size-5 publication-authors">
-            <span class="author-block">Shenyang Jianzhu University</span>
-          </div>
-
-          <div class="column has-text-centered">
-            <div class="publication-links">
-              <!-- PDF Link. -->
-              <span class="link-block">
-                <a href="https://arxiv.org/abs/2312.02145"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fas fa-file-pdf"></i>
-                  </span>
-                  <span>Paper</span>
-                </a>
-              </span>
-              <!-- Code Link. -->
-              <span class="link-block">
-                <a href="https://github.com/Haruko386/ApDepth"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fab fa-github"></i>
-                  </span>
-                  <span>Code</span>
-                  </a>
-              </span>
-              <!-- Huggingface. -->
-              <span class="link-block">
-                <a href="https://huggingface.co/developy/ApDepth"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      🤗
-                  </span>
-                  <span>Huggingface Model</span>
-                  </a>
-              </span>
-
-              <span class="link-block">
-                <a href="https://huggingface.co/spaces/developy/ApDepth"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      🖼️
-                  </span>
-                  <span>Huggingface Demo</span>
-                  </a>
-              </span>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="hero teaser">
-  <div class="container is-max-desktop">
+  <section class="hero">
     <div class="hero-body">
-      <img id="teaser" width="100%" src="cover.jpg" alt="cover.">
-      <h2 class="subtitle has-text-centered">
-        <span class="methodname">Apdepth</span> achieved ideal results in object edge refinement
-      </h2>
-    </div>
-  </div>
-</section>
-<hr>
-<section class="section">
-  <div class="container is-max-desktop">
-    <!-- Overview. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Overview</h2>
-        <div class="content has-text-justified">
-          <p>
-            We present <span class="methodname">Apdepth</span>, a diffusion model, and associated fine-tuning protocol for monocular depth estimation.
-            
-          </p>
-          <p>
-            Based on Marigold, its core innovation lies in addressing the deficiency of diffusion models in feature representation capability. 
-            Our model followed Marigold, derived from Stable Diffusion and fine-tuned with synthetic data: Hypersim and VKitti, achieved ideal results in object edge refinement.
-          </p>
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">ApDepth: Aiming for Precise Monocular Depth Estimation Based on
+              Diffusion Models</h1>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="https://haruko386.github.io/">haruko386</a></span>
+              <!-- <span class="author-block">
+              <a href="https://syjz.teacher.360eol.com/teacherBasic/preview?teacherId=23776">Shuai Yuan</a></span> -->
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">Shenyang Jianzhu University</span>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- PDF Link. -->
+                <span class="link-block">
+                  <a href="https://arxiv.org/abs/2312.02145" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+                <!-- Code Link. -->
+                <span class="link-block">
+                  <a href="https://github.com/Haruko386/ApDepth"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+                <!-- Huggingface. -->
+                <span class="link-block">
+                  <a href="https://huggingface.co/developy/ApDepth"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      🤗
+                    </span>
+                    <span>Huggingface Model</span>
+                  </a>
+                </span>
+
+                <span class="link-block">
+                  <a href="https://huggingface.co/spaces/developy/ApDepth"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      🖼️
+                    </span>
+                    <span>Huggingface Demo</span>
+                  </a>
+                </span>
+              </div>
+
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <!--/ Overview. -->
-  </div>
-</section>
+  </section>
 
-<section class="section pt-0 pb-4">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Gallery</h2>
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <img id="teaser" width="100%" src="cover.jpg" alt="cover.">
+        <h2 class="subtitle has-text-centered">
+          <span class="methodname">Apdepth</span> achieved ideal results in object edge refinement
+        </h2>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+  <hr>
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Overview. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Overview</h2>
+          <div class="content has-text-justified">
+            <p>
+              We present <b><span class="methodname">Apdepth</span></b>, a diffusion model, and associated fine-tuning
+              protocol for monocular depth estimation.
 
-<section class="hero is-light is-small mt-4">
-  <div class="hero-body">
-    <div class="container">
-      <div id="results-carousel-horizontal" class="carousel results-carousel">
-
-        <div class="twoitem">
-          <div class="twentytwenty-container twentytwenty-container-top">
-            <div class="cmpcontent">
-              <img src="./image/test-image/inside-01.jpg">
-            </div>
-            <div class="cmpcontent">
-              <img src="./image/depth_train/inside-01_pred_colored.png">
-            </div>
-          </div>
-          <div class="twentytwenty-container twentytwenty-container-bottom">
-            <div class="cmpcontent">
-              <img src="./image/depth_pretrain/inside-01_pred_colored.png">
-            </div>
-            <div class="cmpcontent">
-              <img src="./image/depth_train/inside-01_pred_colored.png">
-            </div>
+            </p>
+            <p>
+              Based on Marigold, its core innovation lies in addressing the deficiency of diffusion models in feature
+              representation capability.
+              Our model followed Marigold, derived from Stable Diffusion and fine-tuned with synthetic data: Hypersim
+              and VKitti, achieved ideal results in object edge refinement.
+            </p>
+            <p>
+              We first fine-tuned the model, resolving the issue of excessive inference time by replacing multi-step
+              reasoning with single-step reasoning.
+              Then, we introduced pre-trained models to assist diffusion models in deep estimation learning. we only
+              used <b><span class="methodname">Depth Anything V2 <b>small</b></span></b> as our
+              "Teacher Model" to aid our model to generate more accurate depth maps, and achieve great result.
+              Finally, we introduced a new training strats, combine MSE_loss and Grad_loss to enhance the model's
+              ability to capture edge information.
+            </p>
           </div>
         </div>
+      </div>
+      <!--/ Overview. -->
+    </div>
+  </section>
 
-        <div class="twoitem">
-          <div class="twentytwenty-container twentytwenty-container-top">
-            <div class="cmpcontent">
-              <img src="./image/test-image/inside-05.jpg">
-            </div>
-            <div class="cmpcontent">
-              <img src="./image/depth_train/inside-05_pred_colored.png">
-            </div>
-          </div>
-          <div class="twentytwenty-container twentytwenty-container-bottom">
-            <div class="cmpcontent">
-              <img src="./image/depth_pretrain/inside-05_pred_colored.png">
-            </div>
-            <div class="cmpcontent">
-              <img src="./image/depth_train/inside-05_pred_colored.png">
-            </div>
-          </div>
+  <section class="section pt-0 pb-4">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Gallery</h2>
         </div>
-
-        <div class="twoitem">
-          <div class="twentytwenty-container twentytwenty-container-top">
-            <div class="cmpcontent">
-              <img src="./image/test-image/inside-06.jpg">
-            </div>
-            <div class="cmpcontent">
-              <img src="./image/depth_train/inside-06_pred_colored.png">
-            </div>
-          </div>
-          <div class="twentytwenty-container twentytwenty-container-bottom">
-            <div class="cmpcontent">
-              <img src="./image/depth_pretrain/inside-06_pred_colored.png">
-            </div>
-            <div class="cmpcontent">
-              <img src="./image/depth_train/inside-06_pred_colored.png">
-            </div>
-          </div>
-        </div>
-
-        <div class="twoitem">
-          <div class="twentytwenty-container twentytwenty-container-top">
-            <div class="cmpcontent">
-              <img src="./image/test-image/inside-07.jpg">
-            </div>
-            <div class="cmpcontent">
-              <img src="./image/depth_train/inside-07_pred_colored.png">
-            </div>
-          </div>
-          <div class="twentytwenty-container twentytwenty-container-bottom">
-            <div class="cmpcontent">
-              <img src="./image/depth_pretrain/inside-07_pred_colored.png">
-            </div>
-            <div class="cmpcontent">
-              <img src="./image/depth_train/inside-07_pred_colored.png">
-            </div>
-          </div>
-        </div>
-
-        <div class="twoitem">
-          <div class="twentytwenty-container twentytwenty-container-top">
-            <div class="cmpcontent">
-              <img src="./image/test-image/outside-04.jpg">
-            </div>
-            <div class="cmpcontent">
-              <img src="./image/depth_train/outside-04_pred_colored.png">
-            </div>
-          </div>
-          <div class="twentytwenty-container twentytwenty-container-bottom">
-            <div class="cmpcontent">
-              <img src="./image/depth_pretrain/outside-04_pred_colored.png">
-            </div>
-            <div class="cmpcontent">
-              <img src="./image/depth_train/outside-04_pred_colored.png">
-            </div>
-          </div>
-        </div>
-
-        <div class="twoitem">
-          <div class="twentytwenty-container twentytwenty-container-top">
-            <div class="cmpcontent">
-              <img src="./image/test-image/outside-07.jpg">
-            </div>
-            <div class="cmpcontent">
-              <img src="./image/depth_train/outside-07_pred_colored.png">
-            </div>
-          </div>
-          <div class="twentytwenty-container twentytwenty-container-bottom">
-            <div class="cmpcontent">
-              <img src="./image/depth_pretrain/outside-07_pred_colored.png">
-            </div>
-            <div class="cmpcontent">
-              <img src="./image/depth_train/outside-07_pred_colored.png">
-            </div>
-          </div>
-        </div>
-
-        <div class="twoitem">
-          <div class="twentytwenty-container twentytwenty-container-top">
-            <div class="cmpcontent">
-              <img src="./image/test-image/outside-06.jpg">
-            </div>
-            <div class="cmpcontent">
-              <img src="./image/depth_train/outside-06_pred_colored.png">
-            </div>
-          </div>
-          <div class="twentytwenty-container twentytwenty-container-bottom">
-            <div class="cmpcontent">
-              <img src="./image/depth_pretrain/outside-06_pred_colored.png">
-            </div>
-            <div class="cmpcontent">
-              <img src="./image/depth_train/outside-06_pred_colored.png">
-            </div>
-          </div>
-        </div>
-
-        <div class="twoitem">
-          <div class="twentytwenty-container twentytwenty-container-top">
-            <div class="cmpcontent">
-              <img src="./image/test-image/synthetic-inside-01.jpg">
-            </div>
-            <div class="cmpcontent">
-              <img src="./image/depth_train/synthetic-inside-01_pred_colored.png">
-            </div>
-          </div>
-          <div class="twentytwenty-container twentytwenty-container-bottom">
-            <div class="cmpcontent">
-              <img src="./image/depth_pretrain/synthetic-inside-01_pred_colored.png">
-            </div>
-            <div class="cmpcontent">
-              <img src="./image/depth_train/synthetic-inside-01_pred_colored.png">
-            </div>
-          </div>
-        </div>
-
-        <div class="twoitem">
-          <div class="twentytwenty-container twentytwenty-container-top">
-            <div class="cmpcontent">
-              <img src="./image/test-image/synthetic-inside-02.jpg">
-            </div>
-            <div class="cmpcontent">
-              <img src="./image/depth_train/synthetic-inside-02_pred_colored.png">
-            </div>
-          </div>
-          <div class="twentytwenty-container twentytwenty-container-bottom">
-            <div class="cmpcontent">
-              <img src="./image/depth_pretrain/synthetic-inside-02_pred_colored.png">
-            </div>
-            <div class="cmpcontent">
-              <img src="./image/depth_train/synthetic-inside-02_pred_colored.png">
-            </div>
-          </div>
-        </div>
-
-        <div class="twoitem">
-          <div class="twentytwenty-container twentytwenty-container-top">
-            <div class="cmpcontent">
-              <img src="./image/test-image/synthetic-inside-05.jpg">
-            </div>
-            <div class="cmpcontent">
-              <img src="./image/depth_train/synthetic-inside-05_pred_colored.png">
-            </div>
-          </div>
-          <div class="twentytwenty-container twentytwenty-container-bottom">
-            <div class="cmpcontent">
-              <img src="./image/depth_pretrain/synthetic-inside-05_pred_colored.png">
-            </div>
-            <div class="cmpcontent">
-              <img src="./image/depth_train/synthetic-inside-05_pred_colored.png">
-            </div>
-          </div>
-        </div>
-
-        <div class="twoitem">
-          <div class="twentytwenty-container twentytwenty-container-top">
-            <div class="cmpcontent">
-              <img src="./image/test-image/synthetic-outside-02.jpg">
-            </div>
-            <div class="cmpcontent">
-              <img src="./image/depth_train/synthetic-outside-02_pred_colored.png">
-            </div>
-          </div>
-          <div class="twentytwenty-container twentytwenty-container-bottom">
-            <div class="cmpcontent">
-              <img src="./image/depth_pretrain/synthetic-outside-02_pred_colored.png">
-            </div>
-            <div class="cmpcontent">
-              <img src="./image/depth_train/synthetic-outside-02_pred_colored.png">
-            </div>
-          </div>
-        </div>
-
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="hero is-light is-small">
-  <div class="hero-body pt-0">
-    <div class="container">
-      <div id="results-carousel-vertical" class="carousel results-carousel">
+  <section class="hero is-light is-small mt-4">
+    <div class="hero-body">
+      <div class="container">
+        <div id="results-carousel-horizontal" class="carousel results-carousel">
 
-        <div class="twoitem">
-          <div class="twentytwenty-container twentytwenty-container-top">
-            <div class="cmpcontent">
-              <img src="./image/test-image/inside-02.jpg">
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/test-image/inside-01.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/depth_train/inside-01_pred_colored.png">
+              </div>
             </div>
-            <div class="cmpcontent">
-              <img src="./image/depth_train/inside-02_pred_colored.png">
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/depth_pretrain/inside-01_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/depth_train/inside-01_pred_colored.png">
+              </div>
             </div>
           </div>
-          <div class="twentytwenty-container twentytwenty-container-bottom">
-            <div class="cmpcontent">
-              <img src="./image/depth_pretrain/inside-02_pred_colored.png">
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/test-image/inside-05.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/depth_train/inside-05_pred_colored.png">
+              </div>
             </div>
-            <div class="cmpcontent">
-              <img src="./image/depth_train/inside-02_pred_colored.png">
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/depth_pretrain/inside-05_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/depth_train/inside-05_pred_colored.png">
+              </div>
             </div>
           </div>
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/test-image/inside-06.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/depth_train/inside-06_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/depth_pretrain/inside-06_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/depth_train/inside-06_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/test-image/inside-07.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/depth_train/inside-07_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/depth_pretrain/inside-07_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/depth_train/inside-07_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/test-image/outside-04.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/depth_train/outside-04_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/depth_pretrain/outside-04_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/depth_train/outside-04_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/test-image/outside-07.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/depth_train/outside-07_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/depth_pretrain/outside-07_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/depth_train/outside-07_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/test-image/outside-06.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/depth_train/outside-06_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/depth_pretrain/outside-06_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/depth_train/outside-06_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/test-image/synthetic-inside-01.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/depth_train/synthetic-inside-01_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/depth_pretrain/synthetic-inside-01_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/depth_train/synthetic-inside-01_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/test-image/synthetic-inside-02.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/depth_train/synthetic-inside-02_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/depth_pretrain/synthetic-inside-02_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/depth_train/synthetic-inside-02_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/test-image/synthetic-inside-05.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/depth_train/synthetic-inside-05_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/depth_pretrain/synthetic-inside-05_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/depth_train/synthetic-inside-05_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/test-image/synthetic-outside-02.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/depth_train/synthetic-outside-02_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/depth_pretrain/synthetic-outside-02_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/depth_train/synthetic-outside-02_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
         </div>
-
-        <div class="twoitem">
-          <div class="twentytwenty-container twentytwenty-container-top">
-            <div class="cmpcontent">
-              <img src="./image/test-image/inside-03.jpg">
-            </div>
-            <div class="cmpcontent">
-              <img src="./image/depth_train/inside-03_pred_colored.png">
-            </div>
-          </div>
-          <div class="twentytwenty-container twentytwenty-container-bottom">
-            <div class="cmpcontent">
-              <img src="./image/depth_pretrain/inside-03_pred_colored.png">
-            </div>
-            <div class="cmpcontent">
-              <img src="./image/depth_train/inside-03_pred_colored.png">
-            </div>
-          </div>
-        </div>
-
-        <div class="twoitem">
-          <div class="twentytwenty-container twentytwenty-container-top">
-            <div class="cmpcontent">
-              <img src="./image/test-image/inside-11.jpg">
-            </div>
-            <div class="cmpcontent">
-              <img src="./image/depth_train/inside-11_pred_colored.png">
-            </div>
-          </div>
-          <div class="twentytwenty-container twentytwenty-container-bottom">
-            <div class="cmpcontent">
-              <img src="./image/depth_pretrain/inside-11_pred_colored.png">
-            </div>
-            <div class="cmpcontent">
-              <img src="./image/depth_train/inside-11_pred_colored.png">
-            </div>
-          </div>
-        </div>
-
-        <div class="twoitem">
-          <div class="twentytwenty-container twentytwenty-container-top">
-            <div class="cmpcontent">
-              <img src="./image/test-image/inside-12.jpg">
-            </div>
-            <div class="cmpcontent">
-              <img src="./image/depth_train/inside-12_pred_colored.png">
-            </div>
-          </div>
-          <div class="twentytwenty-container twentytwenty-container-bottom">
-            <div class="cmpcontent">
-              <img src="./image/depth_pretrain/inside-12_pred_colored.png">
-            </div>
-            <div class="cmpcontent">
-              <img src="./image/depth_train/inside-12_pred_colored.png">
-            </div>
-          </div>
-        </div>
-
-        <div class="twoitem">
-          <div class="twentytwenty-container twentytwenty-container-top">
-            <div class="cmpcontent">
-              <img src="./image/test-image/outside-01.jpg">
-            </div>
-            <div class="cmpcontent">
-              <img src="./image/depth_train/outside-01_pred_colored.png">
-            </div>
-          </div>
-          <div class="twentytwenty-container twentytwenty-container-bottom">
-            <div class="cmpcontent">
-              <img src="./image/depth_pretrain/outside-01_pred_colored.png">
-            </div>
-            <div class="cmpcontent">
-              <img src="./image/depth_train/outside-01_pred_colored.png">
-            </div>
-          </div>
-        </div>
-
-        <div class="twoitem">
-          <div class="twentytwenty-container twentytwenty-container-top">
-            <div class="cmpcontent">
-              <img src="./image/test-image/outside-03.jpg">
-            </div>
-            <div class="cmpcontent">
-              <img src="./image/depth_train/outside-03_pred_colored.png">
-            </div>
-          </div>
-          <div class="twentytwenty-container twentytwenty-container-bottom">
-            <div class="cmpcontent">
-              <img src="./image/depth_pretrain/outside-03_pred_colored.png">
-            </div>
-            <div class="cmpcontent">
-              <img src="./image/depth_train/outside-03_pred_colored.png">
-            </div>
-          </div>
-        </div>
-
-        <div class="twoitem">
-          <div class="twentytwenty-container twentytwenty-container-top">
-            <div class="cmpcontent">
-              <img src="./image/test-image/outside-08.jpg">
-            </div>
-            <div class="cmpcontent">
-              <img src="./image/depth_train/outside-08_pred_colored.png">
-            </div>
-          </div>
-          <div class="twentytwenty-container twentytwenty-container-bottom">
-            <div class="cmpcontent">
-              <img src="./image/depth_pretrain/outside-08_pred_colored.png">
-            </div>
-            <div class="cmpcontent">
-              <img src="./image/depth_train/outside-08_pred_colored.png">
-            </div>
-          </div>
-        </div>
-
-        <div class="twoitem">
-          <div class="twentytwenty-container twentytwenty-container-top">
-            <div class="cmpcontent">
-              <img src="./image/test-image/outside-09.jpg">
-            </div>
-            <div class="cmpcontent">
-              <img src="./image/depth_train/outside-09_pred_colored.png">
-            </div>
-          </div>
-          <div class="twentytwenty-container twentytwenty-container-bottom">
-            <div class="cmpcontent">
-              <img src="./image/depth_pretrain/outside-09_pred_colored.png">
-            </div>
-            <div class="cmpcontent">
-              <img src="./image/depth_train/outside-09_pred_colored.png">
-            </div>
-          </div>
-        </div>
-
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="section">
-  <div class="container is-max-desktop">
-    <!-- Method. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">How it works</h2>
-        <div class="content has-text-justified">
-          <h3 class="title has-text-centered">
-            Fine-tuning protocol
-          </h3>
+  <section class="hero is-light is-small">
+    <div class="hero-body pt-0">
+      <div class="container">
+        <div id="results-carousel-vertical" class="carousel results-carousel">
 
-          <img id="method_inference" width="100%" src="train.png" alt="Apdepth inference scheme"> 
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/test-image/inside-02.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/depth_train/inside-02_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/depth_pretrain/inside-02_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/depth_train/inside-02_pred_colored.png">
+              </div>
+            </div>
+          </div>
 
-          <p>
-            Starting from a pretrained Stable Diffusion, we encode the image <mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" tabindex="0" ctxtmenu_counter="0" style="font-size: 121.4%; position: relative;"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D465 TEX-I"></mjx-c></mjx-mi></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>x</mi></math></mjx-assistive-mml></mjx-container> and depth <mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" tabindex="0" ctxtmenu_counter="1" style="font-size: 121.4%; position: relative;"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D451 TEX-I"></mjx-c></mjx-mi></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>d</mi></math></mjx-assistive-mml></mjx-container> into the latent space
-            using the original Stable Diffusion VAE.
-            We also adapted the U-Net architecture by incorporating an enhancement module, enabling it to achieve satisfactory edge detail even without multi-stage denoising processes.
-          </p>
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/test-image/inside-03.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/depth_train/inside-03_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/depth_pretrain/inside-03_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/depth_train/inside-03_pred_colored.png">
+              </div>
+            </div>
+          </div>
 
-          <h3 class="title has-text-centered">
-            Single-Step Inference
-          </h3>
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/test-image/inside-11.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/depth_train/inside-11_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/depth_pretrain/inside-11_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/depth_train/inside-11_pred_colored.png">
+              </div>
+            </div>
+          </div>
 
-          <img id="method_inference" width="100%" src="infer.png" alt="Apdepth inference scheme"> 
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/test-image/inside-12.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/depth_train/inside-12_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/depth_pretrain/inside-12_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/depth_train/inside-12_pred_colored.png">
+              </div>
+            </div>
+          </div>
 
-          <p>
-            We have adjusted SD2 to enable single-step inference, thereby significantly reducing inference time. Compare to Marigold, which will cost 24s to infer an image, we only take 120ms, Significantly reduced hardware resource consumption.
-          </p>
-          <p>
-            Through experimental validation, our model requires only 4GB of GPU(Geforce RTX 4090) memory and 5 minutes of inference time on the Nyu Depth v2 dataset.
-          </p>
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/test-image/outside-01.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/depth_train/outside-01_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/depth_pretrain/outside-01_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/depth_train/outside-01_pred_colored.png">
+              </div>
+            </div>
+          </div>
 
-          <!-- <h3 class="title has-text-centered">
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/test-image/outside-03.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/depth_train/outside-03_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/depth_pretrain/outside-03_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/depth_train/outside-03_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/test-image/outside-08.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/depth_train/outside-08_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/depth_pretrain/outside-08_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/depth_train/outside-08_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/test-image/outside-09.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/depth_train/outside-09_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/depth_pretrain/outside-09_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/depth_train/outside-09_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Method. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">How it works</h2>
+          <div class="content has-text-justified">
+            <h3 class="title has-text-centered">
+              Fine-tuning protocol
+            </h3>
+
+            <img id="method_inference" width="100%" src="train.png" alt="Apdepth inference scheme">
+
+            <p>
+              Starting from a pretrained Stable Diffusion model, the input RGB image is first processed by a pretrained
+              depth estimation network to obtain a predicted depth map.
+              Both the RGB and the predicted depth maps are then encoded into their latent representations using the
+              frozen VAE encoder, producing and.
+              These two latent tensors are concatenated and fed into a modified Latent Diffusion U-Net, which performs a
+              single denoising step to predict the target latent.
+              The ground-truth depth is also encoded into its latent form , and the training objective minimizes the
+              mean squared error.
+            </p>
+
+            <h3 class="title has-text-centered">
+              Single-Step Inference
+            </h3>
+
+            <img id="method_inference" width="100%" src="infer.png" alt="Apdepth inference scheme">
+
+            <p>
+              During inference, the input RGB image is first processed by a pretrained depth estimation model to
+              generate a coarse predicted depth map.
+              Both the RGB image and the predicted depth map are encoded into the latent space using the frozen VAE
+              encoder to obtain the corresponding latent representations.
+              These two latents are concatenated and fed into the Latent Diffusion U-Net, which performs only a single
+              denoising step to generate the predicted latent representation.
+              Finally, the latent decoder reconstructs the refined depth map from the predicted latent, producing the
+              final output depth.
+            </p>
+
+            <p>
+              Through experimental validation, our model requires only 4GB of GPU(Geforce RTX 4090) memory and 5 minutes
+              of inference time on the Nyu Depth v2 dataset.
+            </p>
+
+            <!-- <h3 class="title has-text-centered">
             Inference scheme
           </h3>
 
@@ -631,7 +658,7 @@
 
           -->
 
-          <!-- <h3 class="title has-text-centered">
+            <!-- <h3 class="title has-text-centered">
             Comparison with other methods
           </h3>
 
@@ -647,111 +674,112 @@
           <p class="mt-5">
             Refer to the pdf paper linked above for more details on qualitative, quantitative, and ablation studies.
           </p> -->
+          </div>
         </div>
       </div>
+      <!--/ Method. -->
     </div>
-    <!--/ Method. -->
-  </div>
-</section>
+  </section>
 
-<section class="section" id="BibTeX">
-  <div class="container is-max-desktop content">
-    <h2 class="title">BibTeX</h2>
-    <pre><code>@article{ApDepth,
-  author    = {Haruko386, Shuai Yuan},
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>@article{haruko26apdepth,
+  author    = {Haruko386 and Yuan, Shuai},
   title     = {ApDepth: Aiming for Precise Monocular Depth Estimation Based on Diffusion Models},
-  journal   = {Null},
+  journal   = {Under review},
   year      = {2026},
 }</code></pre>
-  </div>
-</section>
+    </div>
+  </section>
 
 
-<footer class="footer pt-4 pb-0">
-  <div class="container">
-    <div class="columns is-centered">
-      <div class="column is-8">
-        <div class="content">
-          <p>
-            Website template based on
-            <a href="https://github.com/nerfies/nerfies.github.io">
-              Nerfies
-            </a>
-            and licensed under
-            <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
-              CC-BY-SA-4.0
-            </a>.
-          </p>
+  <footer class="footer pt-4 pb-0">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>
+              Website template based on
+              <a href="https://github.com/nerfies/nerfies.github.io">
+                Nerfies
+              </a>
+              and licensed under
+              <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+                CC-BY-SA-4.0
+              </a>.
+            </p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</footer>
+  </footer>
 
-<script>
-  $(window).on('load', function() {
-    bulmaCarousel.attach('#results-carousel-horizontal', {
-      slidesToScroll: 1,
-      slidesToShow: 3,
-      loop: true,
-      autoplay: true,
-    });
+  <script>
+    $(window).on('load', function () {
+      bulmaCarousel.attach('#results-carousel-horizontal', {
+        slidesToScroll: 1,
+        slidesToShow: 3,
+        loop: true,
+        autoplay: true,
+      });
 
-    bulmaCarousel.attach('#results-carousel-vertical', {
-      slidesToScroll: 1,
-      slidesToShow: 5,
-      loop: true,
-      autoplay: true,
-    });
+      bulmaCarousel.attach('#results-carousel-vertical', {
+        slidesToScroll: 1,
+        slidesToShow: 5,
+        loop: true,
+        autoplay: true,
+      });
 
-    bulmaCarousel.attach('#results-carousel-testimonials', {
-      slidesToScroll: 1,
-      slidesToShow: 3,
-      loop: true,
-      autoplay: true,
-      breakpoints: [
-        {
-          changePoint: 50 + 260 * 2,
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          loop: true,
-          autoplay: true,
-        },
-        {
-          changePoint: 50 + 260 * 3,
-          slidesToShow: 2,
-          slidesToScroll: 1,
-          loop: true,
-          autoplay: true,
-        },
-        {
-          changePoint: 50 + 260 * 4,
-          slidesToShow: 3,
-          slidesToScroll: 1,
-          loop: true,
-          autoplay: true,
-        }
-      ],
-    });
+      bulmaCarousel.attach('#results-carousel-testimonials', {
+        slidesToScroll: 1,
+        slidesToShow: 3,
+        loop: true,
+        autoplay: true,
+        breakpoints: [
+          {
+            changePoint: 50 + 260 * 2,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            loop: true,
+            autoplay: true,
+          },
+          {
+            changePoint: 50 + 260 * 3,
+            slidesToShow: 2,
+            slidesToScroll: 1,
+            loop: true,
+            autoplay: true,
+          },
+          {
+            changePoint: 50 + 260 * 4,
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            loop: true,
+            autoplay: true,
+          }
+        ],
+      });
 
-    $(".twentytwenty-container-top").twentytwenty({
-      before_label: 'Input',
-      after_label: 'Ours',
-      default_offset_pct: 0.75,
-    });
+      $(".twentytwenty-container-top").twentytwenty({
+        before_label: 'Input',
+        after_label: 'Ours',
+        default_offset_pct: 0.75,
+      });
 
-    $(".twentytwenty-container-bottom").twentytwenty({
-      before_label: 'Marigold',
-      after_label: 'Ours',
-      default_offset_pct: 0.5,
-    });
+      $(".twentytwenty-container-bottom").twentytwenty({
+        before_label: 'Marigold',
+        after_label: 'Ours',
+        default_offset_pct: 0.5,
+      });
 
-    $('.results-carousel').css({
-      'max-height': '2000px',
-      'visibility': 'visible'
+      $('.results-carousel').css({
+        'max-height': '2000px',
+        'visibility': 'visible'
+      });
     });
-  });
-</script>
+  </script>
 
 </body>
+
 </html>
