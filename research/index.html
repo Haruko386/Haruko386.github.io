@@ -29,6 +29,7 @@
   <link rel="stylesheet" href="./css/bulma-slider.min.css">
   <link rel="stylesheet" href="./css/twentytwenty.css">
   <link rel="stylesheet" href="./css/index.css">
+  <link rel="stylesheet" href="./css/clock.css"
   <link rel="icon" href="icon.jpg">
 
   <script src="./js/jquery-3.2.1.min.js"></script>
@@ -37,6 +38,7 @@
   <script src="./js/bulma-carousel.min.js"></script>
   <script src="./js/bulma-slider.min.js"></script>
   <script src="./js/fontawesome.all.min.js"></script>
+  <script src="./js/clock.js"></script>
   <!--MathJax-->
   <script>
     window.MathJax = {
@@ -53,7 +55,6 @@
 </head>
 
 <body>
-
   <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
       <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
@@ -173,7 +174,31 @@
   <section class="hero teaser">
     <div class="container is-max-desktop">
       <div class="hero-body">
-        <img id="teaser" width="100%" src="cover.jpg" alt="cover.">
+        <!-- <img id="teaser" width="100%" src="cover.jpg" alt="cover."> -->
+         <div class="clock-container">
+        <!-- 状态指示器 -->
+        <div class="status-indicator" id="statusIndicator"></div>
+
+        <!-- 背景图像 -->
+        <img src="./image/RGB/14.jpg" alt="RGB" class="background-image top-image" id="topImage">
+        <img src="./image/ours/14_pred_colored.png" alt="depth" class="background-image bottom-image" id="bottomImage">
+
+        <!-- 时钟 -->
+        <div class="clock-face" id="clockFace">
+            <div class="hour-marks" id="hourMarks"></div>
+            <div class="minute-marks" id="minuteMarks"></div>
+
+            <!-- 指针 -->
+            <div class="hour-hand" id="hourHand"></div>
+            <div class="minute-hand" id="minuteHand"></div>
+            <div class="second-hand" id="secondHand"></div>
+
+            <div class="clock-center" id="clockCenter"></div>
+        </div>
+
+        <!-- 时间显示 -->
+        <div class="time-display" id="timeDisplay"></div>
+    </div>
         <h2 class="subtitle has-text-centered">
           <span class="methodname">Apdepth</span> achieved ideal results in object edge refinement
         </h2>
@@ -233,18 +258,18 @@
           <div class="twoitem">
             <div class="twentytwenty-container twentytwenty-container-top">
               <div class="cmpcontent">
-                <img src="./image/test-image/inside-01.jpg">
+                <img src="./image/RGB/01.jpg">
               </div>
               <div class="cmpcontent">
-                <img src="./image/depth_train/inside-01_pred_colored.png">
+                <img src="./image/ours/01_pred_colored.png">
               </div>
             </div>
             <div class="twentytwenty-container twentytwenty-container-bottom">
               <div class="cmpcontent">
-                <img src="./image/depth_pretrain/inside-01_pred_colored.png">
+                <img src="./image/Marigold/01_pred_colored.png">
               </div>
               <div class="cmpcontent">
-                <img src="./image/depth_train/inside-01_pred_colored.png">
+                <img src="./image/ours/01_pred_colored.png">
               </div>
             </div>
           </div>
@@ -252,18 +277,18 @@
           <div class="twoitem">
             <div class="twentytwenty-container twentytwenty-container-top">
               <div class="cmpcontent">
-                <img src="./image/test-image/inside-05.jpg">
+                <img src="./image/RGB/02.jpg">
               </div>
               <div class="cmpcontent">
-                <img src="./image/depth_train/inside-05_pred_colored.png">
+                <img src="./image/ours/02_pred_colored.png">
               </div>
             </div>
             <div class="twentytwenty-container twentytwenty-container-bottom">
               <div class="cmpcontent">
-                <img src="./image/depth_pretrain/inside-05_pred_colored.png">
+                <img src="./image/Marigold/02_pred_colored.png">
               </div>
               <div class="cmpcontent">
-                <img src="./image/depth_train/inside-05_pred_colored.png">
+                <img src="./image/ours/02_pred_colored.png">
               </div>
             </div>
           </div>
@@ -271,18 +296,18 @@
           <div class="twoitem">
             <div class="twentytwenty-container twentytwenty-container-top">
               <div class="cmpcontent">
-                <img src="./image/test-image/inside-06.jpg">
+                <img src="./image/RGB/03.jpg">
               </div>
               <div class="cmpcontent">
-                <img src="./image/depth_train/inside-06_pred_colored.png">
+                <img src="./image/ours/03_pred_colored.png">
               </div>
             </div>
             <div class="twentytwenty-container twentytwenty-container-bottom">
               <div class="cmpcontent">
-                <img src="./image/depth_pretrain/inside-06_pred_colored.png">
+                <img src="./image/Marigold/03_pred_colored.png">
               </div>
               <div class="cmpcontent">
-                <img src="./image/depth_train/inside-06_pred_colored.png">
+                <img src="./image/ours/03_pred_colored.png">
               </div>
             </div>
           </div>
@@ -290,18 +315,18 @@
           <div class="twoitem">
             <div class="twentytwenty-container twentytwenty-container-top">
               <div class="cmpcontent">
-                <img src="./image/test-image/inside-07.jpg">
+                <img src="./image/RGB/12.jpg">
               </div>
               <div class="cmpcontent">
-                <img src="./image/depth_train/inside-07_pred_colored.png">
+                <img src="./image/ours/12_pred_colored.png">
               </div>
             </div>
             <div class="twentytwenty-container twentytwenty-container-bottom">
               <div class="cmpcontent">
-                <img src="./image/depth_pretrain/inside-07_pred_colored.png">
+                <img src="./image/Marigold/12_pred_colored.png">
               </div>
               <div class="cmpcontent">
-                <img src="./image/depth_train/inside-07_pred_colored.png">
+                <img src="./image/ours/12_pred_colored.png">
               </div>
             </div>
           </div>
@@ -309,18 +334,18 @@
           <div class="twoitem">
             <div class="twentytwenty-container twentytwenty-container-top">
               <div class="cmpcontent">
-                <img src="./image/test-image/outside-04.jpg">
+                <img src="./image/RGB/16.jpg">
               </div>
               <div class="cmpcontent">
-                <img src="./image/depth_train/outside-04_pred_colored.png">
+                <img src="./image/ours/16_pred_colored.png">
               </div>
             </div>
             <div class="twentytwenty-container twentytwenty-container-bottom">
               <div class="cmpcontent">
-                <img src="./image/depth_pretrain/outside-04_pred_colored.png">
+                <img src="./image/Marigold/16_pred_colored.png">
               </div>
               <div class="cmpcontent">
-                <img src="./image/depth_train/outside-04_pred_colored.png">
+                <img src="./image/ours/16_pred_colored.png">
               </div>
             </div>
           </div>
@@ -328,18 +353,18 @@
           <div class="twoitem">
             <div class="twentytwenty-container twentytwenty-container-top">
               <div class="cmpcontent">
-                <img src="./image/test-image/outside-07.jpg">
+                <img src="./image/RGB/20.jpg">
               </div>
               <div class="cmpcontent">
-                <img src="./image/depth_train/outside-07_pred_colored.png">
+                <img src="./image/ours/20_pred_colored.png">
               </div>
             </div>
             <div class="twentytwenty-container twentytwenty-container-bottom">
               <div class="cmpcontent">
-                <img src="./image/depth_pretrain/outside-07_pred_colored.png">
+                <img src="./image/Marigold/20_pred_colored.png">
               </div>
               <div class="cmpcontent">
-                <img src="./image/depth_train/outside-07_pred_colored.png">
+                <img src="./image/ours/20_pred_colored.png">
               </div>
             </div>
           </div>
@@ -347,18 +372,18 @@
           <div class="twoitem">
             <div class="twentytwenty-container twentytwenty-container-top">
               <div class="cmpcontent">
-                <img src="./image/test-image/outside-06.jpg">
+                <img src="./image/RGB/22.jpg">
               </div>
               <div class="cmpcontent">
-                <img src="./image/depth_train/outside-06_pred_colored.png">
+                <img src="./image/ours/22_pred_colored.png">
               </div>
             </div>
             <div class="twentytwenty-container twentytwenty-container-bottom">
               <div class="cmpcontent">
-                <img src="./image/depth_pretrain/outside-06_pred_colored.png">
+                <img src="./image/Marigold/22_pred_colored.png">
               </div>
               <div class="cmpcontent">
-                <img src="./image/depth_train/outside-06_pred_colored.png">
+                <img src="./image/ours/22_pred_colored.png">
               </div>
             </div>
           </div>
@@ -366,18 +391,18 @@
           <div class="twoitem">
             <div class="twentytwenty-container twentytwenty-container-top">
               <div class="cmpcontent">
-                <img src="./image/test-image/synthetic-inside-01.jpg">
+                <img src="./image/RGB/23.jpg">
               </div>
               <div class="cmpcontent">
-                <img src="./image/depth_train/synthetic-inside-01_pred_colored.png">
+                <img src="./image/ours/23_pred_colored.png">
               </div>
             </div>
             <div class="twentytwenty-container twentytwenty-container-bottom">
               <div class="cmpcontent">
-                <img src="./image/depth_pretrain/synthetic-inside-01_pred_colored.png">
+                <img src="./image/Marigold/23_pred_colored.png">
               </div>
               <div class="cmpcontent">
-                <img src="./image/depth_train/synthetic-inside-01_pred_colored.png">
+                <img src="./image/ours/23_pred_colored.png">
               </div>
             </div>
           </div>
@@ -385,18 +410,18 @@
           <div class="twoitem">
             <div class="twentytwenty-container twentytwenty-container-top">
               <div class="cmpcontent">
-                <img src="./image/test-image/synthetic-inside-02.jpg">
+                <img src="./image/RGB/05.jpg">
               </div>
               <div class="cmpcontent">
-                <img src="./image/depth_train/synthetic-inside-02_pred_colored.png">
+                <img src="./image/ours/05_pred_colored.png">
               </div>
             </div>
             <div class="twentytwenty-container twentytwenty-container-bottom">
               <div class="cmpcontent">
-                <img src="./image/depth_pretrain/synthetic-inside-02_pred_colored.png">
+                <img src="./image/Marigold/05_pred_colored.png">
               </div>
               <div class="cmpcontent">
-                <img src="./image/depth_train/synthetic-inside-02_pred_colored.png">
+                <img src="./image/ours/05_pred_colored.png">
               </div>
             </div>
           </div>
@@ -404,18 +429,18 @@
           <div class="twoitem">
             <div class="twentytwenty-container twentytwenty-container-top">
               <div class="cmpcontent">
-                <img src="./image/test-image/synthetic-inside-05.jpg">
+                <img src="./image/RGB/14.jpg">
               </div>
               <div class="cmpcontent">
-                <img src="./image/depth_train/synthetic-inside-05_pred_colored.png">
+                <img src="./image/ours/14_pred_colored.png">
               </div>
             </div>
             <div class="twentytwenty-container twentytwenty-container-bottom">
               <div class="cmpcontent">
-                <img src="./image/depth_pretrain/synthetic-inside-05_pred_colored.png">
+                <img src="./image/Marigold/14_pred_colored.png">
               </div>
               <div class="cmpcontent">
-                <img src="./image/depth_train/synthetic-inside-05_pred_colored.png">
+                <img src="./image/ours/14_pred_colored.png">
               </div>
             </div>
           </div>
@@ -423,18 +448,75 @@
           <div class="twoitem">
             <div class="twentytwenty-container twentytwenty-container-top">
               <div class="cmpcontent">
-                <img src="./image/test-image/synthetic-outside-02.jpg">
+                <img src="./image/RGB/27.jpg">
               </div>
               <div class="cmpcontent">
-                <img src="./image/depth_train/synthetic-outside-02_pred_colored.png">
+                <img src="./image/ours/27_pred_colored.png">
               </div>
             </div>
             <div class="twentytwenty-container twentytwenty-container-bottom">
               <div class="cmpcontent">
-                <img src="./image/depth_pretrain/synthetic-outside-02_pred_colored.png">
+                <img src="./image/Marigold/27_pred_colored.png">
               </div>
               <div class="cmpcontent">
-                <img src="./image/depth_train/synthetic-outside-02_pred_colored.png">
+                <img src="./image/ours/27_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/RGB/28.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/28_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/Marigold/28_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/28_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/RGB/29.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/29_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/Marigold/29_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/29_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/RGB/10.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/10_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/Marigold/10_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/10_pred_colored.png">
               </div>
             </div>
           </div>
@@ -452,18 +534,18 @@
           <div class="twoitem">
             <div class="twentytwenty-container twentytwenty-container-top">
               <div class="cmpcontent">
-                <img src="./image/test-image/inside-02.jpg">
+                <img src="./image/RGB/04.jpg">
               </div>
               <div class="cmpcontent">
-                <img src="./image/depth_train/inside-02_pred_colored.png">
+                <img src="./image/ours/04_pred_colored.png">
               </div>
             </div>
             <div class="twentytwenty-container twentytwenty-container-bottom">
               <div class="cmpcontent">
-                <img src="./image/depth_pretrain/inside-02_pred_colored.png">
+                <img src="./image/Marigold/04_pred_colored.png">
               </div>
               <div class="cmpcontent">
-                <img src="./image/depth_train/inside-02_pred_colored.png">
+                <img src="./image/ours/04_pred_colored.png">
               </div>
             </div>
           </div>
@@ -471,18 +553,18 @@
           <div class="twoitem">
             <div class="twentytwenty-container twentytwenty-container-top">
               <div class="cmpcontent">
-                <img src="./image/test-image/inside-03.jpg">
+                <img src="./image/RGB/07.jpg">
               </div>
               <div class="cmpcontent">
-                <img src="./image/depth_train/inside-03_pred_colored.png">
+                <img src="./image/ours/07_pred_colored.png">
               </div>
             </div>
             <div class="twentytwenty-container twentytwenty-container-bottom">
               <div class="cmpcontent">
-                <img src="./image/depth_pretrain/inside-03_pred_colored.png">
+                <img src="./image/Marigold/07_pred_colored.png">
               </div>
               <div class="cmpcontent">
-                <img src="./image/depth_train/inside-03_pred_colored.png">
+                <img src="./image/ours/07_pred_colored.png">
               </div>
             </div>
           </div>
@@ -490,18 +572,18 @@
           <div class="twoitem">
             <div class="twentytwenty-container twentytwenty-container-top">
               <div class="cmpcontent">
-                <img src="./image/test-image/inside-11.jpg">
+                <img src="./image/RGB/15.jpg">
               </div>
               <div class="cmpcontent">
-                <img src="./image/depth_train/inside-11_pred_colored.png">
+                <img src="./image/ours/15_pred_colored.png">
               </div>
             </div>
             <div class="twentytwenty-container twentytwenty-container-bottom">
               <div class="cmpcontent">
-                <img src="./image/depth_pretrain/inside-11_pred_colored.png">
+                <img src="./image/Marigold/15_pred_colored.png">
               </div>
               <div class="cmpcontent">
-                <img src="./image/depth_train/inside-11_pred_colored.png">
+                <img src="./image/ours/15_pred_colored.png">
               </div>
             </div>
           </div>
@@ -509,18 +591,18 @@
           <div class="twoitem">
             <div class="twentytwenty-container twentytwenty-container-top">
               <div class="cmpcontent">
-                <img src="./image/test-image/inside-12.jpg">
+                <img src="./image/RGB/19.jpg">
               </div>
               <div class="cmpcontent">
-                <img src="./image/depth_train/inside-12_pred_colored.png">
+                <img src="./image/ours/19_pred_colored.png">
               </div>
             </div>
             <div class="twentytwenty-container twentytwenty-container-bottom">
               <div class="cmpcontent">
-                <img src="./image/depth_pretrain/inside-12_pred_colored.png">
+                <img src="./image/Marigold/19_pred_colored.png">
               </div>
               <div class="cmpcontent">
-                <img src="./image/depth_train/inside-12_pred_colored.png">
+                <img src="./image/ours/19_pred_colored.png">
               </div>
             </div>
           </div>
@@ -528,18 +610,18 @@
           <div class="twoitem">
             <div class="twentytwenty-container twentytwenty-container-top">
               <div class="cmpcontent">
-                <img src="./image/test-image/outside-01.jpg">
+                <img src="./image/RGB/24.jpg">
               </div>
               <div class="cmpcontent">
-                <img src="./image/depth_train/outside-01_pred_colored.png">
+                <img src="./image/ours/24_pred_colored.png">
               </div>
             </div>
             <div class="twentytwenty-container twentytwenty-container-bottom">
               <div class="cmpcontent">
-                <img src="./image/depth_pretrain/outside-01_pred_colored.png">
+                <img src="./image/Marigold/24_pred_colored.png">
               </div>
               <div class="cmpcontent">
-                <img src="./image/depth_train/outside-01_pred_colored.png">
+                <img src="./image/ours/24_pred_colored.png">
               </div>
             </div>
           </div>
@@ -547,18 +629,18 @@
           <div class="twoitem">
             <div class="twentytwenty-container twentytwenty-container-top">
               <div class="cmpcontent">
-                <img src="./image/test-image/outside-03.jpg">
+                <img src="./image/RGB/26.jpg">
               </div>
               <div class="cmpcontent">
-                <img src="./image/depth_train/outside-03_pred_colored.png">
+                <img src="./image/ours/26_pred_colored.png">
               </div>
             </div>
             <div class="twentytwenty-container twentytwenty-container-bottom">
               <div class="cmpcontent">
-                <img src="./image/depth_pretrain/outside-03_pred_colored.png">
+                <img src="./image/Marigold/26_pred_colored.png">
               </div>
               <div class="cmpcontent">
-                <img src="./image/depth_train/outside-03_pred_colored.png">
+                <img src="./image/ours/26_pred_colored.png">
               </div>
             </div>
           </div>
@@ -566,18 +648,37 @@
           <div class="twoitem">
             <div class="twentytwenty-container twentytwenty-container-top">
               <div class="cmpcontent">
-                <img src="./image/test-image/outside-08.jpg">
+                <img src="./image/RGB/25.jpg">
               </div>
               <div class="cmpcontent">
-                <img src="./image/depth_train/outside-08_pred_colored.png">
+                <img src="./image/ours/25_pred_colored.png">
               </div>
             </div>
             <div class="twentytwenty-container twentytwenty-container-bottom">
               <div class="cmpcontent">
-                <img src="./image/depth_pretrain/outside-08_pred_colored.png">
+                <img src="./image/Marigold/25_pred_colored.png">
               </div>
               <div class="cmpcontent">
-                <img src="./image/depth_train/outside-08_pred_colored.png">
+                <img src="./image/ours/25_pred_colored.png">
+              </div>
+            </div>
+          </div>
+          
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/RGB/08.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/08_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/Marigold/08_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/08_pred_colored.png">
               </div>
             </div>
           </div>
@@ -585,18 +686,75 @@
           <div class="twoitem">
             <div class="twentytwenty-container twentytwenty-container-top">
               <div class="cmpcontent">
-                <img src="./image/test-image/outside-09.jpg">
+                <img src="./image/RGB/09.jpg">
               </div>
               <div class="cmpcontent">
-                <img src="./image/depth_train/outside-09_pred_colored.png">
+                <img src="./image/ours/09_pred_colored.png">
               </div>
             </div>
             <div class="twentytwenty-container twentytwenty-container-bottom">
               <div class="cmpcontent">
-                <img src="./image/depth_pretrain/outside-09_pred_colored.png">
+                <img src="./image/Marigold/09_pred_colored.png">
               </div>
               <div class="cmpcontent">
-                <img src="./image/depth_train/outside-09_pred_colored.png">
+                <img src="./image/ours/09_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/RGB/13.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/13_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/Marigold/13_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/13_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/RGB/17.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/17_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/Marigold/17_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/17_pred_colored.png">
+              </div>
+            </div>
+          </div>
+
+          <div class="twoitem">
+            <div class="twentytwenty-container twentytwenty-container-top">
+              <div class="cmpcontent">
+                <img src="./image/RGB/18.jpg">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/18_pred_colored.png">
+              </div>
+            </div>
+            <div class="twentytwenty-container twentytwenty-container-bottom">
+              <div class="cmpcontent">
+                <img src="./image/Marigold/18_pred_colored.png">
+              </div>
+              <div class="cmpcontent">
+                <img src="./image/ours/18_pred_colored.png">
               </div>
             </div>
           </div>

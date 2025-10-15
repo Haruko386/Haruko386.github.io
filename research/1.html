@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>时钟图像叠加组件</title>
+    <style>
+        .clock-container {
+            position: relative;
+            width: 640px;
+            height: 480px;
+            margin: 50px auto;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+        }
+
+        .background-image {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: translate(-50%, -50%);
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .top-image {
+            z-index: 2;
+            opacity: 1;
+        }
+
+        .bottom-image {
+            z-index: 1;
+            opacity: 0;
+        }
+
+        .clock-face {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+            z-index: 10;
+            pointer-events: none;
+            border-radius: 50%;
+            border: none;
+            background: transparent;
+        }
+
+        /* 时针 */
+        .hour-hand {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 6px;
+            height: 60px;
+            background: #333;
+            transform-origin: bottom center;
+            transform: translate(-50%, -100%) rotate(0deg);
+            border-radius: 3px;
+            z-index: 9;
+            transition: none;
+        }
+
+        /* 分针 */
+        .minute-hand {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 4px;
+            height: 90px;
+            background: #666;
+            transform-origin: bottom center;
+            transform: translate(-50%, -100%) rotate(0deg);
+            border-radius: 2px;
+            z-index: 10;
+            transition: none;
+        }
+
+        /* 秒针 */
+        .second-hand {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 2px;
+            height: 100px;
+            background: #ff4444;
+            transform-origin: bottom center;
+            transform: translate(-50%, -100%) rotate(0deg);
+            border-radius: 1px;
+            z-index: 11;
+            transition: none;
+        }
+
+        .clock-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 8px;
+            height: 8px;
+            background: #fff;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 13;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            pointer-events: auto;
+        }
+
+        .clock-center.paused {
+            background-color: #a30b0b;
+        }
+
+        .clock-center:hover {
+            background-color: #f0f0f0;
+        }
+
+        .time-display {
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            z-index: 15;
+        }
+
+        .hour-marks {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+        }
+
+        .hour-mark {
+            display: none;
+            position: absolute;
+            width: 4px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            left: 50%;
+            top: 8px;
+            transform-origin: bottom center;
+            transform: translateX(-50%);
+        }
+
+        .minute-marks {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+        }
+
+        .minute-mark {
+            position: absolute;
+            width: 2px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.6);
+            left: 50%;
+            top: 12px;
+            transform-origin: bottom center;
+            transform: translateX(-50%);
+        }
+
+        .status-indicator {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #0e57bd;
+            z-index: 20;
+            transition: background-color 0.2s;
+        }
+
+        .status-indicator.paused {
+            background: #a30b0b;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="clock-container">
+        <!-- 状态指示器 -->
+        <div class="status-indicator" id="statusIndicator"></div>
+
+        <!-- 背景图像 -->
+        <img src="./image/RGB/14.jpg" alt="背景图像1" class="background-image top-image" id="topImage">
+        <img src="./image/ours/14_pred_colored.png" alt="背景图像2" class="background-image bottom-image" id="bottomImage">
+
+        <!-- 时钟 -->
+        <div class="clock-face" id="clockFace">
+            <div class="hour-marks" id="hourMarks"></div>
+            <div class="minute-marks" id="minuteMarks"></div>
+
+            <!-- 指针 -->
+            <div class="hour-hand" id="hourHand"></div>
+            <div class="minute-hand" id="minuteHand"></div>
+            <div class="second-hand" id="secondHand"></div>
+
+            <div class="clock-center" id="clockCenter"></div>
+        </div>
+
+        <!-- 时间显示 -->
+        <div class="time-display" id="timeDisplay"></div>
+    </div>
+
+    <script>
+        class ClockImageComponent {
+            constructor() {
+                this.topImage = document.getElementById('topImage');
+                this.bottomImage = document.getElementById('bottomImage');
+                this.clockFace = document.getElementById('clockFace');
+                this.timeDisplay = document.getElementById('timeDisplay');
+
+                // 移除对已隐藏的刻度容器的引用
+                // this.hourMarks = document.getElementById('hourMarks'); 
+                // this.minuteMarks = document.getElementById('minuteMarks');
+
+                this.clockCenter = document.getElementById('clockCenter');
+                this.statusIndicator = document.getElementById('statusIndicator');
+                this.hourHand = document.getElementById('hourHand');
+                this.minuteHand = document.getElementById('minuteHand');
+                this.secondHand = document.getElementById('secondHand');
+
+                this.isPaused = false;
+                this.startTime = Date.now();
+                this.pausedTime = null;
+                this.animationFrameId = null;
+
+                this.initClock();
+                this.setupEventListeners();
+                this.startClock();
+            }
+
+            setupEventListeners() {
+                this.clockCenter.addEventListener('click', (e) => {
+                    // 阻止事件冒泡到 .clock-container
+                    e.stopPropagation();
+                    this.togglePause();
+                });
+
+                document.querySelector('.clock-container').addEventListener('click', (e) => {
+                    // 仅在点击容器但不是中心点时切换暂停状态
+                    // 这里的逻辑与上方的 stopPropagation 配合，保证点击非中心区域也可以暂停/恢复
+                    this.togglePause();
+                });
+            }
+
+            togglePause() {
+                if (this.isPaused) {
+                    this.resume();
+                } else {
+                    this.pause();
+                }
+            }
+
+            pause() {
+                this.isPaused = true;
+                cancelAnimationFrame(this.animationFrameId);
+                this.pausedTime = Date.now();
+
+                this.clockCenter.classList.add('paused');
+                this.statusIndicator.classList.add('paused');
+            }
+
+            resume() {
+                this.isPaused = false;
+                this.startTime = Date.now();
+                this.pausedTime = null;
+
+                this.clockCenter.classList.remove('paused');
+                this.statusIndicator.classList.remove('paused');
+
+                this.animate();
+            }
+
+            /* 关键修改 4: 移除刻度创建逻辑 */
+            initClock() {
+                // 刻度元素已被移除或隐藏，无需在此创建
+            }
+
+            getCurrentTime() {
+                if (this.isPaused && this.pausedTime) {
+                    return this.pausedTime;
+                }
+                return Date.now();
+            }
+
+            updateHands() {
+                const now = new Date(this.getCurrentTime());
+                const seconds = now.getSeconds() + now.getMilliseconds() / 1000;
+                const minutes = now.getMinutes() + seconds / 60;
+                const hours = (now.getHours() % 12) + minutes / 60;
+
+                // 计算角度
+                const secondsAngle = seconds * 6;
+                const minutesAngle = minutes * 6;
+                const hoursAngle = hours * 30;
+
+                // 更新指针旋转（平滑连续）
+                this.secondHand.style.transform = `translate(-50%, -100%) rotate(${secondsAngle}deg)`;
+                this.minuteHand.style.transform = `translate(-50%, -100%) rotate(${minutesAngle}deg)`;
+                this.hourHand.style.transform = `translate(-50%, -100%) rotate(${hoursAngle}deg)`;
+
+                // 根据秒针位置控制图像透明度（使用精确秒数）
+                const secondsInt = Math.floor(seconds);
+                const topOpacity = secondsInt <= 30 ? (1 - (secondsInt / 30)) : ((secondsInt - 30) / 30);
+                const bottomOpacity = 1 - topOpacity;
+
+                this.topImage.style.opacity = topOpacity;
+                this.bottomImage.style.opacity = bottomOpacity;
+
+                // 更新时间显示
+                const timeString = now.toLocaleTimeString('zh-CN', {
+                    hour12: false,
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit'
+                });
+
+                this.timeDisplay.textContent = this.isPaused ? `${timeString} (暂停)` : timeString;
+            }
+
+            animate() {
+                this.updateHands();
+                this.animationFrameId = requestAnimationFrame(() => this.animate());
+            }
+
+            startClock() {
+                this.animate();
+            }
+        }
+
+        // 初始化组件
+        document.addEventListener('DOMContentLoaded', () => {
+            new ClockImageComponent();
+        });
+    </script>
+</body>
+
+</html>
