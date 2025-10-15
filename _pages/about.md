@@ -16,7 +16,7 @@ I have participated in many **ACM algorithm** competitions but have now retired.
 ## 🔬Science
  We present [**Apdepth**](https://haruko386.github.io/research/), a diffusion model, and associated fine-tuning protocol for monocular depth estimation.
  <div style="text-align: center;">
-   <img src="https://haruko386.github.io/research/cover.jpg" alt="Cover" style="zoom:50%; box-shadow: 6px 6px 8px #888; border: 0px solid #efefef; border-radius: 12px;" />
+   <img src="https://haruko386.github.io/research/train.png" alt="Cover" style="zoom:50%; box-shadow: 6px 6px 8px #888; border: 0px solid #efefef; border-radius: 12px;" />
 </div>
 
 ## 🎈ACM ＆ OI
