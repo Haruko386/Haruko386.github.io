@@ -1,0 +1,1519 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=0.2">
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Depth Anything V2">
+  <meta name="keywords" content="Monocular Depth Estimation">
+  <title>Depth Anything V2</title>
+
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+
+
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/Logo.png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  <script src="./static/js/script.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+</nav>
+
+
+<section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">ApDepth-G: Mitigating Pseudo-Texture Artifacts 
+              in Diffusion-Based Models </h1>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="">Jingxuan Wang<sup>1†</sup></a>
+              </span>
+              <span class="author-block">
+                <a href="https://haruko386.github.io/">Jiawei Wang<sup>2†</sup></a>,
+              </span>
+              
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup> Beijing University Of Chinese Medicine</span><br>
+              <span class="author-block"><sup>2</sup> Shenyang Jianzhu University</span><br>
+              <span class="author-block" style="font-size: 0.7em; color: #555;">
+                <sup>†</sup> These authors contributed equally to this work.
+              </span>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- PDF Link. -->
+                <span class="link-block">
+                  <a href="./static/Methodology Section for Paper.pdf" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+                <!-- Code Link. -->
+                <span class="link-block">
+                  <a href="https://github.com/Haruko386/ApDepth"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+                <!-- Direct Model. -->
+                <span class="link-block">
+                  <a href="../research/index.html"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      📖
+                    </span>
+                    <span>ApDepth</span>
+                  </a>
+                </span>
+                <!-- Huggingface. -->
+                <span class="link-block">
+                  <a href="https://huggingface.co/developy/ApDepth"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      🤗
+                    </span>
+                    <span>Huggingface Model</span>
+                  </a>
+                </span>
+
+                <span class="link-block">
+                  <a href="https://huggingface.co/spaces/developy/ApDepth"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      🖼️
+                    </span>
+                    <span>Huggingface Demo</span>
+                  </a>
+                </span>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img id="teaser" width="100%" src="./static/images/cover.jpg"/>
+    </div>
+  </div>
+</section>
+
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <h4 class="subtitle has-text-centered">
+        <div class="content has-text-justified"> 
+          <p>
+            We have extended our work by introducing ApDepth-G, a diffusion model for multi-step inference, which demonstrates superior edge detail refinement capabilities 
+            compared to
+              <a href="../research/index.html">ApDepth</a>
+          <p>
+        </div>
+      </h4>
+    </div>
+  </div>
+</section>
+
+<!-- Gallery -->
+<section class="hero is-small" style="margin-top: 30px; padding-top: 0px;">
+  <h2 class="title is-4" style="text-align: center;">Comparison with ApDepth on <span style="color: #4FACFA;">Fine-grained Details</span></h2>
+  <div class="hero-body">
+    
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+
+        <div class="img-grid-3">
+          <div class="image-container">
+            <div class="caption">Raw Image</div>
+            <img src="./static/images/RGB_detail/14207812284_c4625ff7ad_k_img.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">ApDepth</div>
+            <img src="./static/images/RGB_detail_D/14207812284_c4625ff7ad_k_img_pred_colored.png" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">ApDepth-G</div>
+            <img src="./static/images/RGB_detail_G/14207812284_c4625ff7ad_k_img_pred_colored.png" width="100%">
+          </div>
+
+          <img src="./static/images/RGB_detail/17943623232_5f974cad30_k_img.jpg" width="100%">
+          <img src="./static/images/RGB_detail_D/17943623232_5f974cad30_k_img_pred_colored.png" width="100%">
+          <img src="./static/images/RGB_detail_G/17943623232_5f974cad30_k_img_pred_colored.png" width="100%">
+        
+        </div>
+
+        <div class="img-grid-3">
+          <div class="image-container">
+            <div class="caption">Raw Image</div>
+            <img src="./static/images/RGB_detail/18163676059_79c52d7d44_k_img.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">ApDepth</div>
+            <img src="./static/images/RGB_detail_D/18163676059_79c52d7d44_k_img_pred_colored.png" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">ApDepth-G</div>
+            <img src="./static/images/RGB_detail_G/18163676059_79c52d7d44_k_img_pred_colored.png" width="100%">
+          </div>
+
+          <img src="./static/images/RGB_detail//20304092008_ede0b1304e_k_img.jpg" width="100%">
+          <img src="./static/images/RGB_detail_D/20304092008_ede0b1304e_k_img_pred_colored.png" width="100%">
+          <img src="./static/images/RGB_detail_G/20304092008_ede0b1304e_k_img_pred_colored.png" width="100%">
+        
+        </div>
+
+        <div class="img-grid-3">
+          <div class="image-container">
+            <div class="caption">Raw Image</div>
+            <img src="./static/images/RGB_detail/20308243458_aa9a9e096d_k_img.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">ApDepth</div>
+            <img src="./static/images/RGB_detail_D/20308243458_aa9a9e096d_k_img_pred_colored.png" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">ApDepth-G</div>
+            <img src="./static/images/RGB_detail_G/20308243458_aa9a9e096d_k_img_pred_colored.png" width="100%">
+          </div>
+
+          <img src="./static/images/RGB_detail/21641503110_11ee9051d3_k_img.jpg" width="100%">
+          <img src="./static/images/RGB_detail_D/21641503110_11ee9051d3_k_img_pred_colored.png" width="100%">
+          <img src="./static/images/RGB_detail_G/21641503110_11ee9051d3_k_img_pred_colored.png" width="100%">
+        
+        </div>
+
+        <div class="img-grid-3">
+          <div class="image-container">
+            <div class="caption">Raw Image</div>
+            <img src="./static/images/RGB_detail/22390096157_4dceea42ae_k_img.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">ApDepth</div>
+            <img src="./static/images/RGB_detail_D/22390096157_4dceea42ae_k_img_pred_colored.png" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">ApDepth-G</div>
+            <img src="./static/images/RGB_detail_G/22390096157_4dceea42ae_k_img_pred_colored.png" width="100%">
+          </div>
+
+          <img src="./static/images/RGB_detail/25617303635_4e6320d859_b_img.jpg" width="100%">
+          <img src="./static/images/RGB_detail_D/25617303635_4e6320d859_b_img_pred_colored.png" width="100%">
+          <img src="./static/images/RGB_detail_G/25617303635_4e6320d859_b_img_pred_colored.png" width="100%">
+        
+        </div>
+
+        <div class="img-grid-3">
+          <div class="image-container">
+            <div class="caption">Raw Image</div>
+            <img src="./static/images/RGB_detail/26439902152_640a2d754e_k_img.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">ApDepth</div>
+            <img src="./static/images/RGB_detail_D/26439902152_640a2d754e_k_img_pred_colored.png" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">ApDepth-G</div>
+            <img src="./static/images/RGB_detail_G/26439902152_640a2d754e_k_img_pred_colored.png" width="100%">
+          </div>
+
+          <img src="./static/images/RGB_detail/27295431082_5e7d25ba64_k_img.jpg" width="100%">
+          <img src="./static/images/RGB_detail_D/27295431082_5e7d25ba64_k_img_pred_colored.png" width="100%">
+          <img src="./static/images/RGB_detail_G/27295431082_5e7d25ba64_k_img_pred_colored.png" width="100%">
+        
+        </div>
+
+        <div class="img-grid-3">
+          <div class="image-container">
+            <div class="caption">Raw Image</div>
+            <img src="./static/images/RGB_detail/27570847956_1934aa7d19_k_img.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">ApDepth</div>
+            <img src="./static/images/RGB_detail_D/27570847956_1934aa7d19_k_img_pred_colored.png" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">ApDepth-G</div>
+            <img src="./static/images/RGB_detail_G/27570847956_1934aa7d19_k_img_pred_colored.png" width="100%">
+          </div>
+
+          <img src="./static/images/RGB_detail/27800212632_56e67e7f43_k_img.jpg" width="100%">
+          <img src="./static/images/RGB_detail_D/27800212632_56e67e7f43_k_img_pred_colored.png" width="100%">
+          <img src="./static/images/RGB_detail_G/27800212632_56e67e7f43_k_img_pred_colored.png" width="100%">
+        
+        </div>
+
+        <div class="img-grid-3">
+          <div class="image-container">
+            <div class="caption">Raw Image</div>
+            <img src="./static/images/RGB_detail/32815687607_fa71f65a34_k_img.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">ApDepth</div>
+            <img src="./static/images/RGB_detail_D/32815687607_fa71f65a34_k_img_pred_colored.png" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">ApDepth-G</div>
+            <img src="./static/images/RGB_detail_G/32815687607_fa71f65a34_k_img_pred_colored.png" width="100%">
+          </div>
+
+          <img src="./static/images/RGB_detail/33163406365_e67ad6f831_k_img.jpg" width="100%">
+          <img src="./static/images/RGB_detail_D/33163406365_e67ad6f831_k_img_pred_colored.png" width="100%">
+          <img src="./static/images/RGB_detail_G/33163406365_e67ad6f831_k_img_pred_colored.png" width="100%">
+        
+        </div>
+
+        <div class="img-grid-3">
+          <div class="image-container">
+            <div class="caption">Raw Image</div>
+            <img src="./static/images/RGB_detail/41645368901_c15ef28ac3_k_img.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">ApDepth</div>
+            <img src="./static/images/RGB_detail_D/41645368901_c15ef28ac3_k_img_pred_colored.png" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">ApDepth-G</div>
+            <img src="./static/images/RGB_detail_G/41645368901_c15ef28ac3_k_img_pred_colored.png" width="100%">
+          </div>
+
+          <img src="./static/images/RGB_detail/52775552059_8566a4bde2_k_img.jpg" width="100%">
+          <img src="./static/images/RGB_detail_D/52775552059_8566a4bde2_k_img_pred_colored.png" width="100%">
+          <img src="./static/images/RGB_detail_G/52775552059_8566a4bde2_k_img_pred_colored.png" width="100%">
+        
+        </div>
+
+        <div class="img-grid-3">
+          <div class="image-container">
+            <div class="caption">Raw Image</div>
+            <img src="./static/images/RGB_detail/52845333940_6eb1a7a5ff_k_img.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">ApDepth</div>
+            <img src="./static/images/RGB_detail_D/52845333940_6eb1a7a5ff_k_img_pred_colored.png" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">ApDepth-G</div>
+            <img src="./static/images/RGB_detail_G/52845333940_6eb1a7a5ff_k_img_pred_colored.png" width="100%">
+          </div>
+
+          <img src="./static/images/RGB_detail/bicycle_img.jpg" width="100%">
+          <img src="./static/images/RGB_detail_D/bicycle_img_pred_colored.png" width="100%">
+          <img src="./static/images/RGB_detail_G/bicycle_img_pred_colored.png" width="100%">
+        
+        </div>
+
+        <div class="img-grid-3">
+          <div class="image-container">
+            <div class="caption">Raw Image</div>
+            <img src="./static/images/RGB_detail/demo5_img.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">ApDepth</div>
+            <img src="./static/images/RGB_detail_D/demo5_img_pred_colored.png" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">ApDepth-G</div>
+            <img src="./static/images/RGB_detail_G/demo5_img_pred_colored.png" width="100%">
+          </div>
+
+          <img src="./static/images/RGB_detail/demo7_img.jpg" width="100%">
+          <img src="./static/images/RGB_detail_D/demo7_img_pred_colored.png" width="100%">
+          <img src="./static/images/RGB_detail_G/demo7_img_pred_colored.png" width="100%">
+        
+        </div>
+
+      </div>
+    </div>
+    
+  </div>
+</section>
+
+
+<section class="hero is-small" style="margin-top: 50px; padding-top: 0px;">
+  <h2 class="title is-4" style="text-align: center;">Comparison with ApDepth on <span style="color: #4FACFA;">Robustness</span></h2>
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+
+        <div class="img-grid-3">
+          <div class="image-container">
+            <div class="caption">Raw Image</div>
+            <img src="./static/images/RGB_rob/20131434932_721d0b3d44_k_img.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">ApDepth</div>
+            <img src="./static/images/RGB_rob_D/20131434932_721d0b3d44_k_img_pred_colored.png" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">ApDepth-G</div>
+            <img src="./static/images/RGB_rob_G/20131434932_721d0b3d44_k_img_pred_colored.png" width="100%">
+          </div>
+
+          <img src="./static/images/RGB_rob/20661238074_30958d9dab_k_img.jpg" width="100%">
+          <img src="./static/images/RGB_rob_D/20661238074_30958d9dab_k_img_pred_colored.png" width="100%">
+          <img src="./static/images/RGB_rob_G/20661238074_30958d9dab_k_img_pred_colored.png" width="100%">
+        
+        </div>
+
+        <div class="img-grid-3">
+          <div class="image-container">
+            <div class="caption">Raw Image</div>
+            <img src="./static/images/RGB_rob/2320148152_2941ffc70a_k_img.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">ApDepth</div>
+            <img src="./static/images/RGB_rob_D/2320148152_2941ffc70a_k_img_pred_colored.png" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">ApDepth-G</div>
+            <img src="./static/images/RGB_rob_G/2320148152_2941ffc70a_k_img_pred_colored.png" width="100%">
+          </div>
+
+          <img src="./static/images/RGB_rob/25408139247_73cc35c730_h_img.jpg" width="100%">
+          <img src="./static/images/RGB_rob_D/25408139247_73cc35c730_h_img_pred_colored.png" width="100%">
+          <img src="./static/images/RGB_rob_G/25408139247_73cc35c730_h_img_pred_colored.png" width="100%">
+        
+        </div>
+
+        <div class="img-grid-3">
+          <div class="image-container">
+            <div class="caption">Raw Image</div>
+            <img src="./static/images/RGB_rob/26174451699_eea72c5539_k_img.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">ApDepth</div>
+            <img src="./static/images/RGB_rob_D/26174451699_eea72c5539_k_img_pred_colored.png" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">ApDepth-G</div>
+            <img src="./static/images/RGB_rob_G/26174451699_eea72c5539_k_img_pred_colored.png" width="100%">
+          </div>
+
+          <img src="./static/images/RGB_rob/27487831525_ebd549b2ee_k_img.jpg" width="100%">
+          <img src="./static/images/RGB_rob_D/27487831525_ebd549b2ee_k_img_pred_colored.png" width="100%">
+          <img src="./static/images/RGB_rob_G/27487831525_ebd549b2ee_k_img_pred_colored.png" width="100%">
+        
+        </div>
+
+        <div class="img-grid-3">
+          <div class="image-container">
+            <div class="caption">Raw Image</div>
+            <img src="./static/images/RGB_rob/28172788999_16bc37b927_k_img.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">ApDepth</div>
+            <img src="./static/images/RGB_rob_D/28172788999_16bc37b927_k_img_pred_colored.png" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">ApDepth-G</div>
+            <img src="./static/images/RGB_rob_G/28172788999_16bc37b927_k_img_pred_colored.png" width="100%">
+          </div>
+
+          <img src="./static/images/RGB_rob/37622979602_4b860bfac9_k_img.jpg" width="100%">
+          <img src="./static/images/RGB_rob_D/37622979602_4b860bfac9_k_img_pred_colored.png" width="100%">
+          <img src="./static/images/RGB_rob_G/37622979602_4b860bfac9_k_img_pred_colored.png" width="100%">
+        
+        </div>
+
+        <div class="img-grid-3">
+          <div class="image-container">
+            <div class="caption">Raw Image</div>
+            <img src="./static/images/RGB_rob/38510419542_dfbe2df30f_h_img.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">ApDepth</div>
+            <img src="./static/images/RGB_rob_D/38510419542_dfbe2df30f_h_img_pred_colored.png" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">ApDepth-G</div>
+            <img src="./static/images/RGB_rob_G/38510419542_dfbe2df30f_h_img_pred_colored.png" width="100%">
+          </div>
+
+          <img src="./static/images/RGB_rob/38512148842_4dfd8ee8f4_k_img.jpg" width="100%">
+          <img src="./static/images/RGB_rob_D/38512148842_4dfd8ee8f4_k_img_pred_colored.png" width="100%">
+          <img src="./static/images/RGB_rob_G/38512148842_4dfd8ee8f4_k_img_pred_colored.png" width="100%">
+        
+        </div>
+
+        <div class="img-grid-3">
+          <div class="image-container">
+            <div class="caption">Raw Image</div>
+            <img src="./static/images/RGB_rob/3991247448_dfa1a2397f_k_img.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">ApDepth</div>
+            <img src="./static/images/RGB_rob_D/3991247448_dfa1a2397f_k_img_pred_colored.png" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">ApDepth-G</div>
+            <img src="./static/images/RGB_rob_G/3991247448_dfa1a2397f_k_img_pred_colored.png" width="100%">
+          </div>
+
+          <img src="./static/images/RGB_rob/40277550594_7e379065f3_k_img.jpg" width="100%">
+          <img src="./static/images/RGB_rob_D/40277550594_7e379065f3_k_img_pred_colored.png" width="100%">
+          <img src="./static/images/RGB_rob_G/40277550594_7e379065f3_k_img_pred_colored.png" width="100%">
+        
+        </div>
+
+        <div class="img-grid-3">
+          <div class="image-container">
+            <div class="caption">Raw Image</div>
+            <img src="./static/images/RGB_rob/53263848580_d6b55b4277_k_img.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">ApDepth</div>
+            <img src="./static/images/RGB_rob_D/53263848580_d6b55b4277_k_img_pred_colored.png" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">ApDepth-G</div>
+            <img src="./static/images/RGB_rob_G/53263848580_d6b55b4277_k_img_pred_colored.png" width="100%">
+          </div>
+
+          <img src="./static/images/RGB_rob/transparent_car1_img.jpg" width="100%">
+          <img src="./static/images/RGB_rob_D/transparent_car1_img_pred_colored.png" width="100%">
+          <img src="./static/images/RGB_rob_G/transparent_car1_img_pred_colored.png" width="100%">
+        
+        </div>
+
+      </div>
+    </div>
+    
+  </div>
+</section>
+
+
+<!-- <section class="hero is-small" style="margin-top: 50px; padding-top: 0px;">
+  <h2 class="title is-4" style="text-align: center;">Comparison with Marigold and ApDepth</h2>
+  <div class="hero-body">
+    
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        
+        <div class="img-grid-2">
+          <div class="image-container">
+            <div class="caption">Raw Image</div>
+            <img src="./static/images/compare_sd/31260909628_572170768b_k_img.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Depth Anything V2</div>
+            <img src="./static/images/compare_sd/31260909628_572170768b_k_v2.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Marigold</div>
+            <img src="./static/images/compare_sd/31260909628_572170768b_k_marigold.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Geowizard</div>
+            <img src="./static/images/compare_sd/31260909628_572170768b_k_geowizard.jpg" width="100%">
+          </div>
+        </div>
+
+        <div class="img-grid-2">
+          <div class="image-container">
+            <div class="caption">Raw Image</div>
+            <img src="./static/images/compare_sd/room_img.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Depth Anything V2</div>
+            <img src="./static/images/compare_sd/room_v2.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Marigold</div>
+            <img src="./static/images/compare_sd/room_marigold.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Geowizard</div>
+            <img src="./static/images/compare_sd/room_geowizard.jpg" width="100%">
+          </div>
+        </div>
+
+        <div class="img-grid-2">
+          <div class="image-container">
+            <div class="caption">Raw Image</div>
+            <img src="./static/images/compare_sd/demo10_img.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Depth Anything V2</div>
+            <img src="./static/images/compare_sd/demo10_v2.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Marigold</div>
+            <img src="./static/images/compare_sd/demo10_marigold.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Geowizard</div>
+            <img src="./static/images/compare_sd/demo10_geowizard.jpg" width="100%">
+          </div>
+        </div>
+
+        <div class="img-grid-2">
+          <div class="image-container">
+            <div class="caption">Raw Image</div>
+            <img src="./static/images/compare_sd/demo17_img.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Depth Anything V2</div>
+            <img src="./static/images/compare_sd/demo17_v2.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Marigold</div>
+            <img src="./static/images/compare_sd/demo17_marigold.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Geowizard</div>
+            <img src="./static/images/compare_sd/demo17_geowizard.jpg" width="100%">
+          </div>
+        </div>
+
+        <div class="img-grid-2">
+          <div class="image-container">
+            <div class="caption">Raw Image</div>
+            <img src="./static/images/compare_sd/demo18_img.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Depth Anything V2</div>
+            <img src="./static/images/compare_sd/demo18_v2.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Marigold</div>
+            <img src="./static/images/compare_sd/demo18_marigold.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Geowizard</div>
+            <img src="./static/images/compare_sd/demo18_geowizard.jpg" width="100%">
+          </div>
+        </div>
+
+        <div class="img-grid-2">
+          <div class="image-container">
+            <div class="caption">Raw Image</div>
+            <img src="./static/images/compare_sd/landscape_painting_img.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Depth Anything V2</div>
+            <img src="./static/images/compare_sd/landscape_painting_v2.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Marigold</div>
+            <img src="./static/images/compare_sd/landscape_painting_marigold.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Geowizard</div>
+            <img src="./static/images/compare_sd/landscape_painting_geowizard.jpg" width="100%">
+          </div>
+        </div>
+
+        <div class="img-grid-2">
+          <div class="image-container">
+            <div class="caption">Raw Image</div>
+            <img src="./static/images/compare_sd/3692052124_20e1c9d13f_k_img.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Depth Anything V2</div>
+            <img src="./static/images/compare_sd/3692052124_20e1c9d13f_k_v2.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Marigold</div>
+            <img src="./static/images/compare_sd/3692052124_20e1c9d13f_k_marigold.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Geowizard</div>
+            <img src="./static/images/compare_sd/3692052124_20e1c9d13f_k_geowizard.jpg" width="100%">
+          </div>
+        </div>
+
+        <div class="img-grid-2">
+          <div class="image-container">
+            <div class="caption">Raw Image</div>
+            <img src="./static/images/compare_sd/6993936753_49e82e6f98_o_img.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Depth Anything V2</div>
+            <img src="./static/images/compare_sd/6993936753_49e82e6f98_o_v2.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Marigold</div>
+            <img src="./static/images/compare_sd/6993936753_49e82e6f98_o_marigold.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Geowizard</div>
+            <img src="./static/images/compare_sd/6993936753_49e82e6f98_o_geowizard.jpg" width="100%">
+          </div>
+        </div>
+
+        <div class="img-grid-2">
+          <div class="image-container">
+            <div class="caption">Raw Image</div>
+            <img src="./static/images/compare_sd/32950609850_2f9236048b_k_img.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Depth Anything V2</div>
+            <img src="./static/images/compare_sd/32950609850_2f9236048b_k_v2.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Marigold</div>
+            <img src="./static/images/compare_sd/32950609850_2f9236048b_k_marigold.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Geowizard</div>
+            <img src="./static/images/compare_sd/32950609850_2f9236048b_k_geowizard.jpg" width="100%">
+          </div>
+        </div>
+
+        <div class="img-grid-2">
+          <div class="image-container">
+            <div class="caption">Raw Image</div>
+            <img src="./static/images/compare_sd/18587098828_de9c1ea361_k_img.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Depth Anything V2</div>
+            <img src="./static/images/compare_sd/18587098828_de9c1ea361_k_v2.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Marigold</div>
+            <img src="./static/images/compare_sd/18587098828_de9c1ea361_k_marigold.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Geowizard</div>
+            <img src="./static/images/compare_sd/18587098828_de9c1ea361_k_geowizard.jpg" width="100%">
+          </div>
+        </div>
+
+        <div class="img-grid-2">
+          <div class="image-container">
+            <div class="caption">Raw Image</div>
+            <img src="./static/images/compare_sd/30703766467_64d6718677_k_img.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Depth Anything V2</div>
+            <img src="./static/images/compare_sd/30703766467_64d6718677_k_v2.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Marigold</div>
+            <img src="./static/images/compare_sd/30703766467_64d6718677_k_marigold.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Geowizard</div>
+            <img src="./static/images/compare_sd/30703766467_64d6718677_k_geowizard.jpg" width="100%">
+          </div>
+        </div>
+
+        <div class="img-grid-2">
+          <div class="image-container">
+            <div class="caption">Raw Image</div>
+            <img src="./static/images/compare_sd/25408139247_73cc35c730_h_img.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Depth Anything V2</div>
+            <img src="./static/images/compare_sd/25408139247_73cc35c730_h_v2.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Marigold</div>
+            <img src="./static/images/compare_sd/25408139247_73cc35c730_h_marigold.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Geowizard</div>
+            <img src="./static/images/compare_sd/25408139247_73cc35c730_h_geowizard.jpg" width="100%">
+          </div>
+        </div>
+
+        <div class="img-grid-2">
+          <div class="image-container">
+            <div class="caption">Raw Image</div>
+            <img src="./static/images/compare_sd/26174451699_eea72c5539_k_img.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Depth Anything V2</div>
+            <img src="./static/images/compare_sd/26174451699_eea72c5539_k_v2.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Marigold</div>
+            <img src="./static/images/compare_sd/26174451699_eea72c5539_k_marigold.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Geowizard</div>
+            <img src="./static/images/compare_sd/26174451699_eea72c5539_k_geowizard.jpg" width="100%">
+          </div>
+        </div>
+
+        <div class="img-grid-2">
+          <div class="image-container">
+            <div class="caption">Raw Image</div>
+            <img src="./static/images/compare_sd/38512148842_4dfd8ee8f4_k_img.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Depth Anything V2</div>
+            <img src="./static/images/compare_sd/38512148842_4dfd8ee8f4_k_v2.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Marigold</div>
+            <img src="./static/images/compare_sd/38512148842_4dfd8ee8f4_k_marigold.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Geowizard</div>
+            <img src="./static/images/compare_sd/38512148842_4dfd8ee8f4_k_geowizard.jpg" width="100%">
+          </div>
+        </div>
+
+        <div class="img-grid-2">
+          <div class="image-container">
+            <div class="caption">Raw Image</div>
+            <img src="./static/images/compare_sd/42179086754_5c82c6867c_k_img.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Depth Anything V2</div>
+            <img src="./static/images/compare_sd/42179086754_5c82c6867c_k_v2.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Marigold</div>
+            <img src="./static/images/compare_sd/42179086754_5c82c6867c_k_marigold.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Geowizard</div>
+            <img src="./static/images/compare_sd/42179086754_5c82c6867c_k_geowizard.jpg" width="100%">
+          </div>
+        </div>
+
+        <div class="img-grid-2">
+          <div class="image-container">
+            <div class="caption">Raw Image</div>
+            <img src="./static/images/compare_sd/3991247448_dfa1a2397f_k_img.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Depth Anything V2</div>
+            <img src="./static/images/compare_sd/3991247448_dfa1a2397f_k_v2.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Marigold</div>
+            <img src="./static/images/compare_sd/3991247448_dfa1a2397f_k_marigold.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Geowizard</div>
+            <img src="./static/images/compare_sd/3991247448_dfa1a2397f_k_geowizard.jpg" width="100%">
+          </div>
+        </div>
+
+        <div class="img-grid-2">
+          <div class="image-container">
+            <div class="caption">Raw Image</div>
+            <img src="./static/images/compare_sd/42752725432_96bcd7cfe3_k_img.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Depth Anything V2</div>
+            <img src="./static/images/compare_sd/42752725432_96bcd7cfe3_k_v2.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Marigold</div>
+            <img src="./static/images/compare_sd/42752725432_96bcd7cfe3_k_marigold.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Geowizard</div>
+            <img src="./static/images/compare_sd/42752725432_96bcd7cfe3_k_geowizard.jpg" width="100%">
+          </div>
+        </div>
+
+        <div class="img-grid-2">
+          <div class="image-container">
+            <div class="caption">Raw Image</div>
+            <img src="./static/images/compare_sd/19036071240_f07e665f67_k_img.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Depth Anything V2</div>
+            <img src="./static/images/compare_sd/19036071240_f07e665f67_k_v2.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Marigold</div>
+            <img src="./static/images/compare_sd/19036071240_f07e665f67_k_marigold.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Geowizard</div>
+            <img src="./static/images/compare_sd/19036071240_f07e665f67_k_geowizard.jpg" width="100%">
+          </div>
+        </div>
+
+        <div class="img-grid-2">
+          <div class="image-container">
+            <div class="caption">Raw Image</div>
+            <img src="./static/images/compare_sd/22984102999_aa45c5cf50_k_img.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Depth Anything V2</div>
+            <img src="./static/images/compare_sd/22984102999_aa45c5cf50_k_v2.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Marigold</div>
+            <img src="./static/images/compare_sd/22984102999_aa45c5cf50_k_marigold.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Geowizard</div>
+            <img src="./static/images/compare_sd/22984102999_aa45c5cf50_k_geowizard.jpg" width="100%">
+          </div>
+        </div>
+
+        <div class="img-grid-2">
+          <div class="image-container">
+            <div class="caption">Raw Image</div>
+            <img src="./static/images/compare_sd/39648996702_7838993561_k_img.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Depth Anything V2</div>
+            <img src="./static/images/compare_sd/39648996702_7838993561_k_v2.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Marigold</div>
+            <img src="./static/images/compare_sd/39648996702_7838993561_k_marigold.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Geowizard</div>
+            <img src="./static/images/compare_sd/39648996702_7838993561_k_geowizard.jpg" width="100%">
+          </div>
+        </div>
+
+        <div class="img-grid-2">
+          <div class="image-container">
+            <div class="caption">Raw Image</div>
+            <img src="./static/images/compare_sd/39649914475_05b6d26528_k_img.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Depth Anything V2</div>
+            <img src="./static/images/compare_sd/39649914475_05b6d26528_k_v2.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Marigold</div>
+            <img src="./static/images/compare_sd/39649914475_05b6d26528_k_marigold.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Geowizard</div>
+            <img src="./static/images/compare_sd/39649914475_05b6d26528_k_geowizard.jpg" width="100%">
+          </div>
+        </div>
+
+        <div class="img-grid-2">
+          <div class="image-container">
+            <div class="caption">Raw Image</div>
+            <img src="./static/images/compare_sd/40846685664_dbd8aae31b_k_img.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Depth Anything V2</div>
+            <img src="./static/images/compare_sd/40846685664_dbd8aae31b_k_v2.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Marigold</div>
+            <img src="./static/images/compare_sd/40846685664_dbd8aae31b_k_marigold.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Geowizard</div>
+            <img src="./static/images/compare_sd/40846685664_dbd8aae31b_k_geowizard.jpg" width="100%">
+          </div>
+        </div>
+
+        <div class="img-grid-2">
+          <div class="image-container">
+            <div class="caption">Raw Image</div>
+            <img src="./static/images/compare_sd/aerial_img.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Depth Anything V2</div>
+            <img src="./static/images/compare_sd/aerial_v2.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Marigold</div>
+            <img src="./static/images/compare_sd/aerial_marigold.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Geowizard</div>
+            <img src="./static/images/compare_sd/aerial_geowizard.jpg" width="100%">
+          </div>
+        </div>
+
+        <div class="img-grid-2">
+          <div class="image-container">
+            <div class="caption">Raw Image</div>
+            <img src="./static/images/compare_sd/frog_img.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Depth Anything V2</div>
+            <img src="./static/images/compare_sd/frog_v2.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Marigold</div>
+            <img src="./static/images/compare_sd/frog_marigold.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Geowizard</div>
+            <img src="./static/images/compare_sd/frog_geowizard.jpg" width="100%">
+          </div>
+        </div>
+
+        <div class="img-grid-2">
+          <div class="image-container">
+            <div class="caption">Raw Image</div>
+            <img src="./static/images/compare_sd/sketch_img.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Depth Anything V2</div>
+            <img src="./static/images/compare_sd/sketch_v2.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Marigold</div>
+            <img src="./static/images/compare_sd/sketch_marigold.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Geowizard</div>
+            <img src="./static/images/compare_sd/sketch_geowizard.jpg" width="100%">
+          </div>
+        </div>
+
+        <div class="img-grid-2">
+          <div class="image-container">
+            <div class="caption">Raw Image</div>
+            <img src="./static/images/compare_sd/8192799911_0b0d1b4b63_b_img.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Depth Anything V2</div>
+            <img src="./static/images/compare_sd/8192799911_0b0d1b4b63_b_v2.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Marigold</div>
+            <img src="./static/images/compare_sd/8192799911_0b0d1b4b63_b_marigold.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Geowizard</div>
+            <img src="./static/images/compare_sd/8192799911_0b0d1b4b63_b_geowizard.jpg" width="100%">
+          </div>
+        </div>
+
+        <div class="img-grid-2">
+          <div class="image-container">
+            <div class="caption">Raw Image</div>
+            <img src="./static/images/compare_sd/13289654863_3e2bda6a83_k_img.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Depth Anything V2</div>
+            <img src="./static/images/compare_sd/13289654863_3e2bda6a83_k_v2.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Marigold</div>
+            <img src="./static/images/compare_sd/13289654863_3e2bda6a83_k_marigold.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Geowizard</div>
+            <img src="./static/images/compare_sd/13289654863_3e2bda6a83_k_geowizard.jpg" width="100%">
+          </div>
+        </div>
+
+        <div class="img-grid-2">
+          <div class="image-container">
+            <div class="caption">Raw Image</div>
+            <img src="./static/images/compare_sd/40440843223_ffb8a7dc13_k_img.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Depth Anything V2</div>
+            <img src="./static/images/compare_sd/40440843223_ffb8a7dc13_k_v2.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Marigold</div>
+            <img src="./static/images/compare_sd/40440843223_ffb8a7dc13_k_marigold.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Geowizard</div>
+            <img src="./static/images/compare_sd/40440843223_ffb8a7dc13_k_geowizard.jpg" width="100%">
+          </div>
+        </div>
+
+        <div class="img-grid-2">
+          <div class="image-container">
+            <div class="caption">Raw Image</div>
+            <img src="./static/images/compare_sd/45752608265_7992a16765_k_img.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Depth Anything V2</div>
+            <img src="./static/images/compare_sd/45752608265_7992a16765_k_v2.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Marigold</div>
+            <img src="./static/images/compare_sd/45752608265_7992a16765_k_marigold.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Geowizard</div>
+            <img src="./static/images/compare_sd/45752608265_7992a16765_k_geowizard.jpg" width="100%">
+          </div>
+        </div>
+
+        <div class="img-grid-2">
+          <div class="image-container">
+            <div class="caption">Raw Image</div>
+            <img src="./static/images/compare_sd/48034865742_9d9b8375f0_k_img.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Depth Anything V2</div>
+            <img src="./static/images/compare_sd/48034865742_9d9b8375f0_k_v2.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Marigold</div>
+            <img src="./static/images/compare_sd/48034865742_9d9b8375f0_k_marigold.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Geowizard</div>
+            <img src="./static/images/compare_sd/48034865742_9d9b8375f0_k_geowizard.jpg" width="100%">
+          </div>
+        </div>
+
+        <div class="img-grid-2">
+          <div class="image-container">
+            <div class="caption">Raw Image</div>
+            <img src="./static/images/compare_sd/18612558814_d56c90bcf8_k_img.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Depth Anything V2</div>
+            <img src="./static/images/compare_sd/18612558814_d56c90bcf8_k_v2.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Marigold</div>
+            <img src="./static/images/compare_sd/18612558814_d56c90bcf8_k_marigold.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Geowizard</div>
+            <img src="./static/images/compare_sd/18612558814_d56c90bcf8_k_geowizard.jpg" width="100%">
+          </div>
+        </div>
+
+        <div class="img-grid-2">
+          <div class="image-container">
+            <div class="caption">Raw Image</div>
+            <img src="./static/images/compare_sd/18721897823_c29d684736_k_img.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Depth Anything V2</div>
+            <img src="./static/images/compare_sd/18721897823_c29d684736_k_v2.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Marigold</div>
+            <img src="./static/images/compare_sd/18721897823_c29d684736_k_marigold.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Geowizard</div>
+            <img src="./static/images/compare_sd/18721897823_c29d684736_k_geowizard.jpg" width="100%">
+          </div>
+        </div>
+
+        <div class="img-grid-2">
+          <div class="image-container">
+            <div class="caption">Raw Image</div>
+            <img src="./static/images/compare_sd/24601128766_241ddb7c9a_h_img.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Depth Anything V2</div>
+            <img src="./static/images/compare_sd/24601128766_241ddb7c9a_h_v2.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Marigold</div>
+            <img src="./static/images/compare_sd/24601128766_241ddb7c9a_h_marigold.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Geowizard</div>
+            <img src="./static/images/compare_sd/24601128766_241ddb7c9a_h_geowizard.jpg" width="100%">
+          </div>
+        </div>
+
+        <div class="img-grid-2">
+          <div class="image-container">
+            <div class="caption">Raw Image</div>
+            <img src="./static/images/compare_sd/32752607757_cef8f5bbda_k_img.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Depth Anything V2</div>
+            <img src="./static/images/compare_sd/32752607757_cef8f5bbda_k_v2.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Marigold</div>
+            <img src="./static/images/compare_sd/32752607757_cef8f5bbda_k_marigold.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Geowizard</div>
+            <img src="./static/images/compare_sd/32752607757_cef8f5bbda_k_geowizard.jpg" width="100%">
+          </div>
+        </div>
+
+        <div class="img-grid-2">
+          <div class="image-container">
+            <div class="caption">Raw Image</div>
+            <img src="./static/images/compare_sd/38797801620_71434e266e_k_img.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Depth Anything V2</div>
+            <img src="./static/images/compare_sd/38797801620_71434e266e_k_v2.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Marigold</div>
+            <img src="./static/images/compare_sd/38797801620_71434e266e_k_marigold.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Geowizard</div>
+            <img src="./static/images/compare_sd/38797801620_71434e266e_k_geowizard.jpg" width="100%">
+          </div>
+        </div>
+
+        <div class="img-grid-2">
+          <div class="image-container">
+            <div class="caption">Raw Image</div>
+            <img src="./static/images/compare_sd/40947038241_73060303af_k_img.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Depth Anything V2</div>
+            <img src="./static/images/compare_sd/40947038241_73060303af_k_v2.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Marigold</div>
+            <img src="./static/images/compare_sd/40947038241_73060303af_k_marigold.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Geowizard</div>
+            <img src="./static/images/compare_sd/40947038241_73060303af_k_geowizard.jpg" width="100%">
+          </div>
+        </div>
+
+        <div class="img-grid-2">
+          <div class="image-container">
+            <div class="caption">Raw Image</div>
+            <img src="./static/images/compare_sd/52084095572_7dde893635_k_img.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Depth Anything V2</div>
+            <img src="./static/images/compare_sd/52084095572_7dde893635_k_v2.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Marigold</div>
+            <img src="./static/images/compare_sd/52084095572_7dde893635_k_marigold.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Geowizard</div>
+            <img src="./static/images/compare_sd/52084095572_7dde893635_k_geowizard.jpg" width="100%">
+          </div>
+        </div>
+
+        <div class="img-grid-2">
+          <div class="image-container">
+            <div class="caption">Raw Image</div>
+            <img src="./static/images/compare_sd/20081948354_1d33303511_k_img.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Depth Anything V2</div>
+            <img src="./static/images/compare_sd/20081948354_1d33303511_k_v2.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Marigold</div>
+            <img src="./static/images/compare_sd/20081948354_1d33303511_k_marigold.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Geowizard</div>
+            <img src="./static/images/compare_sd/20081948354_1d33303511_k_geowizard.jpg" width="100%">
+          </div>
+        </div>
+
+        <div class="img-grid-2">
+          <div class="image-container">
+            <div class="caption">Raw Image</div>
+            <img src="./static/images/compare_sd/23433401544_111a517ca0_k_img.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Depth Anything V2</div>
+            <img src="./static/images/compare_sd/23433401544_111a517ca0_k_v2.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Marigold</div>
+            <img src="./static/images/compare_sd/23433401544_111a517ca0_k_marigold.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Geowizard</div>
+            <img src="./static/images/compare_sd/23433401544_111a517ca0_k_geowizard.jpg" width="100%">
+          </div>
+        </div>
+
+        <div class="img-grid-2">
+          <div class="image-container">
+            <div class="caption">Raw Image</div>
+            <img src="./static/images/compare_sd/51192348746_6c00af3293_k_img.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Depth Anything V2</div>
+            <img src="./static/images/compare_sd/51192348746_6c00af3293_k_v2.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Marigold</div>
+            <img src="./static/images/compare_sd/51192348746_6c00af3293_k_marigold.jpg" width="100%">
+          </div>
+
+          <div class="image-container">
+            <div class="caption">Geowizard</div>
+            <img src="./static/images/compare_sd/51192348746_6c00af3293_k_geowizard.jpg" width="100%">
+          </div>
+        </div>
+
+      </div>
+    </div>
+    
+  </div>
+</section> -->
+
+<!-- <section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-4" style="text-align: center;">Framework</h2>
+        <div class="content has-text-justified">
+          <p>
+            We first train an initial largest teacher model (based on DINOv2-Giant) <b>purely on synthetic images</b>. Then, it produces high-quality pseudo labels for large-scale <b>unlabeled real images</b>. Finally, student models are trained <b>solely</b> on the pseudo-labeled real images.
+          </p>
+        </div>
+        <div class="image-area">
+          <img src="./static/images/pipeline.png" alt="pipeline" width="100%">
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+<!-- <section class="section pt-0" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title is-4">Citation</h2>
+    <pre class="selectable"><code>@article{depth_anything_v2,
+  title={Depth Anything V2},
+  author={Yang, Lihe and Kang, Bingyi and Huang, Zilong and Zhao, Zhen and Xu, Xiaogang and Feng, Jiashi and Zhao, Hengshuang},
+  journal={arXiv:2406.09414},
+  year={2024}
+}</code></pre>
+  </div>
+</section> -->
+
+
+<footer class="footer pt-4 pb-0">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8" align="center">
+          <div class="content">
+            <p>
+              Website template based on
+              <a href="https://github.com/nerfies/nerfies.github.io">
+                Nerfies
+              </a>
+              and licensed under
+              <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+                CC-BY-SA-4.0
+              </a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

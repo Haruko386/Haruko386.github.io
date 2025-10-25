@@ -14,7 +14,7 @@ Come from **Taiyuan, Shanxi, China**, and I am currently pursuing a master's deg
 I have participated in many **ACM algorithm** competitions but have now retired. In my daily life, I enjoy reading and photography. If you have the same interests, please feel free to communicate with me.
 
 ## 🔬Science
- We present [**Apdepth**](https://haruko386.github.io/research/), a diffusion model, and associated fine-tuning protocol for monocular depth estimation.
+ We present [**Apdepth**](https://haruko386.github.io/ApDepth/), a diffusion model, and associated fine-tuning protocol for monocular depth estimation.
  <div style="text-align: center;">
    <img src="https://haruko386.github.io/research/train.png" alt="Cover" style="zoom:50%; box-shadow: 6px 6px 8px #888; border: 0px solid #efefef; border-radius: 12px;" />
 </div>
