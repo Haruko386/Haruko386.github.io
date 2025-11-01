@@ -788,14 +788,9 @@
             <img id="method_inference" width="100%" src="train.png" alt="Apdepth inference scheme">
 
             <p>
-              Starting from a pretrained Stable Diffusion model, the input RGB image is first processed by a pretrained
-              depth estimation network to obtain a predicted depth map.
-              Both the RGB and the predicted depth maps are then encoded into their latent representations using the
-              frozen VAE encoder, producing and.
-              These two latent tensors are concatenated and fed into a modified Latent Diffusion U-Net, which performs a
-              single denoising step to predict the target latent.
-              The ground-truth depth is also encoded into its latent form , and the training objective minimizes the
-              mean squared error.
+              During the training, an RGB image is first processed through a pre-trained feedforward model to generate a depth map serving as semantic prior, guiding the diffusion model to learn depth information. 
+              This depth map is concatenated with the RGB image and fed into a U-Net for depth prediction. In the first training stage, we employ standard MSE loss to learn global structure; 
+              in the second stage, we utilize our proposed latent space frequency loss function to refine edge details.
             </p>
 
             <h3 class="title has-text-centered">
@@ -816,9 +811,16 @@
             </p>
 
             <p>
-              Through experimental validation, our model requires only 4GB of GPU(Geforce RTX 4090) memory and 5 minutes
-              of inference time on the Nyu Depth v2 dataset.
+              We train our model on a single <strong> Geforce RTX 4090 GPU , 24000 iters * 32 batchs </strong> for stage one and <strong> 1000 iters * 32 batchs </strong> for stage two. It takes around <strong>6 days </strong> to complete the whole training process.  
+              We test our model on a single <strong> NVIDIA Geforce RTX 5080 GPU </strong>, result are available below.
             </p>
+
+
+            <h3 class="title has-text-centered">
+              Compared with other model-driven methods
+            </h3>
+
+            <img id="method_inference" width="100%" src="table.png" alt="Apdepth inference scheme">
 
             <!-- <h3 class="title has-text-centered">
             Inference scheme
