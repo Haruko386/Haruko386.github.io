@@ -110,7 +110,7 @@
               <span class="author-block">
                 <a href="https://haruko386.github.io/">Jiawei Wang<sup>2†</sup></a>,
               </span>
-              
+
             </div>
 
             <div class="is-size-5 publication-authors">
@@ -185,30 +185,14 @@
     <div class="container is-max-desktop">
       <div class="hero-body">
         <!-- <img id="teaser" width="100%" src="cover.jpg" alt="cover."> -->
-         <div class="clock-container">
-        <!-- 状态指示器 -->
-        <div class="status-indicator" id="statusIndicator"></div>
-
-        <!-- 背景图像 -->
-        <img src="./image/RGB/14.jpg" alt="RGB" class="background-image top-image" id="topImage">
-        <img src="./image/ours/14_pred_colored.png" alt="depth" class="background-image bottom-image" id="bottomImage">
-
-        <!-- 时钟 -->
-        <div class="clock-face" id="clockFace">
-            <div class="hour-marks" id="hourMarks"></div>
-            <div class="minute-marks" id="minuteMarks"></div>
-
-            <!-- 指针 -->
-            <div class="hour-hand" id="hourHand"></div>
-            <div class="minute-hand" id="minuteHand"></div>
-            <div class="second-hand" id="secondHand"></div>
-
-            <div class="clock-center" id="clockCenter"></div>
+        <div class="twentytwenty-container twentytwenty-container-top">
+          <div class="cmpcontent">
+            <img src="./image/RGB/14.jpg">
+          </div>
+          <div class="cmpcontent">
+            <img src="./image/ours/14_pred_colored.png">
+          </div>
         </div>
-
-        <!-- 时间显示 -->
-        <div class="time-display" id="timeDisplay"></div>
-    </div>
         <h2 class="subtitle has-text-centered">
           <span class="methodname">Apdepth</span> achieved ideal results in object edge refinement
         </h2>
@@ -226,7 +210,6 @@
             <p>
               We present <b><span class="methodname">Apdepth</span></b>, a diffusion model, and associated fine-tuning
               protocol for monocular depth estimation.
-
             </p>
             <p>
               Based on Marigold, its core innovation lies in addressing the deficiency of diffusion models in feature
@@ -240,7 +223,9 @@
               Then, we introduced pre-trained models to assist diffusion models in deep estimation learning. we only
               used <b><span class="methodname">Depth Anything V2 <b>small</b></span></b> as our
               "Teacher Model" to aid our model to generate more accurate depth maps, and achieve great result.
-              Finally, we introduced a new training strats, combine MSE_loss and Grad_loss to enhance the model's
+              Finally, we introduced a two-stage training strats, combine <b><span class="methodname">
+                  MSE_Loss</span></b> and our <b><span class="methodname">Latent_Frequence_Loss</span></b> to enhance
+              the model's
               ability to capture edge information.
             </p>
           </div>
@@ -673,7 +658,7 @@
               </div>
             </div>
           </div>
-          
+
           <div class="twoitem">
             <div class="twentytwenty-container twentytwenty-container-top">
               <div class="cmpcontent">
@@ -788,8 +773,10 @@
             <img id="method_inference" width="100%" src="train.png" alt="Apdepth training scheme">
 
             <p>
-              During the training, an RGB image is first processed through a pre-trained feedforward model to generate a depth map serving as semantic prior, guiding the diffusion model to learn depth information. 
-              This depth map is concatenated with the RGB image and fed into a U-Net for depth prediction. In the first training stage, we employ standard MSE loss to learn global structure; 
+              During the training, an RGB image is first processed through a pre-trained feedforward model to generate a
+              depth map serving as semantic prior, guiding the diffusion model to learn depth information.
+              This depth map is concatenated with the RGB image and fed into a U-Net for depth prediction. In the first
+              training stage, we employ standard MSE loss to learn global structure;
               in the second stage, we utilize our proposed latent space frequency loss function to refine edge details.
             </p>
 
@@ -811,7 +798,9 @@
             </p>
 
             <p>
-              We train our model on a single <strong> NVIDIA Geforce RTX 4090 GPU , 24000 iters * 32 batchs </strong> for stage one and <strong> 1000 iters * 32 batchs </strong> for stage two. It takes around <strong>6 days </strong> to complete the whole training process.  
+              We train our model on a single <strong> NVIDIA Geforce RTX 4090 GPU , 24000 iters * 32 batchs </strong>
+              for stage one and <strong> 1000 iters * 32 batchs </strong> for stage two. It takes around <strong>6 days
+              </strong> to complete the whole training process.
               We test our model on a single <strong> NVIDIA Geforce RTX 5080 GPU </strong>, result are available below.
             </p>
 
