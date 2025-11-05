@@ -27,9 +27,14 @@ I have participated in many **ACM algorithm** competitions but have now retired.
    <img src="https://s2.loli.net/2024/11/03/AkSdGvHfixl8t4w.png" alt="ちー的各算法竞赛平台rating" style="zoom:50%; box-shadow: 6px 6px 8px #888; border: 0px solid #efefef; border-radius: 12px;" />
 </div>
 
+## 📈 Github Contribution Timeline
+<div style="text-align: center;">
 
+![](https://github-readme-activity-graph.vercel.app/graph?username=haruko386&theme=github-light)
 
-## 🏆Speedrun
+</div>
+
+<!-- ## 🏆Speedrun
 
 -----------
 
@@ -40,4 +45,4 @@ I have participated in many speedrun competitions, mainly working on the **Hollo
    <p style="color: gray; font-size: smaller; margin-top: 0cm;">
       WR on Hollow Knight Trial of the Warrior
    </p>
-</div>
+</div> -->

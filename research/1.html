@@ -1,357 +1,173 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>时钟图像叠加组件</title>
+    <title>图片点击放大镜示例</title>
+    
     <style>
-        .clock-container {
-            position: relative;
-            width: 640px;
-            height: 480px;
-            margin: 50px auto;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            cursor: pointer;
-        }
-
-        .background-image {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transform: translate(-50%, -50%);
-            transition: opacity 0.3s ease-in-out;
-        }
-
-        .top-image {
-            z-index: 2;
-            opacity: 1;
-        }
-
-        .bottom-image {
-            z-index: 1;
-            opacity: 0;
-        }
-
-        .clock-face {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 200px;
-            height: 200px;
-            z-index: 10;
-            pointer-events: none;
-            border-radius: 50%;
-            border: none;
-            background: transparent;
-        }
-
-        /* 时针 */
-        .hour-hand {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 6px;
-            height: 60px;
-            background: #333;
-            transform-origin: bottom center;
-            transform: translate(-50%, -100%) rotate(0deg);
-            border-radius: 3px;
-            z-index: 9;
-            transition: none;
-        }
-
-        /* 分针 */
-        .minute-hand {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 4px;
-            height: 90px;
-            background: #666;
-            transform-origin: bottom center;
-            transform: translate(-50%, -100%) rotate(0deg);
-            border-radius: 2px;
-            z-index: 10;
-            transition: none;
-        }
-
-        /* 秒针 */
-        .second-hand {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 2px;
-            height: 100px;
-            background: #ff4444;
-            transform-origin: bottom center;
-            transform: translate(-50%, -100%) rotate(0deg);
-            border-radius: 1px;
-            z-index: 11;
-            transition: none;
-        }
-
-        .clock-center {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 8px;
-            height: 8px;
-            background: #fff;
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 13;
-            cursor: pointer;
-            transition: background-color 0.2s;
-            pointer-events: auto;
-        }
-
-        .clock-center.paused {
-            background-color: #a30b0b;
-        }
-
-        .clock-center:hover {
-            background-color: #f0f0f0;
-        }
-
-        .time-display {
-            position: absolute;
-            bottom: -40px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
+        body {
             font-family: Arial, sans-serif;
-            font-size: 14px;
-            z-index: 15;
+            margin: 20px;
+            text-align: center;
         }
 
-        .hour-marks {
-            display: none;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+        /* 容器设置相对定位，以便放大镜能正确地相对图片定位 */
+        .image-container {
+            position: relative;
+            /* 确保居中对齐 */
+            text-align: center;
+            display: inline-block; /* 确保容器只包裹内容 */
+        }
+
+        /* 放大镜的样式 */
+        .magnifier-glass {
+            /* 放大镜本身是一个圆形的区域 */
             width: 200px;
             height: 200px;
-        }
-
-        .hour-mark {
-            display: none;
-            position: absolute;
-            width: 4px;
-            height: 12px;
-            background: rgba(255, 255, 255, 0.9);
-            left: 50%;
-            top: 8px;
-            transform-origin: bottom center;
-            transform: translateX(-50%);
-        }
-
-        .minute-marks {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 200px;
-            height: 200px;
-        }
-
-        .minute-mark {
-            position: absolute;
-            width: 2px;
-            height: 6px;
-            background: rgba(255, 255, 255, 0.6);
-            left: 50%;
-            top: 12px;
-            transform-origin: bottom center;
-            transform: translateX(-50%);
-        }
-
-        .status-indicator {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            width: 8px;
-            height: 8px;
             border-radius: 50%;
-            background: #0e57bd;
-            z-index: 20;
-            transition: background-color 0.2s;
+            border: 5px solid #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            cursor: none; /* 隐藏鼠标指针，只显示放大镜 */
+            
+            /* 关键：放大图片并显示其局部 */
+            background-repeat: no-repeat;
+            /* 绝对定位，以便跟随鼠标 */
+            position: absolute;
+            /* 初始隐藏 */
+            display: none; 
+            /* 确保放大镜在图片上方 */
+            z-index: 9999;
+            /* 移除可能影响定位的背景色 */
+            background-color: transparent; 
         }
 
-        .status-indicator.paused {
-            background: #a30b0b;
+        /* 确保显示的图片不会被放大镜遮挡定位 */
+        #teaser {
+            display: block;
+            margin: 0 auto;
+            cursor: pointer; /* 提示用户可以点击 */
         }
     </style>
 </head>
-
 <body>
-    <div class="clock-container">
-        <!-- 状态指示器 -->
-        <div class="status-indicator" id="statusIndicator"></div>
 
-        <!-- 背景图像 -->
-        <img src="./image/RGB/14.jpg" alt="背景图像1" class="background-image top-image" id="topImage">
-        <img src="./image/ours/14_pred_colored.png" alt="背景图像2" class="background-image bottom-image" id="bottomImage">
+    <h1>点击图片开启/关闭放大镜</h1>
 
-        <!-- 时钟 -->
-        <div class="clock-face" id="clockFace">
-            <div class="hour-marks" id="hourMarks"></div>
-            <div class="minute-marks" id="minuteMarks"></div>
-
-            <!-- 指针 -->
-            <div class="hour-hand" id="hourHand"></div>
-            <div class="minute-hand" id="minuteHand"></div>
-            <div class="second-hand" id="secondHand"></div>
-
-            <div class="clock-center" id="clockCenter"></div>
-        </div>
-
-        <!-- 时间显示 -->
-        <div class="time-display" id="timeDisplay"></div>
+    <div align="center" class="image-container">
+        <img id="teaser" width="75%" src="cover.png" alt="cover." onclick="toggleMagnifier()">
+        
+        <div id="magnifier" class="magnifier-glass" style="display: none;"></div>
     </div>
 
+    <img id="large-img-source" src="cover.png" style="display: none;"> 
+    
+    <p>（点击上方的图片来开启/关闭放大镜功能）</p>
+
     <script>
-        class ClockImageComponent {
-            constructor() {
-                this.topImage = document.getElementById('topImage');
-                this.bottomImage = document.getElementById('bottomImage');
-                this.clockFace = document.getElementById('clockFace');
-                this.timeDisplay = document.getElementById('timeDisplay');
+        document.addEventListener('DOMContentLoaded', (event) => {
+            // 获取 DOM 元素
+            const teaserImg = document.getElementById('teaser');
+            const magnifierGlass = document.getElementById('magnifier');
+            const largeImgSource = document.getElementById('large-img-source');
 
-                // 移除对已隐藏的刻度容器的引用
-                // this.hourMarks = document.getElementById('hourMarks'); 
-                // this.minuteMarks = document.getElementById('minuteMarks');
+            // 放大镜开关状态
+            let isMagnifierActive = false;
+            let magnifyRatio = 2; // 放大倍数，可以调整，例如 2.5 或 3
 
-                this.clockCenter = document.getElementById('clockCenter');
-                this.statusIndicator = document.getElementById('statusIndicator');
-                this.hourHand = document.getElementById('hourHand');
-                this.minuteHand = document.getElementById('minuteHand');
-                this.secondHand = document.getElementById('secondHand');
+            // --- 核心函数：切换放大镜状态 ---
+            window.toggleMagnifier = function() {
+                isMagnifierActive = !isMagnifierActive; // 切换状态
 
-                this.isPaused = false;
-                this.startTime = Date.now();
-                this.pausedTime = null;
-                this.animationFrameId = null;
+                if (isMagnifierActive) {
+                    // 开启：显示放大镜
+                    magnifierGlass.style.display = 'block';
+                    
+                    // 绑定鼠标移动事件
+                    teaserImg.addEventListener('mousemove', moveMagnifier);
+                    // 绑定鼠标移出事件（要求离开图片区域时关闭）
+                    teaserImg.addEventListener('mouseleave', deactivateMagnifier);
 
-                this.initClock();
-                this.setupEventListeners();
-                this.startClock();
-            }
+                    // 初始化背景图（必须在图片加载完成后执行）
+                    if (largeImgSource.complete) {
+                        setupMagnifier();
+                    } else {
+                        largeImgSource.onload = setupMagnifier;
+                    }
 
-            setupEventListeners() {
-                this.clockCenter.addEventListener('click', (e) => {
-                    // 阻止事件冒泡到 .clock-container
-                    e.stopPropagation();
-                    this.togglePause();
-                });
-
-                document.querySelector('.clock-container').addEventListener('click', (e) => {
-                    // 仅在点击容器但不是中心点时切换暂停状态
-                    // 这里的逻辑与上方的 stopPropagation 配合，保证点击非中心区域也可以暂停/恢复
-                    this.togglePause();
-                });
-            }
-
-            togglePause() {
-                if (this.isPaused) {
-                    this.resume();
                 } else {
-                    this.pause();
+                    // 关闭：隐藏放大镜
+                    deactivateMagnifier();
                 }
             }
 
-            pause() {
-                this.isPaused = true;
-                cancelAnimationFrame(this.animationFrameId);
-                this.pausedTime = Date.now();
-
-                this.clockCenter.classList.add('paused');
-                this.statusIndicator.classList.add('paused');
-            }
-
-            resume() {
-                this.isPaused = false;
-                this.startTime = Date.now();
-                this.pausedTime = null;
-
-                this.clockCenter.classList.remove('paused');
-                this.statusIndicator.classList.remove('paused');
-
-                this.animate();
-            }
-
-            /* 关键修改 4: 移除刻度创建逻辑 */
-            initClock() {
-                // 刻度元素已被移除或隐藏，无需在此创建
-            }
-
-            getCurrentTime() {
-                if (this.isPaused && this.pausedTime) {
-                    return this.pausedTime;
+            // --- 辅助函数：设置放大镜的背景 ---
+            function setupMagnifier() {
+                // 设置放大镜的背景图片为高分辨率源图
+                magnifierGlass.style.backgroundImage = `url('${largeImgSource.src}')`;
+                
+                // 确保图片加载成功，并且有尺寸
+                if (teaserImg.offsetWidth === 0 || largeImgSource.naturalWidth === 0) {
+                     console.error("图片尚未加载或尺寸为零，无法计算放大镜参数。");
+                     return;
                 }
-                return Date.now();
+
+                // 计算放大镜的尺寸
+                const glassSize = magnifierGlass.offsetWidth; 
+                
+                // 设置放大倍数，并根据倍数调整背景大小
+                // 背景尺寸 = 显示图片尺寸 * 放大倍数
+                const bgSizeW = teaserImg.offsetWidth * magnifyRatio;
+                const bgSizeH = teaserImg.offsetHeight * magnifyRatio;
+                magnifierGlass.style.backgroundSize = `${bgSizeW}px ${bgSizeH}px`;
             }
 
-            updateHands() {
-                const now = new Date(this.getCurrentTime());
-                const seconds = now.getSeconds() + now.getMilliseconds() / 1000;
-                const minutes = now.getMinutes() + seconds / 60;
-                const hours = (now.getHours() % 12) + minutes / 60;
+            // --- 辅助函数：鼠标移动时移动放大镜 ---
+            function moveMagnifier(e) {
+                if (!isMagnifierActive) return;
 
-                // 计算角度
-                const secondsAngle = seconds * 6;
-                const minutesAngle = minutes * 6;
-                const hoursAngle = hours * 30;
+                // 1. 获取鼠标在图片上的相对位置 (0 ~ 1)
+                const imgRect = teaserImg.getBoundingClientRect();
+                // clientX/Y 是视口坐标，需要减去图片左上角的坐标，再加上滚动距离 (window.scrollX/Y)
+                let x = e.clientX - imgRect.left;
+                let y = e.clientY - imgRect.top;
 
-                // 更新指针旋转（平滑连续）
-                this.secondHand.style.transform = `translate(-50%, -100%) rotate(${secondsAngle}deg)`;
-                this.minuteHand.style.transform = `translate(-50%, -100%) rotate(${minutesAngle}deg)`;
-                this.hourHand.style.transform = `translate(-50%, -100%) rotate(${hoursAngle}deg)`;
+                // 限制鼠标位置在图片内部，以防计算出错
+                x = Math.max(0, Math.min(x, teaserImg.offsetWidth));
+                y = Math.max(0, Math.min(y, teaserImg.offsetHeight));
 
-                // 根据秒针位置控制图像透明度（使用精确秒数）
-                const secondsInt = Math.floor(seconds);
-                const topOpacity = secondsInt <= 30 ? (1 - (secondsInt / 30)) : ((secondsInt - 30) / 30);
-                const bottomOpacity = 1 - topOpacity;
+                // 2. 计算放大镜容器的位置（使其中心位于鼠标位置）
+                const glassSize = magnifierGlass.offsetWidth;
+                let glassX = x + imgRect.left + window.scrollX - glassSize / 2;
+                let glassY = y + imgRect.top + window.scrollY - glassSize / 2;
 
-                this.topImage.style.opacity = topOpacity;
-                this.bottomImage.style.opacity = bottomOpacity;
+                // 定位放大镜容器 (使用 fixed 定位更流畅，这里使用绝对定位，相对于父容器)
+                magnifierGlass.style.left = `${x - glassSize / 2}px`;
+                magnifierGlass.style.top = `${y - glassSize / 2}px`;
 
-                // 更新时间显示
-                const timeString = now.toLocaleTimeString('zh-CN', {
-                    hour12: false,
-                    hour: '2-digit',
-                    minute: '2-digit',
-                    second: '2-digit'
-                });
 
-                this.timeDisplay.textContent = this.isPaused ? `${timeString} (暂停)` : timeString;
+                // 3. 计算背景图的偏移量（实现“放大”效果）
+                // 偏移量 = 相对位置 * 放大倍数 - (放大镜尺寸 / 2)
+                let bgX = x * magnifyRatio - glassSize / 2;
+                let bgY = y * magnifyRatio - glassSize / 2;
+
+                // 设置背景图位置
+                magnifierGlass.style.backgroundPosition = `-${bgX}px -${bgY}px`;
             }
 
-            animate() {
-                this.updateHands();
-                this.animationFrameId = requestAnimationFrame(() => this.animate());
+            // --- 辅助函数：鼠标移出时关闭放大镜 ---
+            function deactivateMagnifier() {
+                // 隐藏放大镜
+                magnifierGlass.style.display = 'none';
+                
+                // 必须取消绑定事件，防止重复触发
+                teaserImg.removeEventListener('mousemove', moveMagnifier);
+                teaserImg.removeEventListener('mouseleave', deactivateMagnifier);
+                
+                // 将状态设为关闭
+                isMagnifierActive = false;
             }
-
-            startClock() {
-                this.animate();
-            }
-        }
-
-        // 初始化组件
-        document.addEventListener('DOMContentLoaded', () => {
-            new ClockImageComponent();
         });
     </script>
 </body>
-
 </html>
