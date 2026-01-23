@@ -24,17 +24,28 @@
     <!-- 噪声层 -->
     <div class="noise-layer"></div>
 
+    <div class="global-video">
+        <video autoplay muted loop playsinline>
+            <source src="statics/rog.mp4" type="video/mp4">
+        </video>
+        <div class="global-mask"></div>
+    </div>
+
     <!-- Hero -->
     <section class="hero video-hero">
-        <video class="bg-video" autoplay muted loop playsinline>
+        <!-- <video class="bg-video" autoplay muted loop playsinline>
             <source src="statics/rog.mp4" type="video/mp4">
         </video>
 
-        <div class="video-mask"></div>
+        <div class="video-mask"></div> -->
 
         <div class="hero-content">
             <h1 class="gradient-h1">Haruko386's Gaming Archive</h1>
             <p class="gradient-h1">For Those who Dare to Explore</p>
+        </div>
+
+        <div class="scroll-arrow" onclick="scrollToSetup()">
+            ↓
         </div>
     </section>
 
@@ -304,7 +315,7 @@
         </div>
     </section>
 
-    <section class="profile-section bg-gray2">
+    <section class="profile-section bg-gray">
         <div class="profile-cards">
 
             <!-- Steam Card -->

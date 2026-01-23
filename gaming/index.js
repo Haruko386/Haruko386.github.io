@@ -9,3 +9,11 @@ const sections = document.querySelectorAll('.game, .setup-section, .steam-sectio
         }, { threshold: 0.3 });
 
         sections.forEach(sec => observer.observe(sec));
+
+function scrollToSetup() {
+    const target = document.querySelector('.setup-section');
+    target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+    });
+}
