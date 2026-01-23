@@ -1,0 +1,301 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+body {
+    background: #000;
+    color: #fff;
+    overflow-x: hidden;
+}
+
+/* 背景噪声层 */
+.noise-layer {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+}
+
+section {
+    position: relative;
+    z-index: 2;
+    min-height: 100vh;
+    padding: 80px 10vw;
+    display: flex;
+    align-items: center;
+    gap: 80px;
+}
+
+/* Hero */
+.hero {
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 64px;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 20px;
+    color: #aaa;
+}
+
+.gradient-h1 {
+    background: linear-gradient(270deg,
+            rgb(0, 24, 240),
+            rgb(0, 255, 255),
+            rgb(243, 80, 243),
+            rgb(255, 0, 0));
+    background-size: 800% 800%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientMove 8s ease infinite;
+}
+
+.gradient-p {
+    background: linear-gradient(270deg,
+            #ff7eb3,
+            #ff4b7d,
+            #b11226);
+    background-size: 400% 400%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientMoveP 6s ease infinite;
+}
+
+@keyframes gradientMove {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes gradientMoveP {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.video-hero {
+    position: relative;
+    overflow: hidden;
+}
+
+.bg-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(40%) brightness(0.7);
+    z-index: 1;
+}
+
+.video-mask {
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 12, 16, 0.55);
+    z-index: 2;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 3;
+}
+
+/* Game Section */
+.game {
+    opacity: 0;
+    transform: translateY(80px);
+    transition: all 1s ease;
+    background: linear-gradient(to bottom,
+            rgba(255, 255, 255, 0.02),
+            rgba(0, 0, 0, 0.15));
+}
+
+.game.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.game img {
+    width: 50%;
+    height: 420px;
+    object-fit: cover;
+    border-radius: 24px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+}
+
+.game .text {
+    width: 50%;
+}
+
+.game h2 {
+    font-size: 42px;
+    margin-bottom: 20px;
+}
+
+.game p {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #ccc;
+}
+
+/* 分区底色 */
+.bg-dark {
+    background: #0b0d10;
+}
+
+.bg-gray {
+    background: #12161c;
+}
+
+.bg-gray2 {
+    background: #181d25;
+}
+
+.setup-section {
+    position: relative;
+    min-height: 100vh;
+    background: url("statics/gameset.jpg") center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(80px);
+    transition: all 1s ease;
+}
+
+.setup-section.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.setup-mask {
+    position: absolute;
+    inset: 0;
+    background: rgba(10,12,16,0.65);
+    backdrop-filter: grayscale(40%);
+    z-index: 1;
+}
+
+.setup-content {
+    position: relative;
+    z-index: 2;
+}
+
+.setup-img {
+    width: auto;
+}
+
+.setup-list {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    font-size: 42px;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+.setup-item {
+    position: relative;
+    cursor: pointer;
+    transition: all 0.4s ease;
+}
+
+/* 普通设备 hover 左移 */
+.setup-item:not(.cpu):not(.gpu):hover {
+    transform: translateX(-40px);
+}
+
+/* 右侧预览 */
+.preview {
+    position: absolute;
+    left: 280px;
+    top: 50%;
+    transform: translateY(-50%) translateX(40px);
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    transition: all 0.4s ease;
+}
+
+.preview img {
+    width: 240px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
+
+.setup-item:hover .preview {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+}
+
+/* CPU / GPU 信息框 */
+.popup-box {
+    position: absolute;
+    left: 200px;
+    top: 50%;
+    width: 70%;
+    transform: translateY(-50%);
+    padding: 12px 20px;
+    background: rgba(0,0,0,0.7);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 8px;
+    font-size: 16px;
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+.cpu:hover .popup-box,
+.gpu:hover .popup-box {
+    opacity: 1;
+}
+
+/* Footer */
+.footer {
+    min-height: 30px;
+    justify-content: center;
+    text-align: center;
+    color: #666;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    section {
+        flex-direction: column;
+        padding: 60px 6vw;
+    }
+
+    .game img,
+    .game .text {
+        width: 100%;
+    }
+
+    .hero h1 {
+        font-size: 42px;
+    }
+}
