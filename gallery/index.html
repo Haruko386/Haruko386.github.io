@@ -1,153 +1,46 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gallery Collab</title>
-    <link rel="stylesheet" href="index.css">
-    <script src="index.js" defer></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Photography Exhibition</title>
+    <link rel="stylesheet" href="index.css" />
+    <link rel="icon" href="img/icon.svg" />
 </head>
+
 <body>
+    <!-- Header -->
+    <header>
+        <div class="logo"><a href="https://haruko386.github.io" style="text-decoration: none; color: black;">Haruko386</a></div>
+        <nav>
 
-    <h1>Gallery Collab</h1>
+            <a href="#" class="active">Home</a>
+            <a href="#">Story</a>
+            <a href="#">Bio</a>
+        </nav>
+    </header>
 
-    <div class="photo-gallery">
+    <!-- Main Content -->
+    <main>
+        <section class="gallery-header">
+            <h1>GALLERY</h1>
+            <div class="divider"></div>
 
-        <div class="photo-item">
-            <img src="./img/2025-11-08.jpg" alt="2025-11-08">
-            <p class="date">2025.11.08</p>
-        </div>
-        
-        <div class="photo-item">
-            <img src="./img/2025-10-31.jpg" alt="2025-10-31">
-            <p class="date">2025-10-31</p>
-        </div>
+            <!-- Banner Section -->
+            <!-- <div class="banner-container">
+                <img src="./img/banner.jpg" alt="Banner" class="banner-img" />
+                <button class="view-more-btn">View More</button>
+            </div> -->
+        </section>
 
-        <div class="photo-item">
-            <img src="./img/2025-10-25.jpg" alt="2025-10-25">
-            <p class="date">2025-10-25</p>
-        </div>
+        <!-- Dynamic Image Grid -->
+        <section class="image-grid" id="imageGrid">
+            <!-- Images will be loaded here by JS -->
+        </section>
+    </main>
 
-        <div class="photo-item">
-            <img src="./img/2025-10-12.jpg" alt="2025-10-12">
-            <p class="date">2025-10-12</p>
-        </div>
-
-        <div class="photo-item">
-            <img src="./img/2025-09-03.jpg" alt="2025-09-03">
-            <p class="date">2025-09-03</p>
-        </div>
-
-        <div class="photo-item">
-            <img src="./img/2025-08-30.png" alt="2025-08-30">
-            <p class="date">2025-08-30</p>
-        </div>
-
-        <div class="photo-item">
-            <img src="./img/2025-05-09.jpg" alt="2025-05-09">
-            <p class="date">2025-05-09</p>
-        </div>
-
-        <div class="photo-item">
-            <img src="./img/2025-05-01.jpg" alt="2025-05-01">
-            <p class="date">2025-05-01</p>
-        </div>
-
-        <div class="photo-item">
-            <img src="./img/2025-04-27.jpg" alt="2025-04-27">
-            <p class="date">2025-04-27</p>
-        </div>
-
-        <div class="photo-item">
-            <img src="./img/2024-09-23.jpg" alt="2024-09-23">
-            <p class="date">2024-09-23</p>
-        </div>
-        
-        <div class="photo-item">
-            <img src="./img/2024-06-17.jpg" alt="2024-06-17">
-            <p class="date">2024-06-17</p>
-        </div>
-
-        <div class="photo-item">
-            <img src="./img/2024-04-29.jpg" alt="2024-04-29">
-            <p class="date">2024-04-29</p>
-        </div>
-
-        <div class="photo-item">
-            <img src="./img/2024-04-12.jpg" alt="2024-04-12">
-            <p class="date">2024-04-12</p>
-        </div>
-
-        <div class="photo-item">
-            <img src="./img/2024-03-17.jpg" alt="2024-03-17">
-            <p class="date">2024-03-17</p>
-        </div>
-
-        <div class="photo-item">
-            <img src="./img/2023-12-29.jpg" alt="2023-12-29">
-            <p class="date">2023-12-29</p>
-        </div>
-
-        <div class="photo-item">
-            <img src="./img/2023-12-12.jpg" alt="2023-12-12">
-            <p class="date">2023-12-12</p>
-        </div>
-
-        <div class="photo-item">
-            <img src="./img/2023-06-01.jpg" alt="2023-06-01">
-            <p class="date">2023-06-01</p>
-        </div>
-
-        <div class="photo-item">
-            <img src="./img/2023-03-19.jpg" alt="2023-03-19">
-            <p class="date">2023-03-19</p>
-        </div>
-
-        <div class="photo-item">
-            <img src="./img/2022-12-31.jpg" alt="2022-12-31">
-            <p class="date">2022-12-31</p>
-        </div>
-
-        <div class="photo-item">
-            <img src="./img/2022-11-12.jpg" alt="2022-11-12">
-            <p class="date">2022-11-12</p>
-        </div>
-
-        <div class="photo-item">
-            <img src="./img/2022-07-11.jpg" alt="2022-07-11">
-            <p class="date">2022-07-11</p>
-        </div>
-
-        <div class="photo-item">
-            <img src="./img/2022-02-20.jpg" alt="2022-02-20">
-            <p class="date">2022-02-20</p>
-        </div>
-
-        <div class="photo-item">
-            <img src="./img/2021-08-20.jpg" alt="2021-08-20">
-            <p class="date">2021-08-20</p>
-        </div>
-
-        <div class="photo-item">
-            <img src="./img/2021-08-02.jpg" alt="2021-08-02">
-            <p class="date">2021-08-02</p>
-        </div>
-    </div>
-
-
-    <!-- <div class="photo-item">
-            <img src="" alt="">
-            <p class="date"></p>
-    </div> -->
-    <!-- Lightbox 弹出层 -->
-    <div class="lightbox-overlay" id="lightboxOverlay">
-        <img src="" alt="放大的图片" id="lightboxImage">
-    </div>
-
-
-    <script>
-        
-    </script>
-
+    <script src="index.js"></script>
 </body>
+
 </html>

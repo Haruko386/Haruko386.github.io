@@ -1,100 +1,137 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f2f5;
-            padding: 20px;
-            margin: 0;
-        }
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #fff;
+  color: #333;
+  line-height: 1.6;
+}
 
-        h1 {
-            text-align: center;
-            margin-bottom: 30px;
-        }
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
 
-        /* ✅ Masonry 瀑布流布局 */
-        .photo-gallery {
-            column-count: 4;              /* 一行4列，可根据屏幕宽度自适应 */
-            column-gap: 20px;
-            padding: 10px;
-        }
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+}
 
-        @media (max-width: 1200px) {
-            .photo-gallery { column-count: 3; }
-        }
-        @media (max-width: 800px) {
-            .photo-gallery { column-count: 2; }
-        }
-        @media (max-width: 500px) {
-            .photo-gallery { column-count: 1; }
-        }
+nav a {
+  margin-left: 1.5rem;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.3s;
+}
 
-        /* 单个照片项目 */
-        .photo-item {
-            background-color: white;
-            border: 1px solid #ddd;
-            padding: 10px;
-            padding-bottom: 45px; /* 为日期预留空间 */
-            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.15);
-            margin-bottom: 20px;
-            position: relative;
-            display: inline-block;
-            width: 100%;
-            box-sizing: border-box;
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
-            break-inside: avoid; /* 防止跨列断裂 */
-        }
+nav a:hover,
+nav a.active {
+  color: #ff69b4;
+}
 
-        /* 随机旋转 */
-        .photo-item:nth-child(5n + 1) { transform: rotate(2deg); }
-        .photo-item:nth-child(5n + 2) { transform: rotate(-1.5deg); }
-        .photo-item:nth-child(5n + 3) { transform: rotate(1deg); }
-        .photo-item:nth-child(5n + 4) { transform: rotate(-2deg); }
-        .photo-item:nth-child(5n + 5) { transform: rotate(1.5deg); }
+/* Gallery Header */
+.gallery-header {
+  text-align: center;
+  padding: 3rem 2rem;
+}
 
-        /* 悬停效果 */
-        .photo-item:hover {
-            transform: scale(1.05) rotate(0deg) !important;
-            box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.25);
-            z-index: 10;
-        }
+.gallery-header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
 
-        /* 图片样式：根据自身比例显示 */
-        .photo-item img {
-            width: 100%;
-            height: auto;
-            display: block;
-            object-fit: contain;
-            border-radius: 3px;
-            cursor: pointer;
-        }
+.divider {
+  width: 60%;
+  height: 6px;
+  background-color: #ff69b4;
+  margin: 0 auto;
+  border-radius: 3px;
+}
 
-        /* 日期样式 */
-        .photo-item .date {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            font-size: 12px;
-            color: #888;
-        }
+.banner-container {
+  position: relative;
+  max-width: 1200px;
+  margin: 2rem auto;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
 
-        /* Lightbox 样式 */
-        .lightbox-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            cursor: zoom-out;
-        }
+.banner-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
 
-        .lightbox-overlay img {
-            max-width: 90%;
-            max-height: 90vh;
-            box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
-            cursor: default;
-            border-radius: 5px;
-        }
+.view-more-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 0.7rem 1.5rem;
+  background-color: #ff69b4;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.view-more-btn:hover {
+  background-color: #ff479d;
+}
+
+/* Image Grid */
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.image-grid img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.image-grid img:hover {
+  transform: scale(1.03);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .gallery-header h1 {
+    font-size: 2rem;
+  }
+
+  .divider {
+    width: 80%;
+  }
+
+  .view-more-btn {
+    top: 10px;
+    right: 10px;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+}
