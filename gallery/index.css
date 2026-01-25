@@ -203,12 +203,11 @@ nav .nav-item.active {
   /* 柔和的投影 */
   z-index: 10
 }
-
+/* 
 .image-grid:hover img:not(:hover) {
-  opacity: 0.6;
+  opacity: 0.8;
   filter: grayscale(10%);
-  /* 其他图片变全黑白 */
-}
+} */
 
 /* Info Button (Bottom Left) */
 .info-container {

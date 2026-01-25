@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // 2. 图片加载与随机排序 (Random Image Grid)
   // ==========================================
 
-  fetch("./img/images.json")
+  fetch("./images.json")
     .then(response => response.json())
     .then(imagePaths => {
       imageGrid.innerHTML = "";
