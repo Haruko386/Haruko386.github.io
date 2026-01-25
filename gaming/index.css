@@ -2,7 +2,18 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Inter", "PingFang SC", "Microsoft YaHei", sans-serif;
+    font-family: "Share Tech Mono", "Courier New", monospace;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #000;
+}
+::-webkit-scrollbar-thumb {
+    background: #00f0ff;
+    border-radius: 0;
 }
 
 body {
@@ -11,7 +22,6 @@ body {
     overflow-x: hidden;
 }
 
-/* 背景噪声层 */
 .noise-layer {
     position: fixed;
     inset: 0;
@@ -30,11 +40,13 @@ section {
     gap: 40px;
 }
 
-/* Hero */
 .hero {
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
+    font-family: "Orbitron", sans-serif;
+    font-size: 64px;
+    margin-bottom: 20px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px rgba(0, 240, 255, 0.5), 0 0 20px rgba(0, 240, 255, 0.3);
 }
 
 .hero h1 {
@@ -125,14 +137,31 @@ section {
     z-index: 3;
 }
 
-/* Game Section */
 .game {
     opacity: 0;
     transform: translateY(80px);
-    transition: all 1s ease;
-    background: linear-gradient(to bottom,
-            rgba(255, 255, 255, 0.02),
-            rgba(0, 0, 0, 0.15));
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-left: 4px solid #f000ff;
+    margin: 40px 10vw;
+    padding: 40px;
+    clip-path: polygon(
+        0 0, 
+        100% 0, 
+        100% calc(100% - 30px), 
+        calc(100% - 30px) 100%, 
+        0 100%
+    );
+    border-radius: 0 !important;
+}
+
+.game:nth-child(even) {
+    border-left: 4px solid #00f0ff;
+}
+
+.game:nth-child(even) .game-img {
+    border-color: #00f0ff; 
 }
 
 .game.show {
@@ -144,8 +173,15 @@ section {
     width: 50%;
     height: 420px;
     object-fit: cover;
-    border-radius: 24px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+    border-radius: 0; 
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    filter: contrast(1.1) brightness(0.9) grayscale(20%);
+    transition: all 0.3s;
+}
+
+.game:hover img {
+    filter: contrast(1.2) brightness(1) grayscale(0%);
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
 }
 
 .game .text {
@@ -153,8 +189,12 @@ section {
 }
 
 .game h2 {
+    font-family: "Orbitron", sans-serif;
     font-size: 42px;
     margin-bottom: 20px;
+    text-transform: uppercase;
+    color: #fff;
+    text-shadow: 2px 0 #f000ff, -2px 0 #00f0ff;
 }
 
 .game p {
@@ -162,19 +202,6 @@ section {
     line-height: 1.8;
     color: #ccc;
 }
-
-/* 分区底色 */
-/* .bg-dark {
-    background: #0b0d10;
-}
-
-.bg-gray {
-    background: #12161c;
-}
-
-.bg-gray2 {
-    background: #181d25;
-} */
 
 .bg-dark,
 .bg-gray,
@@ -185,7 +212,6 @@ section {
 .setup-section {
     position: relative;
     min-height: 100vh;
-    /* background: url("statics/gameset.jpg") center/cover no-repeat; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -198,14 +224,6 @@ section {
     opacity: 1;
     transform: translateY(0);
 }
-
-/* .setup-mask {
-    position: absolute;
-    inset: 0;
-    background: rgba(10, 12, 16, 0.65);
-    backdrop-filter: grayscale(40%);
-    z-index: 1;
-} */
 
 .setup-content {
     position: relative;
@@ -223,20 +241,33 @@ section {
     font-size: 42px;
     font-weight: 600;
     letter-spacing: 2px;
+    font-family: "Orbitron", sans-serif;
 }
 
 .setup-item {
     position: relative;
-    cursor: pointer;
-    transition: all 0.4s ease;
+    padding-left: 20px;
+    border-left: 2px solid transparent;
 }
 
-/* 普通设备 hover 左移 */
+.setup-item:hover {
+    color: #00f0ff;
+    border-left: 2px solid #00f0ff;
+    text-shadow: 0 0 8px #00f0ff;
+    background: linear-gradient(90deg, rgba(0, 240, 255, 0.1), transparent);
+    transform: translateX(10px) !important;
+}
+
 .setup-item:not(.cpu):not(.gpu):hover {
     transform: translateX(-40px);
 }
 
-/* 右侧预览 */
+.setup-item:hover .preview {
+    opacity: 1;
+    transform: translateY(-50%) translateX(20px);
+    z-index: 10;
+}
+
 .preview {
     position: absolute;
     left: 280px;
@@ -249,18 +280,21 @@ section {
     transition: all 0.4s ease;
 }
 
+.popup-box, .preview img {
+    border-radius: 0;
+    border: 1px solid #00f0ff;
+    background: rgba(0, 10, 20, 0.9);
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+    color: #00f0ff;
+    font-family: "Share Tech Mono", monospace;
+}
+
+/* 修复：限制预览图大小 */
 .preview img {
-    width: 240px;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    width: 250px;
+    height: auto;
 }
 
-.setup-item:hover .preview {
-    opacity: 1;
-    transform: translateY(-50%) translateX(0);
-}
-
-/* CPU / GPU 信息框 */
 .popup-box {
     position: absolute;
     left: 200px;
@@ -281,7 +315,6 @@ section {
     opacity: 1;
 }
 
-/* Footer */
 .footer {
     min-height: 30px;
     justify-content: center;
@@ -289,7 +322,6 @@ section {
     color: #666;
 }
 
-/* Mobile */
 @media (max-width: 768px) {
     section {
         flex-direction: column;
