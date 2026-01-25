@@ -286,17 +286,271 @@
     }
 }
 
-/* 移动端适配修正 */
+.discord-card {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    width: 100%;
+    max-width: 650px;
+    padding: 0 20px;
+
+    border-radius: 0;
+    /* 深紫色背景，更有夜晚霓虹感 */
+    background: rgba(15, 5, 20, 0.9);
+    
+    /* 双色边框 */
+    border: 1px solid #ff0055;
+    border-right: 4px solid #00f0ff; 
+    
+    /* 故障风网格背景 */
+    background-image: 
+        linear-gradient(rgba(255, 0, 85, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 240, 255, 0.1) 1px, transparent 1px);
+    background-size: 30px 30px;
+    
+    /* 粉色发光 */
+    box-shadow: 0 0 25px rgba(255, 0, 85, 0.2);
+    
+    /* 激进的切角设计 */
+    clip-path: polygon(
+        0 0, 
+        100% 0, 
+        100% calc(100% - 30px), 
+        calc(100% - 30px) 100%, 
+        30px 100%, 
+        0 calc(100% - 30px)
+    );
+}
+
+.discord-avatar {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    flex-shrink: 0;
+    border-radius: 0; /* 方形头像 */
+    /* 双重边框效果 */
+    border: 2px solid #ff0055;
+    box-shadow: 5px 5px 0px #00f0ff; /* 错位投影 */
+    /* filter: contrast(1.2) brightness(1.1); */
+}
+
+.discord-right {
+    flex-grow: 1;
+}
+
+.discord-right h2 {
+    font-family: "Orbitron", sans-serif;
+    color: #fff;
+    /* 霓虹文字阴影 */
+    text-shadow: 2px 2px 0px #ff0055, -2px -2px 0px #00f0ff;
+    font-size: 26px;
+    margin-bottom: 5px;
+    font-style: italic;
+    letter-spacing: 2px;
+}
+
+.discord-id {
+    color: #ff80ab;
+    margin-bottom: 20px;
+    font-family: "Share Tech Mono", monospace;
+}
+
+.discord-id span {
+    font-size: 14px;
+    color: #00f0ff;
+    text-transform: uppercase;
+    background: rgba(255, 0, 85, 0.1);
+    padding: 2px 8px;
+    border-left: 2px solid #00f0ff;
+}
+
+.discord-stats {
+    display: flex;
+    gap: 25px;
+    margin-bottom: 15px;
+}
+
+.discord-stats .label {
+    font-size: 12px;
+    color: #00f0ff; /* 青色标签 */
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.discord-stats .value {
+    font-family: "Orbitron", sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #ff0055; /* 粉色数值 */
+    text-shadow: 0 0 8px rgba(255, 0, 85, 0.6);
+}
+
+.discord-link {
+    display: inline-block;
+    color: #000;
+    background: #00f0ff;
+    padding: 6px 20px;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 14px;
+    transition: 0.2s;
+    /* 倾斜按钮 */
+    transform: skewX(-15deg); 
+    border: 1px solid #00f0ff;
+}
+
+/* 让文字正回来 */
+.discord-link span {
+    display: inline-block;
+    transform: skewX(15deg);
+}
+
+.discord-link:hover {
+    background: #ff0055;
+    color: #fff;
+    border-color: #ff0055;
+    box-shadow: 0 0 20px #ff0055;
+}
+
+/* =========================================
+   NEW CARD 4: GitHub / Dev Style
+   Theme: "Cyber Hazard"
+   Color: Cyber Yellow (#fcee0a) + Black
+   Style: Industrial / Warning / Construct
+   ========================================= */
+.git-card {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    width: 100%;
+    max-width: 650px;
+    
+    border-radius: 0;
+    background: #0a0a0a;
+    
+    /* 强烈的黄色边框 */
+    border: 2px solid #fcee0a;
+    
+    /* 警示斜纹背景 (只在顶部) */
+    background-image: repeating-linear-gradient(
+        45deg,
+        rgba(252, 238, 10, 0.15) 0px,
+        rgba(252, 238, 10, 0.15) 10px,
+        transparent 10px,
+        transparent 20px
+    );
+    
+    box-shadow: 0 0 15px rgba(252, 238, 10, 0.15);
+    
+    /* 更有机械感的切角 */
+    clip-path: polygon(
+        20px 0, 100% 0, 
+        100% calc(100% - 20px), 
+        calc(100% - 20px) 100%, 
+        0 100%, 0 20px
+    );
+}
+
+.git-avatar {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    flex-shrink: 0;
+    border-radius: 0;
+    border: 1px solid #fcee0a;
+    /* 扫描线覆盖效果 (视觉模拟) */
+    background: radial-gradient(circle, transparent 50%, #000 150%);
+}
+
+.git-right {
+    flex-grow: 1;
+}
+
+.git-right h2 {
+    font-family: "Orbitron", sans-serif;
+    color: #fcee0a;
+    font-size: 24px;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.git-id {
+    color: #888;
+    margin-bottom: 20px;
+    background: #111;
+    display: inline-block;
+    padding: 4px 8px;
+    border-left: 3px solid #fcee0a;
+}
+
+.git-id span {
+    font-size: 13px;
+    color: #fcee0a;
+    font-family: "Share Tech Mono", monospace;
+}
+
+.git-stats {
+    display: flex;
+    gap: 25px;
+    margin-bottom: 15px;
+}
+
+.git-stats .label {
+    font-size: 11px;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.git-stats .value {
+    font-family: "Orbitron", sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #fff;
+    /* 模拟屏幕像素点 */
+    border-bottom: 2px solid #333;
+}
+
+.git-link {
+    display: inline-block;
+    color: #000;
+    background: #fcee0a;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 8px 0;
+    width: 140px;
+    text-align: center;
+    transition: 0.3s;
+    /* 类似标签的形状 */
+    clip-path: polygon(0 0, 90% 0, 100% 100%, 10% 100%); 
+}
+
+.git-link:hover {
+    background: #fff;
+    color: #000;
+    box-shadow: 0 0 15px #fff;
+}
+
+/* 移动端适配修正 - 确保替换原来的media query */
 @media (max-width: 768px) {
-    .steam-card, .sr-card {
+    .steam-card, .sr-card, .discord-card, .git-card {
         flex-direction: column;
         text-align: center;
-        padding: 20px;
+        padding: 30px 20px;
+        clip-path: none; /* 移动端取消复杂切角防止内容被切 */
+        border-radius: 12px;
     }
-    .steam-avatar, .sr-avatar {
+    
+    .steam-avatar, .sr-avatar, .discord-avatar, .git-avatar {
         margin-bottom: 15px;
+        width: 100px;
+        height: 100px;
     }
-    .steam-stats, .sr-stats {
+    
+    .steam-stats, .sr-stats, .discord-stats, .git-stats {
         justify-content: center;
+        flex-wrap: wrap;
     }
 }
