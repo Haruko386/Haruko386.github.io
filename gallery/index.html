@@ -4,17 +4,18 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gallery Collab</title>
+    <title>Haruko386</title>
     <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="about.css" />
     <link rel="icon" type="image/svg+xml" href="img/icon.svg" />
 </head>
 
 <body>
     <header>
-        <div class="logo"><a href="https://haruko386.github.io/">Haruko386</a></div>
+        <div class="logo"><a href="https://haruko386.github.io">Haruko386</a></div>
         <nav>
-            <a href="about.html" class="nav-item">About</a>
-            <a href="index.html" class="nav-item active">Gallery</a>
+            <a href="#gallery" class="nav-item active nav-link" data-target="gallery">Gallery</a>
+            <a href="#about" class="nav-item nav-link" data-target="about">About</a>
 
             <button id="theme-toggle" class="icon-btn" aria-label="Toggle Dark Mode">
                 <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -37,13 +38,84 @@
         </nav>
     </header>
 
-    <main>
+    <main id="view-gallery" class="view-section active-view">
         <section class="gallery-header">
             <h1>GALLERY</h1>
             <div class="divider"></div>
         </section>
 
         <section class="image-grid" id="imageGrid">
+        </section>
+    </main>
+
+    <main id="view-about" class="view-section blog-container" style="display: none;">
+        <div class="blog-nav reveal-on-scroll">
+            <a href="#about-me">About</a>
+            <a href="#latest">Latest</a>
+            <a href="#archive">Archive</a>
+        </div>
+
+        <section id="about-me" class="blog-section reveal-on-scroll">
+            <div style="display: flex; align-items: center; gap: 28px; margin: 24px 0;">
+                <div
+                    style="width: 160px; height: 160px; border-radius: 18px; overflow: hidden; box-shadow: 0 6px 18px rgba(0,0,0,0.15); flex-shrink: 0;">
+                    <img src="avatar.jpg" alt="avatar" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="line-height: 1.6;">
+                    <h2 style="margin-top:0;">About</h2>
+                    <p>Hi! I'm <b>Haruko386</b>. I am a graduate student in the field of computer vision and also a
+                        Golang backend developer.</p>
+                    <p>Besides work, I enjoy photography in my spare time—just an amateur. I'd like to share some of my
+                        favorite shots here. Hope you like them!</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider reveal-on-scroll"></div>
+
+        <section id="latest" class="blog-section">
+        </section>
+
+        <div class="divider reveal-on-scroll"></div>
+
+        <section id="archive" class="blog-section reveal-on-scroll">
+            <h2>Traveling Archive</h2>
+            <ul class="archive-list">
+                <li class="archive-item"><span class="archive-date">2025.11.08</span><span
+                        class="archive-event">Shenyang: Qianying's Concert</span></li>
+                <li class="archive-item"><span class="archive-date">2025.01.12</span><span
+                        class="archive-event">Shanghai</span></li>
+                <li class="archive-item"><span class="archive-date">2025.01.06</span><span class="archive-event">Xuzhou,
+                        Jiangsu</span></li>
+                <li class="archive-item"><span class="archive-date">2025.01.05</span><span
+                        class="archive-event">Beijing: Nvidia GeForce LAN50</span></li>
+                <li class="archive-item"><span class="archive-date">2024.09.01</span><span
+                        class="archive-event">Shenyang, Liaoning</span></li>
+                <li class="archive-item"><span class="archive-date">2024.08.03</span><span
+                        class="archive-event">Luoyang, Henan</span></li>
+                <li class="archive-item"><span class="archive-date">2024.08.02</span><span
+                        class="archive-event">Jingcheng, Shanxi</span></li>
+                <li class="archive-item"><span class="archive-date">2024.06.20</span><span
+                        class="archive-event">Beijing</span></li>
+                <li class="archive-item"><span class="archive-date">2024.05.08</span><span
+                        class="archive-event">Tangshan, Hebei</span></li>
+                <li class="archive-item"><span class="archive-date">2023.07.09</span><span class="archive-event">Suzhou,
+                        Jiangsu</span></li>
+                <li class="archive-item"><span class="archive-date">2023.07.07</span><span
+                        class="archive-event">Shanghai</span></li>
+                <li class="archive-item"><span class="archive-date">2023.05.22</span><span
+                        class="archive-event">Qinghuangdao, Hebei</span></li>
+                <li class="archive-item"><span class="archive-date">2023.02.05</span><span class="archive-event">Xi'an,
+                        Shaanxi</span></li>
+                <li class="archive-item"><span class="archive-date">2022.07.12</span><span
+                        class="archive-event">Chongqing</span></li>
+                <li class="archive-item"><span class="archive-date">2022.06.13</span><span class="archive-event">Yan'an,
+                        Shaanxi</span></li>
+                <li class="archive-item"><span class="archive-date">2021.09.21</span><span
+                        class="archive-event">Tianjin</span></li>
+                <li class="archive-item"><span class="archive-date">2021.08.03</span><span class="archive-event">Wuhan,
+                        Hubei</span></li>
+            </ul>
         </section>
     </main>
 
@@ -56,7 +128,7 @@
         <button id="infoBtn" class="info-btn">i</button>
     </div>
 
-    <script src="index.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>
