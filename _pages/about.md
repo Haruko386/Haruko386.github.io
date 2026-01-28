@@ -14,8 +14,8 @@ Come from **Taiyuan, Shanxi, China**, and I am currently pursuing a master's deg
 I have participated in many **ACM algorithm** competitions but have now retired. In my daily life, I enjoy reading and photography. If you have the same interests, please feel free to communicate with me.
 
 ## 🔬Science
-<div style="display: flex; flex-wrap: wrap; align-items: flex-start; gap: 25px; margin-bottom: 30px;">
-    <div style="flex: 1 1 350px;">
+<div style="display: flex; flex-direction: column; align-items: center; gap: 20px; margin-bottom: 30px; max-width: 800px; margin-left: auto; margin-right: auto;">
+    <div style="width: 100%; max-width: 750px;">
         <img src="https://haruko386.github.io/research/cover.png" 
              alt="Apdepth Architecture" 
              style="width: 100%; 
@@ -24,14 +24,14 @@ I have participated in many **ACM algorithm** competitions but have now retired.
                     box-shadow: 5px 5px 15px rgba(0,0,0,0.2); 
                     display: block;" />
     </div>
-    <div style="flex: 1 1 400px;">
-        <h3 style="margin-top: 0;">
+    <div style="width: 100%; text-align: center;">
+        <h3 style="margin-top: 0; text-align: center;">
             <a href="https://haruko386.github.io/research/">ApDepth: Aiming for Precise Monocular Depth Estimation Based on Diffusion Models</a>
         </h3>
-        <p style="color: #555; margin-bottom: 10px;">
+        <p style="color: #555; margin-bottom: 10px; text-align: center;">
             <strong>Jiawei Wang</strong>, Mengmeng Guo, Mingbo Lei
         </p>
-        <p style="margin-bottom: 15px;">
+        <p style="margin-bottom: 15px; text-align: center;">
             <a href="../research/article.pdf" style="margin-right: 8px;">[Paper]</a> 
             <a href="https://github.com/Haruko386/ApDepth" style="margin-right: 8px;">[Code]</a> 
             <a href="https://huggingface.co/spaces/developy/ApDepth">[Demo]</a>
@@ -39,12 +39,15 @@ I have participated in many **ACM algorithm** competitions but have now retired.
         <p>
             We present <strong>Apdepth</strong>, a diffusion model, and associated fine-tuning protocol for monocular depth estimation.
         </p>
-        <ul style="padding-left: 20px; color: #444;">
+        <ul style="padding-left: auto; color: #444; list-style-type: disc; text-align: left;">
             <li style="margin-bottom: 6px;">
-                <strong>Simple yet effective:</strong> Using a diffusion-based strategy to enhance depth precision.
+                <strong>Single-Step Inference:</strong> We fine-tuned the diffusion model for single-step denoising inference, significantly reducing inference time.
             </li>
             <li>
-                <strong>Fine-tuning protocol:</strong> Designed a robust protocol for adapting to various scenes efficiently.
+                <strong>Two-Stage Training Strategy:</strong> We adopted a two-stage training strategy, with the first stage focusing on feature alignment within the model and the second stage emphasizing the model's learning of inference.
+            </li>
+            <li>
+                <strong>Result: </strong> Based on our training strategy, our model achieved remarkably outstanding results among all generative deep estimation models, while also producing more refined outputs compared to feedforward models.
             </li>
         </ul>
     </div>
