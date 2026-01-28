@@ -14,11 +14,41 @@ Come from **Taiyuan, Shanxi, China**, and I am currently pursuing a master's deg
 I have participated in many **ACM algorithm** competitions but have now retired. In my daily life, I enjoy reading and photography. If you have the same interests, please feel free to communicate with me.
 
 ## 🔬Science
- We present [**Apdepth**](https://haruko386.github.io/research/), a diffusion model, and associated fine-tuning protocol for monocular depth estimation.
- <div style="text-align: center;">
-   <img src="https://haruko386.github.io/research/train.png" alt="Cover" style="zoom:50%; box-shadow: 6px 6px 8px #888; border: 0px solid #efefef; border-radius: 12px;" />
+<div style="display: flex; flex-wrap: wrap; align-items: flex-start; gap: 25px; margin-bottom: 30px;">
+    <div style="flex: 1 1 350px;">
+        <img src="https://haruko386.github.io/research/cover.png" 
+             alt="Apdepth Architecture" 
+             style="width: 100%; 
+                    height: auto; 
+                    border-radius: 12px; 
+                    box-shadow: 5px 5px 15px rgba(0,0,0,0.2); 
+                    display: block;" />
+    </div>
+    <div style="flex: 1 1 400px;">
+        <h3 style="margin-top: 0;">
+            <a href="https://haruko386.github.io/research/">ApDepth: Aiming for Precise Monocular Depth Estimation Based on Diffusion Models</a>
+        </h3>
+        <p style="color: #555; margin-bottom: 10px;">
+            <strong>Jiawei Wang</strong>, Mengmeng Guo, Mingbo Lei
+        </p>
+        <p style="margin-bottom: 15px;">
+            <a href="../research/article.pdf" style="margin-right: 8px;">[Paper]</a> 
+            <a href="https://github.com/Haruko386/ApDepth" style="margin-right: 8px;">[Code]</a> 
+            <a href="https://huggingface.co/spaces/developy/ApDepth">[Demo]</a>
+        </p>
+        <p>
+            We present <strong>Apdepth</strong>, a diffusion model, and associated fine-tuning protocol for monocular depth estimation.
+        </p>
+        <ul style="padding-left: 20px; color: #444;">
+            <li style="margin-bottom: 6px;">
+                <strong>Simple yet effective:</strong> Using a diffusion-based strategy to enhance depth precision.
+            </li>
+            <li>
+                <strong>Fine-tuning protocol:</strong> Designed a robust protocol for adapting to various scenes efficiently.
+            </li>
+        </ul>
+    </div>
 </div>
-
 
 
 ## 🎈ACM ＆ OI
