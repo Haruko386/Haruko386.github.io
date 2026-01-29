@@ -28,7 +28,7 @@ I have participated in many **ACM algorithm** competitions but have now retired.
         <h3 style="margin-top: 0; text-align: center;">
             <a href="https://haruko386.github.io/research/">ApDepth: Aiming for Precise Monocular Depth Estimation Based on Diffusion Models</a>
         </h3>
-        <p style="color: #555; margin-bottom: 10px; text-align: center;">
+        <p style="margin-bottom: 10px; text-align: center;">
             <strong>Jiawei Wang</strong>, Mengmeng Guo, Mingbo Lei
         </p>
         <p style="margin-bottom: 15px; text-align: center;">
@@ -39,7 +39,7 @@ I have participated in many **ACM algorithm** competitions but have now retired.
         <p>
             We present <strong>Apdepth</strong>, a diffusion model, and associated fine-tuning protocol for monocular depth estimation.
         </p>
-        <ul style="padding-left: auto; color: #444; list-style-type: disc; text-align: left;">
+        <ul style="padding-left: auto; list-style-type: disc; text-align: left;">
             <li style="margin-bottom: 6px;">
                 <strong>Single-Step Inference:</strong> We fine-tuned the diffusion model for single-step denoising inference, significantly reducing inference time.
             </li>
