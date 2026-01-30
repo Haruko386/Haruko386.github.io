@@ -11,8 +11,7 @@ redirect_from:
 
 Come from **Taiyuan, Shanxi, China**, completed my undergraduate studies at the [**University of Emergency Management**](https://uem.ncist.edu.cn/), and I am currently pursuing a master's degree in computer science at [**ShenYang Jianzhu University**](https://www.sjzu.edu.cn/), supervised by [**Prof.Yuanshuai**](https://syjz.teacher.360eol.com/teacherBasic/preview?teacherId=23776). For now, my primary research focuses on fine-tuning diffusion models for deep estimation tasks. 
 
-I used to participate in many **ACM algorithm** competitions(***2022-2023***), but have now retired. In my daily life, I enjoy reading and photography. You can view my photography collection in the [**Gallery**](https://haruko386.github.io/gallery/). I'm also a Golang backend developer. Feel free to communicate with me about <u>***CV***</u> and <u>***Golang***</u>
-
+I used to participate in many **ACM algorithm** competitions(***2022-2023***), but have now retired. In my daily life, I enjoy reading and photography. You can view my photography collection in the [**Gallery**](https://haruko386.github.io/gallery/). I'm also a Golang backend developer. Feel free to communicate with me about <u><i>CV</i></u> and <u><i>Golang</i></u>
 <img src="../images/logo/golang.png" style="width: 15px; margin-top: center">
 
 -------------------------
