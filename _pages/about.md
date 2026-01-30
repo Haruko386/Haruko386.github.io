@@ -12,6 +12,19 @@ redirect_from:
 Come from **Taiyuan, Shanxi, China**, and I am currently pursuing a master's degree in computer science at **ShenYang Jianzhu University**. In the future, I plan to live and work in Hangzhou, Nanjing, or Shanghai. 
 
 I have participated in many **ACM algorithm** competitions but have now retired. In my daily life, I enjoy reading and photography. If you have the same interests, please feel free to communicate with me.
+<table width="100%" align="center" border="0" cellspacing="0" cellpadding="20" style="border: 0;">
+      <tbody><tr>
+      <td width="30%" valign="middle" style="text-align: center;"> 
+          <a href="#"><img src="../images/logo/evoc.png" width="250"></a>
+        </td>
+        <td width="30%" valign="middle" style="text-align: center;"> 
+          <a href="#"><img src="../images/logo/SJZU.jpg" width="250"></a>
+        </td>
+        <td width="30%" valign="middle" style="text-align: center;">
+          <a href="#"><img src="../images/logo/UEM.png" width="250"></a>
+        </td>
+      </tr></tbody>
+</table>
 
 ## 🔬Science
 <div style="display: flex; flex-direction: column; align-items: center; gap: 20px; margin-bottom: 30px; max-width: 800px; margin-left: auto; margin-right: auto;">
