@@ -9,9 +9,12 @@ redirect_from:
 
 ## 🍀About me 
 
-Come from **Taiyuan, Shanxi, China**, and I am currently pursuing a master's degree in computer science at **ShenYang Jianzhu University**. In the future, I plan to live and work in Hangzhou, Nanjing, or Shanghai. 
+Come from **Taiyuan, Shanxi, China**, completed my undergraduate studies at the [**University of Emergency Management**](https://uem.ncist.edu.cn/), and I am currently pursuing a master's degree in computer science at [**ShenYang Jianzhu University**](https://www.sjzu.edu.cn/), supervised by [**Prof.Yuanshuai**](https://syjz.teacher.360eol.com/teacherBasic/preview?teacherId=23776). For now, my primary research focuses on fine-tuning diffusion models for deep estimation tasks. 
 
-I have participated in many **ACM algorithm** competitions but have now retired. In my daily life, I enjoy reading and photography. If you have the same interests, please feel free to communicate with me.
+I used to participate in many **ACM algorithm** competitions(***2022-2023***), but have now retired. In my daily life, I enjoy reading and photography. You can view my photography collection in the [**Gallery**](https://haruko386.github.io/gallery/). I'm also a Golang backend developer. Feel free to communicate with me about <u>***CV***</u> and <u>***Golang***</u>
+<img src="../images/logo/golang.png" style="width: 15px; margin-top: center">
+
+-------------------------
 <table width="100%" align="center" border="0" cellspacing="0" cellpadding="20" style="border: 0;">
       <tbody><tr>
       <td width="30%" valign="middle" style="text-align: center;"> 
