@@ -8,9 +8,11 @@
 ::-webkit-scrollbar {
     width: 8px;
 }
+
 ::-webkit-scrollbar-track {
     background: #000;
 }
+
 ::-webkit-scrollbar-thumb {
     background: #00f0ff;
     border-radius: 0;
@@ -146,13 +148,11 @@ section {
     border-left: 4px solid #f000ff;
     margin: 40px 10vw;
     padding: 40px;
-    clip-path: polygon(
-        0 0, 
-        100% 0, 
-        100% calc(100% - 30px), 
-        calc(100% - 30px) 100%, 
-        0 100%
-    );
+    clip-path: polygon(0 0,
+            100% 0,
+            100% calc(100% - 30px),
+            calc(100% - 30px) 100%,
+            0 100%);
     border-radius: 0 !important;
 }
 
@@ -161,7 +161,7 @@ section {
 }
 
 .game:nth-child(even) .game-img {
-    border-color: #00f0ff; 
+    border-color: #00f0ff;
 }
 
 .game.show {
@@ -173,7 +173,7 @@ section {
     width: 50%;
     height: 420px;
     object-fit: cover;
-    border-radius: 0; 
+    border-radius: 0;
     border: 1px solid rgba(255, 255, 255, 0.2);
     filter: contrast(1.1) brightness(0.9) grayscale(20%);
     transition: all 0.3s;
@@ -280,7 +280,8 @@ section {
     transition: all 0.4s ease;
 }
 
-.popup-box, .preview img {
+.popup-box,
+.preview img {
     border-radius: 0;
     border: 1px solid #00f0ff;
     background: rgba(0, 10, 20, 0.9);
@@ -336,4 +337,415 @@ section {
     .hero h1 {
         font-size: 42px;
     }
+}
+
+/* =========================================
+   Unified Game Archive (Tab Style)
+   ========================================= */
+.game-archive-section {
+    display: flex;
+    justify-content: center;
+    padding: 60px 5vw;
+    /* 出现动画 */
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease;
+}
+
+.game-archive-section.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.archive-container {
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    height: 600px;
+    border: 1px solid #333;
+    background: rgba(10, 10, 12, 0.85);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+}
+
+/* 左侧导航栏 */
+.archive-nav {
+    width: 250px;
+    border-right: 1px solid #333;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-header {
+    padding: 20px;
+    font-family: "Orbitron", sans-serif;
+    color: #666;
+    font-size: 14px;
+    border-bottom: 1px solid #333;
+    letter-spacing: 2px;
+}
+
+.archive-nav ul {
+    list-style: none;
+}
+
+.game-tab {
+    padding: 20px;
+    cursor: pointer;
+    font-family: "Orbitron", sans-serif;
+    font-size: 18px;
+    color: #888;
+    transition: all 0.3s;
+    border-left: 4px solid transparent;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.game-tab:hover {
+    background: rgba(0, 240, 255, 0.1);
+    color: #fff;
+    padding-left: 25px;
+}
+
+.game-tab.active {
+    background: linear-gradient(90deg, rgba(240, 0, 255, 0.2), transparent);
+    color: #fff;
+    border-left: 4px solid #f000ff;
+    text-shadow: 0 0 10px #f000ff;
+}
+
+/* 右侧内容区 */
+.archive-viewport {
+    flex-grow: 1;
+    position: relative;
+    padding: 40px;
+    overflow: hidden;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+}
+
+.game-content {
+    display: none;
+    /* 默认隐藏 */
+    height: 100%;
+    animation: fadeIn 0.5s ease;
+    flex-direction: column;
+}
+
+.game-content.active {
+    display: flex;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* 内容排版 */
+.content-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #333;
+    padding-bottom: 10px;
+}
+
+.content-header h1 {
+    font-family: "Orbitron", sans-serif;
+    font-size: 48px;
+    color: #fff;
+    text-transform: uppercase;
+    text-shadow: 4px 0 #00f0ff;
+}
+
+.status-badge {
+    background: #00f0ff;
+    color: #000;
+    padding: 4px 12px;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+
+.content-body {
+    display: flex;
+    gap: 40px;
+    height: 100%;
+}
+
+.game-stats-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 200px;
+}
+
+.stat-box {
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid #444;
+    padding: 10px;
+}
+
+.stat-box .label {
+    display: block;
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 5px;
+}
+
+.stat-box .value {
+    font-family: "Orbitron", sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.pink {
+    color: #f472b6;
+    text-shadow: 0 0 10px rgba(244, 114, 182, 0.5);
+}
+
+.cyan {
+    color: #00f0ff;
+}
+
+.gold {
+    color: #facc15;
+}
+
+.red {
+    color: #f87171;
+}
+
+.blue {
+    color: #60a5fa;
+}
+
+.green {
+    color: #34d399;
+}
+
+
+.text-block {
+    flex-grow: 1;
+    color: #ccc;
+    line-height: 1.6;
+    font-size: 16px;
+    max-width: 400px;
+}
+
+.cyber-link {
+    display: block;
+    margin-top: 15px;
+    color: #00f0ff;
+    text-decoration: none;
+    border: 1px dashed #00f0ff;
+    padding: 8px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.cyber-link:hover {
+    background: rgba(0, 240, 255, 0.2);
+    box-shadow: 0 0 15px #00f0ff;
+}
+
+/* 图片展示区 */
+.game-visual {
+    flex: 1;
+    min-width: 0;
+    height: 100%;
+    position: relative;
+    border: 1px solid #fff;
+    overflow: hidden;
+}
+
+.game-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(50%);
+    transition: 0.5s;
+}
+
+.game-visual:hover img {
+    filter: grayscale(0%);
+    transform: scale(1.05);
+}
+
+/* 移动端适配 Archive */
+@media (max-width: 900px) {
+    .archive-container {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .archive-nav {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #333;
+    }
+
+    .archive-nav ul {
+        display: flex;
+        overflow-x: auto;
+    }
+
+    .game-tab {
+        white-space: nowrap;
+        font-size: 14px;
+        padding: 15px;
+    }
+
+    .content-body {
+        flex-direction: column;
+    }
+
+    .game-visual {
+        height: 200px;
+    }
+}
+
+/* =========================================
+   Cyber Gallery (Masonry Style)
+   ========================================= */
+.gallery-section {
+    padding: 60px 4vw; /* 减小一点上下内边距，利用屏幕空间 */
+    position: relative;
+    z-index: 2;
+    display: block; /* 确保是块级元素，垂直排列 */
+}
+
+.gallery-header {
+    text-align: center; /* 标题居中 */
+    margin-bottom: 50px;
+    width: 100%;
+}
+
+.gallery-header h2 {
+    font-family: "Orbitron", sans-serif;
+    color: #fff;
+    font-size: 36px; /* 稍微加大标题 */
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    text-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+}
+
+.gallery-masonry {
+    width: 100%;
+    /* 关键修改：减少列数，图片就会变大 */
+    column-count: 3; 
+    column-gap: 30px; /* 增加间距 */
+}
+
+/* 每一个图片项 */
+.gallery-item {
+    break-inside: avoid;
+    margin-bottom: 30px; /* 增加底部间距 */
+    position: relative;
+    border: 1px solid #333;
+    background: #000;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+/* 悬停特效 */
+.gallery-item::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 1px solid transparent;
+    z-index: 3;
+    transition: 0.3s;
+    pointer-events: none;
+}
+
+.gallery-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 40px rgba(0, 240, 255, 0.25);
+    border-color: #00f0ff;
+}
+
+.gallery-item:hover::before {
+    border: 1px solid rgba(0, 240, 255, 0.8);
+    background: linear-gradient(to bottom, rgba(0, 240, 255, 0.1), transparent);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: brightness(0.7) contrast(1.1);
+    transition: 0.5s;
+}
+
+.gallery-item:hover img {
+    filter: brightness(1) contrast(1);
+    transform: scale(1.03); /* 轻微放大 */
+}
+
+/* 底部标题小字 (上一轮添加的逻辑) */
+.gallery-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px 15px;
+    background: rgba(0, 0, 0, 0.85);
+    color: #00f0ff;
+    font-family: "Orbitron", sans-serif;
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-top: 1px solid rgba(0, 240, 255, 0.3);
+    
+    opacity: 0;
+    transform: translateY(100%);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 4;
+}
+
+.gallery-item:hover .gallery-caption {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 响应式调整：屏幕变窄时减少列数 */
+@media (max-width: 1400px) {
+    .gallery-masonry { column-count: 3; }
+}
+@media (max-width: 1024px) {
+    .gallery-masonry { column-count: 2; } /* 平板变为2列，图片更大 */
+}
+@media (max-width: 600px) {
+    .gallery-masonry { column-count: 1; } /* 手机单列 */
+}
+
+.mod-list li {
+    position: relative;
+    padding-left: 15px;
+    margin-bottom: 4px;
+    font-size: 15px;
+}
+
+.mod-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 6px;
+    height: 6px;
+    background: #f472b6;
+    /* 粉色方块 */
+    box-shadow: 0 0 5px #f472b6;
 }

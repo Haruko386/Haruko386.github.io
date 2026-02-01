@@ -9,7 +9,9 @@
     <link rel="stylesheet" href="card.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap"
+        rel="stylesheet">
     <link rel="icon" href="data:image/svg+xml,
         <svg xmlns='http://www.w3.org/2000/svg' 
              fill-rule='evenodd' 
@@ -24,7 +26,7 @@
 
 <body>
     <div class="cyber-grid"></div>
-    <div class="scanlines"></div>  
+    <div class="scanlines"></div>
     <!-- 噪声层 -->
     <div class="noise-layer"></div>
 
@@ -45,12 +47,12 @@
 
         <div class="hero-content">
             <h1 class="gradient-h1">Haruko386's Gaming Archive</h1>
-            <p class="gradient-h1">For Those who Dare to Explore</p>
+            <div class="scroll-arrow" onclick="scrollToSetup()">
+                <p class="gradient-h1">For Those who Dare to Explore</p>
+            </div>
         </div>
 
-        <div class="scroll-arrow" onclick="scrollToSetup()">
-            ↓
-        </div>
+
     </section>
 
     <!-- Gameset -->
@@ -99,223 +101,214 @@
         </div>
     </section>
 
-    <!-- Game 1 -->
-    <section class="game bg-gray">
-        <img src="./statics/kiriko-01.avif">
-        <div class="text">
-            <h2>OverWatch</h2>
-            <p style="
-    font-size: 18px;
-    line-height: 1.9;
-    color: #d0d3db;
-">
-                <span style="
-        font-size: 22px;
-        font-weight: 600;
-        color: #7dd3fc;
-    ">GameTime:</span>
-                <span style="
-        font-size: 22px;
-        font-weight: 700;
-        color: #f472b6;
-    "> 3000+ hrs</span><br>
+    <section class="game-archive-section">
+        <div class="archive-container">
+            <div class="archive-nav">
+                <div class="nav-header">database://GAMES</div>
+                <ul>
+                    <li class="game-tab active" data-target="game-ow">OverWatch</li>
+                    <li class="game-tab" data-target="game-hk">Hollow Knight</li>
+                    <li class="game-tab" data-target="game-celeste">Celeste</li>
+                    <li class="game-tab" data-target="game-mc">Minecraft</li>
+                    <li class="game-tab" data-target="game-stardew">Stardew Valley</li>
+                </ul>
+            </div>
 
-                <hr style="
-        border: none;
-        height: 1px;
-        background: linear-gradient(to right, transparent, #444, transparent);
-        margin: 14px 0;
-    ">
+            <div class="archive-viewport">
+                <div class="viewport-scanline"></div>
 
-                <span style="color:#a3a3a3;">
-                    ID:
-                </span>
-                <span style="color:#e5e7eb; font-weight:500;">
-                    郭家的大宝贝 #5569
-                </span>
-                <span style="color:#6b7280;"> | </span>
-                <span style="color:#e5e7eb; font-weight:500;">
-                    郭家的小宝贝 #5437
-                </span>
-                <br><br>
+                <div class="game-content active" id="game-ow">
+                    <div class="content-header">
+                        <h1>OverWatch</h1>
+                        <span class="status-badge">ONLINE</span>
+                    </div>
+                    <div class="content-body">
+                        <div class="game-stats-grid">
+                            <div class="stat-box">
+                                <span class="label">Time</span>
+                                <span class="value pink">3000+ hrs</span>
+                                <span class="value pink">2016-2026</span>
+                            </div>
+                            <div class="stat-box">
+                                <span class="label">IDs</span>
 
-                Ana, Brigitte rank:
-                <span style="color: #4ee2ec; font-weight: 600;">
-                    Diamond (3217)
-                </span>
-                <span style="color:#9ca3af;">
-                    in OverWatch 1
-                </span>
-                <br>
+                                <span class="value cyan">郭家的大宝贝 #5569</span><br>
+                                <span class="value gold">郭家的小宝贝 #5437</span>
 
-                Kiriko, Brigitte rank:
-                <span style="color: #f09c33; font-weight: 600;">
-                    Master II
-                </span>
-                <span style="color:#9ca3af;">
-                    in OverWatch 2
-                </span>
-            </p>
+                            </div>
+                            <div class="stat-box">
+                                <span class="label">Rank</span>
+                                <div class="value-text">
+                                    <span class="value red">
+                                        <p><strong>OW1 (Ana/Brig):</strong> <span class="cyan">Diamond (3217)</span></p>
+                                    </span><br>
+                                    <span class="value red">
+                                        <p><strong>OW2 (Kiriko/Brig):</strong> <span class="gold">Master II</span></p>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="game-visual">
+                            <img src="./statics/overwatch.png" alt="OverWatch">
+                        </div>
+                    </div>
+                </div>
 
+                <div class="game-content" id="game-hk">
+                    <div class="content-header">
+                        <h1>Hollow Knight</h1>
+                        <span class="status-badge">SPEEDRUN</span>
+                    </div>
+                    <div class="content-body">
+                        <div class="game-stats-grid">
+                            <div class="stat-box">
+                                <span class="label">Time</span>
+                                <span class="value pink">1000+ hrs</span>
+                            </div>
+                            <div class="stat-box">
+                                <span class="label">Achievements</span>
+                                <span class="value cyan">63/63</span>
+                            </div>
+                            <div class="stat-box">
+                                <span class="label">IL Runs</span>
+                                <span class="value white">67</span>
+                            </div>
+                            <div class="stat-box">
+                                <span class="label">Full Game Runs</span>
+                                <span class="value white">3</span>
+                            </div>
+                            <div class="stat-box">
+                                <span class="label">WR</span>
+                                <span class="value blue">1</span>
+                            </div>
+                        </div>
+
+                        <div class="game-visual">
+                            <img src="./statics/hk.png" alt="Hollow Knight">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-content" id="game-celeste">
+                    <div class="content-header">
+                        <h1>Celeste</h1>
+                        <span class="status-badge">CLIMBER</span>
+                    </div>
+
+                    <div class="content-body">
+
+                        <div class="celeste-info" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+
+                            <div class="stat-box" style="align-self: flex-start;">
+                                <span class="label">Time</span>
+                                <span class="value pink">320 hrs</span>
+                            </div>
+
+                            <div class="text-block">
+                                <h3
+                                    style="font-family:'Orbitron'; color:#666; font-size:14px; margin-bottom:15px; letter-spacing:1px;">
+                                    // FAVORITE MODS
+                                </h3>
+
+                                <ul class="mod-list" style="list-style: none; color: #d0d3db; line-height: 1.8;">
+                                    <li>Spring Community Collab 2020</li>
+                                    <li>Strawberry Jam 2023</li>
+                                    <li>Beginner Collab 2024</li>
+                                    <li>Gallery Collab 2024</li>
+                                    <li>Cloudy Snowberg</li>
+                                    <li>That Small Starry Sky</li>
+                                </ul>
+
+                                <hr style="border: 0; border-top: 1px dashed #333; margin: 15px 0;">
+
+                                <p style="color:#9ca3af; font-size: 14px;">
+                                    And all mods by
+                                    <a href="https://gamebanana.com/members/2084694" target="_blank" class="cyber-link"
+                                        style="display:inline; padding: 2px 5px;">
+                                        Ice-Cream
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="game-visual" style="flex: 1; height: auto; min-height: 350px;">
+                            <img src="./statics/celeste.png" alt="Celeste">
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="game-content" id="game-mc">
+                    <div class="content-header">
+                        <h1>Minecraft</h1>
+                        <span class="status-badge">VETERAN</span>
+                    </div>
+                    <div class="content-body">
+                        <div class="game-stats-grid">
+                            <div class="stat-box">
+                                <span class="label">Total Time</span>
+                                <span class="value pink">6000+ hrs</span>
+                            </div>
+                            <div class="stat-box">
+                                <span class="label">Since</span>
+                                <span class="value cyan">PE 0.8.1</span>
+                            </div>
+                            <div class="stat-box">
+                                <span class="label">Style</span>
+                                <span class="value red">Building / Survival</span>
+                            </div>
+                            <div class="stat-box">
+                                <span class="label">CURRENT: Ver 1.21.5</span>
+                                <span class="value green">RUNTIME: Java 22</span>
+                            </div>
+                        </div>
+                        <div class="game-visual">
+                            <img src="./statics/minecraft.png" alt="Minecraft">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-content" id="game-stardew">
+                    <div class="content-header">
+                        <h1>Stardew Valley</h1>
+                        <span class="status-badge">VETERAN</span>
+                    </div>
+                    <div class="content-body">
+                        <div class="game-stats-grid">
+                            <div class="stat-box">
+                                <span class="label">Time</span>
+                                <span class="value pink">300+ hrs</span>
+                            </div>
+                            <div class="stat-box">
+                                <span class="label">Achievements</span>
+                                <span class="value cyan">49/49</span>
+                            </div>
+                            <div class="stat-box">
+                                <span class="label">Farm Played</span>
+                                <span class="value white">3</span>
+                            </div>
+                            <div class="stat-box">
+                                <span class="label">FAVORITE Farm</span>
+                                <span class="value green">Grassland Farm</span>
+                            </div>
+                        </div>
+
+                        <div class="game-visual">
+                            <img src="./statics/stardew.jpg" alt="Stardew Valley">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Game 2 -->
-    <section class="game bg-gray2">
-        <img src="./statics/hk.jpg">
-        <div class="text">
-            <h2>Hollow Knight</h2>
-            <p style="
-    font-size: 18px;
-    line-height: 1.9;
-    color: #d0d3db;
-">
-                <span style="
-        font-size: 22px;
-        font-weight: 600;
-        color: #7dd3fc;
-    ">GameTime:</span>
-                <span style="
-        font-size: 22px;
-        font-weight: 700;
-        color: #f472b6;
-    "> 1000+ hrs</span><br>
-
-                <hr style="
-        border: none;
-        height: 1px;
-        background: linear-gradient(to right, transparent, #444, transparent);
-        margin: 14px 0;
-    "><br>
-
-                I have participated in many speedrun competitions, mainly working on the
-                <span style="color:#a78bfa;">Hollow Knight IL</span> project, and have achieved
-                <span style="color:#38bdf8; font-weight:600;">top 30 worldwide rankings</span>
-                in each of them, even winning a
-                <span style="color:#f87171; font-weight:600;">WR</span> in one of them and a
-                <span style="color:#facc15; font-weight:600;">fourth place</span> in another.
-                <br><br>
-
-                WR on Hollow Knight Trail of the warrior:<br>
-                <a href="https://www.bilibili.com/video/BV1mnBVYnEnC/" target="_blank" style="
-        color:#60a5fa;
-        text-decoration:none;
-        font-size:14px;
-        word-break:break-all;
-       ">
-                    https://www.bilibili.com/video/BV1mnBVYnEnC/
-                </a>
-            </p>
-
+    <section class="gallery-section">
+        <div class="gallery-header">
+            <h2>System.Visuals_Load( )</h2>
+            <div class="deco-line"></div>
         </div>
-    </section>
 
-    <!-- Game 3 -->
-    <section class="game bg-gray">
-        <img src="./statics/celeste.jpg">
-        <div class="text">
-            <h2 style="
-    font-size: 48px;
-    font-weight: 700;
-    letter-spacing: 1px;
-">
-                Celeste
-            </h2>
-
-            <p style="
-    font-size: 18px;
-    line-height: 1.9;
-    color: #d0d3db;
-">
-                <span style="
-        font-size: 22px;
-        font-weight: 600;
-        color: #7dd3fc;
-    ">GameTime:</span>
-                <span style="
-        font-size: 22px;
-        font-weight: 700;
-        color: #f472b6;
-    "> 320 hrs</span><br>
-
-                <hr style="
-        border: none;
-        height: 1px;
-        background: linear-gradient(to right, transparent, #444, transparent);
-        margin: 14px 0;
-    ">
-
-                <span style="color:#a3a3a3;">
-                    Most liked mods:
-                </span><br>
-
-                <span style="color:#e5e7eb;">
-                    Spring Community Collab 2020,
-                    Strawberry Jam 2023,
-                    Beginner Collab 2024,
-                    Gallery Collab 2024,
-                    Cloudy Snowberg,
-                    That Small Starry Sky,
-                    The Road Less Traveled
-                </span>
-                <br>
-
-                <span style="color:#9ca3af;">
-                    and all mods made by
-                </span>
-                <a href="https://gamebanana.com/members/2084694" target="_blank" style="
-           color:#60a5fa;
-           text-decoration: none;
-           font-weight: 600;
-       ">
-                    Ice-Cream
-                </a>
-            </p>
-
-        </div>
-    </section>
-
-    <!-- Game 4 -->
-    <section class="game bg-gray2">
-        <img src="./statics/minecraft.png">
-        <div class="text">
-            <h2>Minecraft</h2>
-            <p style="
-    font-size: 18px;
-    line-height: 1.9;
-    color: #d0d3db;
-">
-                <span style="
-        font-size: 22px;
-        font-weight: 600;
-        color: #7dd3fc;
-    ">GameTime:</span>
-                <span style="
-        font-size: 22px;
-        font-weight: 700;
-        color: #f472b6;
-    "> 6000+ hrs since MCPE 0.8.1</span><br>
-
-                <hr style="
-        border: none;
-        height: 1px;
-        background: linear-gradient(to right, transparent, #444, transparent);
-        margin: 14px 0;
-    "><br>
-
-                I started playing Minecraft at the age of
-                <span style="color:#38bdf8; font-weight:600;">9</span>,
-                and this game has accompanied me through
-                <span style="color:#a78bfa;">most of my life</span>.
-                It is not just a game to me, but a world where I learned creativity,
-                exploration, and long-term passion.<br><br>
-
-                Currently, I mainly play on
-                <span style="color:#34d399; font-weight:600;">version 1.21.5</span>,
-                running on
-                <span style="color:#facc15; font-weight:600;">Java 22</span>.
-            </p>
-
+        <div id="cyber-gallery" class="gallery-masonry">
         </div>
     </section>
 
