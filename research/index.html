@@ -931,7 +931,7 @@
   </section>
 
   <section class="section">
-    <div class="container is-max-desktop">
+    <div class="container is-fulled">
       <!-- Method. -->
       <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths">
@@ -944,11 +944,7 @@
             <img id="method_inference" width="100%" src="train.png" alt="Apdepth training scheme">
 
             <p>
-              During the training, an RGB image is first processed through a pre-trained feedforward model to generate a
-              depth map serving as semantic prior, guiding the diffusion model to learn depth information.
-              This depth map is concatenated with the RGB image and fed into a U-Net for depth prediction. In the first
-              training stage, we employ standard MSE loss to learn global structure;
-              in the second stage, we utilize our proposed latent space frequency loss function to refine edge details.
+            In the first stage, we learn robust and generalizable representations by aligning U-Net features with high-quality semantic features from DINOv2, emphasizing global context while avoiding overfitting to low-level textures. Building on these semantic priors, the second stage focuses on depth estimation and detail refinement: it first captures global structure and scale through joint optimization, and then enhances fine details and sharp discontinuities via frequency-domain supervision, achieving both structural accuracy and high-fidelity reconstruction.  
             </p>
 
             <h3 class="title has-text-centered">
