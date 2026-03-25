@@ -5,7 +5,10 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #f6f8fa;
+    /* background: #f6f8fa; */
+    background: url("./doc/back.jpg") no-repeat center center fixed;
+    background-size: cover;
+    backdrop-filter: blur(10px);
     font-family: 'Fira Code', 'JetBrains Mono', 'Consolas', 'Monaco', monospace;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -13,22 +16,24 @@ body {
 
 .window {
     width: 780px;
-    background-color: #ffffff;
+    background: rgba(255, 255, 255, 0.35); 
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(1px);
     border-radius: 12px;
-    box-shadow: 0 12px 28px rgba(140, 149, 159, 0.15);
+    border: 1px solid rgba(142, 141, 141, 0.6);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    border: 1px solid #d0d7de;
 }
 
 .title-bar {
     display: flex;
     align-items: center;
     padding: 16px 20px;
-    background-color: #f6f8fa;
+    background-color: rgba(255, 255, 255, 0.4);
     flex-shrink: 0;
-    border-bottom: 1px solid #d0d7de;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08); 
 }
 
 .mac-btns {
@@ -64,7 +69,7 @@ body {
 .title {
     flex-grow: 1;
     text-align: center;
-    color: #57606a;
+    color: #c8d1dc;
     /* GitHub标题 */
     font-size: 13px;
     font-weight: 500;
@@ -117,46 +122,32 @@ body {
 
 /* cur 用浅绿 */
 
-.row:hover {
-    background-color: rgba(208, 215, 222, 0.32);
-}
-
-.row.added {
-    background-color: #e6ffec;
-}
-
-.row.added:hover {
-    background-color: #ccffd8;
-}
-
 .marker.minus {
     color: #cf222e;
 }
 
-.row.added {
-    background: linear-gradient(to right, #e6ffec 0px, #e6ffec 148px, transparent 148px);
+.row.added { 
+    background: linear-gradient(to right, rgba(46, 160, 67, 0.15) 0px, rgba(46, 160, 67, 0.15) 148px, transparent 148px); 
+}
+.row.added:hover { 
+    background: linear-gradient(to right, rgba(46, 160, 67, 0.25) 0px, rgba(46, 160, 67, 0.25) 148px, rgba(0, 0, 0, 0.04) 148px); 
 }
 
-.row.added:hover {
-    background: linear-gradient(to right, #ccffd8 0px, #ccffd8 148px, rgba(208, 215, 222, 0.32) 148px);
+.row.removed { 
+    background: linear-gradient(to right, rgba(207, 34, 46, 0.12) 0px, rgba(207, 34, 46, 0.12) 148px, transparent 148px); 
+}
+.row.removed:hover { 
+    background: linear-gradient(to right, rgba(207, 34, 46, 0.2) 0px, rgba(207, 34, 46, 0.2) 148px, rgba(0, 0, 0, 0.04) 148px); 
 }
 
-.row.removed {
-    background: linear-gradient(to right, #ffebe9 0px, #ffebe9 148px, transparent 148px);
-}
-
-.row.removed:hover {
-    background: linear-gradient(to right, #ffd8d3 0px, #ffd8d3 148px, rgba(208, 215, 222, 0.32) 148px);
-}
-
-.row:hover {
-    background-color: rgba(208, 215, 222, 0.32);
+.row:hover { 
+    background-color: rgba(0, 0, 0, 0.04); 
 }
 
 /* 各列样式 */
 .row .ln {
     text-align: right;
-    color: #6e7781;
+    color: #c8d1dc;
     user-select: none;
     font-size: 12px;
 }
@@ -182,7 +173,7 @@ body {
 
 .row .divider {
     height: 100%;
-    background-color: #d0d7de;
+    background-color: rgba(0, 0, 0, 0.08);
 }
 
 .row .code {
@@ -221,7 +212,7 @@ body {
 
 /* 关键字  */
 .c-blue {
-    color: #8250df;
+    color: #2f67b7;
 }
 
 /* 函数名 */
@@ -230,7 +221,7 @@ body {
 }
 
 .c-comment {
-    color: #6e7781;
+    color: #a3abb5;
     font-style: italic;
 }
 
