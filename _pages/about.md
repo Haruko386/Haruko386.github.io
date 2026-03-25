@@ -17,13 +17,16 @@ I used to participate in many **ACM algorithm** competitions(***2022-2023***), b
 -------------------------
 <table width="100%" align="center" border="0" cellspacing="0" cellpadding="20" style="border: 0;">
       <tbody><tr>
-      <td width="30%" valign="middle" style="text-align: center;"> 
+        <td width="25%" valign="middle" style="text-align: center;"> 
           <a href="#"><img src="../images/logo/evoc.png" width="250"></a>
         </td>
-        <td width="30%" valign="middle" style="text-align: center;"> 
+        <td width="25%" valign="middle" style="text-align: center;"> 
+          <a href="#"><img src="../images/logo/logo-801-v2.png" width="250"></a>
+        </td>
+        <td width="25%" valign="middle" style="text-align: center;"> 
           <a href="#"><img src="../images/logo/SJZU.jpg" width="250"></a>
         </td>
-        <td width="30%" valign="middle" style="text-align: center;">
+        <td width="25%" valign="middle" style="text-align: center;">
           <a href="#"><img src="../images/logo/UEM.png" width="250"></a>
         </td>
       </tr></tbody>
