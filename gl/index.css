@@ -15,7 +15,9 @@ body {
 }
 
 .window {
-    width: 780px;
+    width: 100%;
+    max-width: 780px;
+    margin: 0 16px;
     background: rgba(255, 255, 255, 0.35); 
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(1px);
@@ -82,10 +84,13 @@ body {
     flex-grow: 1;
     padding: 16px 0 24px 0;
     position: relative;
+    overflow-x: auto; 
+    -webkit-overflow-scrolling: touch;
 }
 
 .editor-body {
     flex: 1;
+    min-width: 520px; 
 }
 
 .row {
@@ -274,4 +279,38 @@ body {
 #egg-image.show {
     opacity: 1;
     transform: scale(1) translateY(0);
+}
+
+@media (max-width: 600px) {
+    .window {
+        margin: 0 10px;
+    }
+    
+    .title-bar {
+        padding: 12px 16px;
+    }
+
+    .row {
+        grid-template-columns: 32px 24px 24px 1px 1fr;
+        gap: 8px;
+        font-size: 13px;
+        padding: 2px 12px 2px 4px;
+    }
+
+    .row .ln {
+        font-size: 11px;
+    }
+
+    .row.added { 
+        background: linear-gradient(to right, rgba(46, 160, 67, 0.15) 0px, rgba(46, 160, 67, 0.15) 110px, transparent 110px); 
+    }
+    .row.added:hover { 
+        background: linear-gradient(to right, rgba(46, 160, 67, 0.25) 0px, rgba(46, 160, 67, 0.25) 110px, rgba(0, 0, 0, 0.04) 110px); 
+    }
+    .row.removed { 
+        background: linear-gradient(to right, rgba(207, 34, 46, 0.12) 0px, rgba(207, 34, 46, 0.12) 110px, transparent 110px); 
+    }
+    .row.removed:hover { 
+        background: linear-gradient(to right, rgba(207, 34, 46, 0.2) 0px, rgba(207, 34, 46, 0.2) 110px, rgba(0, 0, 0, 0.04) 110px); 
+    }
 }
