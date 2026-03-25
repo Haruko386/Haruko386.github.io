@@ -1,0 +1,286 @@
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f6f8fa;
+    font-family: 'Fira Code', 'JetBrains Mono', 'Consolas', 'Monaco', monospace;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.window {
+    width: 780px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 12px 28px rgba(140, 149, 159, 0.15);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #d0d7de;
+}
+
+.title-bar {
+    display: flex;
+    align-items: center;
+    padding: 16px 20px;
+    background-color: #f6f8fa;
+    flex-shrink: 0;
+    border-bottom: 1px solid #d0d7de;
+}
+
+.mac-btns {
+    display: flex;
+    gap: 8px;
+    width: 60px;
+}
+
+.mac-btn {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    opacity: 0.9;
+    transition: opacity 0.2s;
+}
+
+.mac-btn:hover {
+    opacity: 1;
+}
+
+.close {
+    background-color: #fc5c65;
+}
+
+.minimize {
+    background-color: #fdbc40;
+}
+
+.maximize {
+    background-color: #34c759;
+}
+
+.title {
+    flex-grow: 1;
+    text-align: center;
+    color: #57606a;
+    /* GitHub标题 */
+    font-size: 13px;
+    font-weight: 500;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin-right: 60px;
+}
+
+.main-content {
+    display: flex;
+    flex-grow: 1;
+    padding: 16px 0 24px 0;
+    position: relative;
+}
+
+.editor-body {
+    flex: 1;
+}
+
+.row {
+    display: grid;
+    grid-template-columns: 46px 30px 30px 1px 1fr;
+    /* [行号] [pre] [cur] [分割线] [代码] */
+    gap: 12px;
+    align-items: center;
+    line-height: 1.6;
+    font-size: 14px;
+    padding: 2px 16px 2px 8px;
+    transition: background 0.1s;
+}
+
+/* Diff 的 pre / cur 表头 */
+.row-header {
+    font-weight: 600;
+    font-size: 13px;
+    margin-bottom: 8px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.row-header .pre-text {
+    color: #cf222e;
+    text-align: center;
+}
+
+/* pre 用浅红 */
+.row-header .cur-text {
+    color: #1a7f37;
+    text-align: center;
+}
+
+/* cur 用浅绿 */
+
+.row:hover {
+    background-color: rgba(208, 215, 222, 0.32);
+}
+
+.row.added {
+    background-color: #e6ffec;
+}
+
+.row.added:hover {
+    background-color: #ccffd8;
+}
+
+.marker.minus {
+    color: #cf222e;
+}
+
+.row.added {
+    background: linear-gradient(to right, #e6ffec 0px, #e6ffec 148px, transparent 148px);
+}
+
+.row.added:hover {
+    background: linear-gradient(to right, #ccffd8 0px, #ccffd8 148px, rgba(208, 215, 222, 0.32) 148px);
+}
+
+.row.removed {
+    background: linear-gradient(to right, #ffebe9 0px, #ffebe9 148px, transparent 148px);
+}
+
+.row.removed:hover {
+    background: linear-gradient(to right, #ffd8d3 0px, #ffd8d3 148px, rgba(208, 215, 222, 0.32) 148px);
+}
+
+.row:hover {
+    background-color: rgba(208, 215, 222, 0.32);
+}
+
+/* 各列样式 */
+.row .ln {
+    text-align: right;
+    color: #6e7781;
+    user-select: none;
+    font-size: 12px;
+}
+
+.row .marker {
+    text-align: center;
+    user-select: none;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.marker.dot {
+    color: #afb8c1;
+    font-weight: normal;
+}
+
+/* 中圆点 */
+.marker.plus {
+    color: #1a7f37;
+}
+
+/* 绿色 + */
+
+.row .divider {
+    height: 100%;
+    background-color: #d0d7de;
+}
+
+.row .code {
+    text-align: left;
+    white-space: pre;
+    color: #24292f;
+}
+
+.c-orange {
+    color: #953800;
+}
+
+/* 类型名、包名等 */
+.c-cyan {
+    color: #0550ae;
+    font-weight: bold;
+}
+
+/* 操作符 */
+.c-gray {
+    color: #57606a;
+}
+
+.c-red {
+    color: #cf222e;
+}
+
+.c-green {
+    color: #0a3069;
+}
+
+/* 字符串 */
+.c-purple {
+    color: #cf222e;
+}
+
+/* 关键字  */
+.c-blue {
+    color: #8250df;
+}
+
+/* 函数名 */
+.c-white {
+    color: #24292f;
+}
+
+.c-comment {
+    color: #6e7781;
+    font-style: italic;
+}
+
+/* 注释 */
+
+#trigger-target {
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+    text-decoration: underline dashed #d0d7de;
+    text-underline-offset: 4px;
+}
+
+#trigger-target:hover {
+    color: #1a7f37;
+}
+
+#egg-image-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(5px);
+    opacity: 0;
+    transition: opacity 1s ease-out;
+    z-index: 10;
+}
+
+#egg-image-container.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+#egg-image {
+    max-width: 80%;
+    max-height: 80%;
+    border-radius: 12px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05);
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+    transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#egg-image.show {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+}
