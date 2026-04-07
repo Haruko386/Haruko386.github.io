@@ -48,7 +48,7 @@ I used to participate in many **ACM algorithm** competitions(***2022-2023***), b
             <a href="https://haruko386.github.io/research/">ApDepth: Aiming for Precise Monocular Depth Estimation Based on Diffusion Models</a>
         </h3>
         <p style="margin-bottom: 10px; text-align: center;">
-            <strong>Jiawei Wang</strong>, Mengmeng Guo, Mingbo Lei
+            <strong>Jiawei Wang</strong>†<sup></sup>, Mengmeng Guo*, Mingbo Lei, Yibo Chen†
         </p>
         <p style="margin-bottom: 15px; text-align: center;">
             <a href="../research/article.pdf" style="margin-right: 8px;">[Paper]</a> 
@@ -60,13 +60,13 @@ I used to participate in many **ACM algorithm** competitions(***2022-2023***), b
         </p>
         <ul style="padding-left: auto; list-style-type: disc; text-align: left;">
             <li style="margin-bottom: 6px;">
-                <strong>Single-Step Inference:</strong> We fine-tuned the diffusion model for single-step denoising inference, significantly reducing inference time.
+                <strong>Single-Step Inference:</strong> A fast single-step diffusion depth estimation via MDE priors.
             </li>
             <li>
-                <strong>Two-Stage Training Strategy:</strong> We adopted a two-stage training strategy, with the first stage focusing on feature alignment within the model and the second stage emphasizing the model's learning of inference.
+                <strong>Feature Alignment Stage: </strong> Feature alignment via a Conv Adapter and cosine loss prevents texture overfitting.
             </li>
             <li>
-                <strong>Result: </strong> Based on our training strategy, our model achieved remarkably outstanding results among all generative deep estimation models, while also producing more refined outputs compared to feedforward models.
+                <strong>Depth Estimation Stage: </strong> Spatial and frequency-domain losses ensure metric accuracy and sharp depth edges.
             </li>
         </ul>
     </div>
