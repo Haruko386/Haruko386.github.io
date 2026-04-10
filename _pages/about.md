@@ -8,8 +8,8 @@ redirect_from:
 ---
 
 ## 🍀About me 
-
-Come from **Taiyuan, Shanxi, China**, completed my undergraduate studies at the [**University of Emergency Management**](https://uem.ncist.edu.cn/), and I am currently pursuing a master's degree in computer science at [**ShenYang Jianzhu University**](https://www.sjzu.edu.cn/), supervised by [**Prof.Yuanshuai**](https://syjz.teacher.360eol.com/teacherBasic/preview?teacherId=23776). For now, my primary research focuses on fine-tuning diffusion models for deep estimation tasks. 
+<!-- completed my undergraduate studies at the [**University of Emergency Management**](https://uem.ncist.edu.cn/), and I am  -->
+Come from **Taiyuan, Shanxi, China**, currently pursuing a master's degree in computer science at [**ShenYang Jianzhu University**](https://www.sjzu.edu.cn/), supervised by [**Prof.Yuanshuai**](https://syjz.teacher.360eol.com/teacherBasic/preview?teacherId=23776). For now, my primary research focuses on fine-tuning diffusion models for deep estimation tasks. 
 
 I used to participate in many **ACM algorithm** competitions(***2022-2023***), but have now retired. In my daily life, I enjoy reading and photography. You can view my photography collection in the [**Gallery**](https://haruko386.github.io/gallery/). I'm also a Golang backend developer. Feel free to communicate with me about <u><i>CV</i></u> and <u><i>Golang</i></u>
 <img src="../images/logo/golang.png" style="width: 15px; margin-top: center">
@@ -17,16 +17,19 @@ I used to participate in many **ACM algorithm** competitions(***2022-2023***), b
 -------------------------
 <table width="100%" align="center" border="0" cellspacing="0" cellpadding="20" style="border: 0;">
       <tbody><tr>
-        <td width="25%" valign="middle" style="text-align: center;"> 
+        <td width="20%" valign="middle" style="text-align: center;"> 
           <a href="#"><img src="../images/logo/evoc.png" width="250"></a>
         </td>
-        <td width="25%" valign="middle" style="text-align: center;"> 
+        <td width="20%" valign="middle" style="text-align: center;"> 
           <a href="#"><img src="../images/logo/logo-801-v2.png" width="250"></a>
         </td>
-        <td width="25%" valign="middle" style="text-align: center;"> 
+        <td width="20%" valign="middle" style="text-align: center;"> 
           <a href="#"><img src="../images/logo/SJZU.jpg" width="250"></a>
         </td>
-        <td width="25%" valign="middle" style="text-align: center;">
+        <td width="20%" valign="middle" style="text-align: center;">
+          <a href="#"><img src="../images/logo/TYUT.jpg" width="250"></a>
+        </td>
+        <td width="20%" valign="middle" style="text-align: center;">
           <a href="#"><img src="../images/logo/UEM.png" width="250"></a>
         </td>
       </tr></tbody>
@@ -47,12 +50,12 @@ I used to participate in many **ACM algorithm** competitions(***2022-2023***), b
         <h3 style="margin-top: 0; text-align: center;">
             <a href="https://haruko386.github.io/research/">ApDepth: Aiming for Precise Monocular Depth Estimation Based on Diffusion Models</a>
         </h3>
-        <p style="margin-bottom: 10px; text-align: center;">
+        <!-- <p style="margin-bottom: 10px; text-align: center;">
             <strong>Jiawei Wang</strong>†<sup></sup>, Mengmeng Guo*, Mingbo Lei, Yibo Chen†
-        </p>
+        </p> -->
         <p style="margin-bottom: 15px; text-align: center;">
-            <a href="../research/article.pdf" style="margin-right: 8px;">[Paper]</a> 
-            <a href="https://github.com/Haruko386/ApDepth" style="margin-right: 8px;">[Code]</a> 
+            <a href="https://github.com/Haruko386/ApDepth" style="margin-right: 8px;">[Code]</a>  
+            <a href="https://huggingface.co/developy/ApDepth" style="margin-right: 8px;">[Model]</a> 
             <a href="https://huggingface.co/spaces/developy/ApDepth">[Demo]</a>
         </p>
         <p>
