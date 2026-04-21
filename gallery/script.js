@@ -149,7 +149,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return array;
     }
 
-    // Info Button 逻辑
+    // Info Button
     const infoBtn = document.getElementById("infoBtn");
     const infoPopup = document.getElementById("infoPopup");
     const lastUpdatedSpan = document.getElementById("lastUpdatedDate");
