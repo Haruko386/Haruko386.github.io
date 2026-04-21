@@ -154,10 +154,14 @@ document.addEventListener("DOMContentLoaded", function () {
     const infoPopup = document.getElementById("infoPopup");
     const lastUpdatedSpan = document.getElementById("lastUpdatedDate");
 
-    if (lastUpdatedSpan) {
-        const today = new Date();
-        lastUpdatedSpan.textContent = today.toISOString().split('T')[0];
-    }
+    fetch("/gallery/update.json")
+        .then(res => res.json())
+        .then(data => {
+            document.getElementById("lastUpdatedDate").textContent = data.lastUpdated;
+        })
+        .catch(() => {
+            console.log("failed to load update time");
+        });
 
     if (infoBtn && infoPopup) {
         infoBtn.addEventListener("click", (e) => {
