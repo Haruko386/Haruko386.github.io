@@ -1,0 +1,30 @@
+name: Update Gallery Timestamp
+
+on:
+  push:
+    paths:
+      - 'gallery/**'
+
+jobs:
+  update-time:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Get current date
+        run: |
+          echo "{\"lastUpdated\": \"$(date +'%Y-%m-%d')\"}" > gallery/update.json
+
+      - name: Commit and push if changed
+        run: |
+          if git diff --quiet; then
+            echo "No changes"
+          else
+            git config user.name "github-actions"
+            git config user.email "github-actions@github.com"
+            git add gallery/update.json
+            git commit -m "auto: update gallery timestamp"
+            git push
+          fi
