@@ -35,7 +35,7 @@ I used to participate in many **ACM algorithm** competitions(***2022-2023***), b
       </tr></tbody>
 </table>
 
-## 🔬Science
+<!-- ## 🔬Science
 <div style="display: flex; flex-direction: column; align-items: center; gap: 20px; margin-bottom: 30px; max-width: 800px; margin-left: auto; margin-right: auto;">
     <div style="width: 100%; max-width: 750px;">
         <img src="https://haruko386.github.io/research/cover.png" 
@@ -50,9 +50,9 @@ I used to participate in many **ACM algorithm** competitions(***2022-2023***), b
         <h3 style="margin-top: 0; text-align: center;">
             <a href="https://haruko386.github.io/research/">ApDepth: Aiming for Precise Monocular Depth Estimation Based on Diffusion Models</a>
         </h3>
-        <!-- <p style="margin-bottom: 10px; text-align: center;">
+        <p style="margin-bottom: 10px; text-align: center;">
             <strong>Jiawei Wang</strong>†<sup></sup>, Mengmeng Guo*, Mingbo Lei, Yibo Chen†
-        </p> -->
+        </p>
         <p style="margin-bottom: 15px; text-align: center;">
             <a href="https://github.com/Haruko386/ApDepth" style="margin-right: 8px;">[Code]</a>  
             <a href="https://huggingface.co/developy/ApDepth" style="margin-right: 8px;">[Model]</a> 
@@ -73,6 +73,21 @@ I used to participate in many **ACM algorithm** competitions(***2022-2023***), b
             </li>
         </ul>
     </div>
+</div> -->
+
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">ARXIV</div><img src='../files/cover/cover1.png' alt="cover1" width="100%"></div></div>
+<div class='paper-box-text' markdown="1">
+
+[ApDepth: Aiming for Precise Monocular Depth Estimation Based on Diffusion Models](https://haruko386.github.io/research/article.pdf)
+
+**Jiawei Wang**, Shuai Yuan, Mingbo Lei, Yibo Chen
+
+\[[**Website**](https://haruko386.github.io/research/)\] \[[Paper](https://haruko386.github.io/research/article.pdf)\] \[[Demo](https://huggingface.co/spaces/developy/ApDepth)\] 
+
+- We present Apdepth, a diffusion model, and associated fine-tuning protocol for monocular depth estimation.
+- **Single-Step Inference**: We fine-tuned the diffusion model for single-step denoising inference, significantly reducing inference time.
+- **Two-Stage Training Strategy**: We adopted a two-stage training strategy, with the first stage focusing on feature alignment within the model and the second stage emphasizing the model's learning of inference.
+</div>
 </div>
 
 
