@@ -90,18 +90,18 @@ I used to participate in many **ACM algorithm** competitions(***2022-2023***), b
         ApDepth: Aiming for Precise Monocular Depth Estimation Based on Diffusion Models
       </a>
     </h3>
-    <p>
+    <p class="authors">
       <strong>Jiawei Wang</strong>, Shuai Yuan, Mingbo Lei, Yibo Chen
     </p>
     <p class="links">
-      <a href="https://haruko386.github.io/research/">Website</a>
-      <a href="https://haruko386.github.io/research/article.pdf">Paper</a>
-      <a href="https://huggingface.co/spaces/developy/ApDepth">Demo</a>
+      <a href="https://haruko386.github.io/research/">[Website]</a>
+      <a href="https://haruko386.github.io/files/cas-dc-sample.pdf">[Paper]</a>
+      <a href="https://huggingface.co/spaces/developy/ApDepth">[Demo]</a>
     </p>
     <ul>
-      <li>We present ApDepth, a diffusion model, and associated fine-tuning protocol for monocular depth estimation.</li>
-      <li><strong>Single-Step Inference</strong>: We fine-tuned the diffusion model for single-step denoising inference, significantly reducing inference time.</li>
-      <li><strong>Two-Stage Training Strategy</strong>: We adopted a two-stage training strategy.</li>
+      <li>We present ApDepth, a diffusion model...</li>
+      <li><strong>Single-Step Inference</strong>: significantly reducing inference time.</li>
+      <li><strong>Two-Stage Training Strategy</strong>: two-stage training strategy.</li>
     </ul>
   </div>
 </div>
