@@ -20,14 +20,14 @@ I used to participate in many **ACM algorithm** competitions(***2022-2023***), b
         <td width="20%" valign="middle" style="text-align: center;"> 
           <a href="#"><img src="../images/logo/evoc.png" width="250"></a>
         </td>
+        <td width="20%" valign="middle" style="text-align: center;">
+          <a href="#"><img src="../images/logo/InfiniFlow.png" width="250"></a>
+        </td>
         <td width="20%" valign="middle" style="text-align: center;"> 
           <a href="#"><img src="../images/logo/logo-801-v2.png" width="250"></a>
         </td>
         <td width="20%" valign="middle" style="text-align: center;"> 
           <a href="#"><img src="../images/logo/SJZU.jpg" width="250"></a>
-        </td>
-        <td width="20%" valign="middle" style="text-align: center;">
-          <a href="#"><img src="../images/logo/TYUT.jpg" width="250"></a>
         </td>
         <td width="20%" valign="middle" style="text-align: center;">
           <a href="#"><img src="../images/logo/UEM.png" width="250"></a>
