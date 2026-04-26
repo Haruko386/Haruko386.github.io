@@ -53,6 +53,7 @@
             <a href="#about-me">About</a>
             <!-- <a href="#latest">Latest</a> -->
             <a href="#archive">Archive</a>
+            <span id="secret-trigger" style="opacity: 0; cursor: pointer; padding: 0 10px; user-select: none;">.</span>
         </div>
 
         <section id="about-me" class="blog-section reveal-on-scroll">
@@ -128,6 +129,22 @@
         </div>
         <button id="infoBtn" class="info-btn">i</button>
     </div>
+
+    <div id="elegant-overlay" class="secret-overlay" style="display: none;">
+        <div class="secret-input-container">
+            <input type="password" id="secret-pwd" placeholder="whisper the word..." autocomplete="off" spellcheck="false" />
+        </div>
+    </div>
+
+    <main id="view-my-dearest-friend" class="view-section" style="display: none;">
+        <section class="gallery-header">
+            <h1>MY DEAREST FRIEND</h1>
+            <div class="divider"></div>
+        </section>
+
+        <section class="image-grid" id="secretImageGrid">
+        </section>
+    </main>
 
     <script src="script.js"></script>
 </body>
