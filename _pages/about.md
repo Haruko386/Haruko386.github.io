@@ -77,33 +77,18 @@ I used to participate in many **ACM algorithm** competitions(***2022-2023***), b
 
 ## 📝 Publications 
 
-<div class="paper-box">
-  <div class="paper-box-image">
-    <div class="img-wrapper">
-      <div class="badge">ARXIV</div>
-      <img src="../files/cover/cover1.png" alt="cover1">
-    </div>
-  </div>
-  <div class="paper-box-text">
-    <h3>
-      <a href="https://haruko386.github.io/research/article.pdf">
-        ApDepth: Aiming for Precise Monocular Depth Estimation Based on Diffusion Models
-      </a>
-    </h3>
-    <p class="authors">
-      <strong>Jiawei Wang</strong>, Shuai Yuan, Mingbo Lei, Yibo Chen
-    </p>
-    <p class="links">
-      <a href="https://haruko386.github.io/research/">[Website]</a>
-      <a href="https://haruko386.github.io/files/cas-dc-sample.pdf">[Paper]</a>
-      <a href="https://huggingface.co/spaces/developy/ApDepth">[Demo]</a>
-    </p>
-    <ul>
-      <li>We present ApDepth, a diffusion model...</li>
-      <li><strong>Single-Step Inference</strong>: significantly reducing inference time.</li>
-      <li><strong>Two-Stage Training Strategy</strong>: two-stage training strategy.</li>
-    </ul>
-  </div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">ARXIV</div><img src='../files/cover/cover1.png' alt="cover1" width="100%"></div></div>
+<div class='paper-box-text' markdown="1">
+
+[ApDepth: Aiming for Precise Monocular Depth Estimation Based on Diffusion Models](https://haruko386.github.io/research/article.pdf)
+
+**Jiawei Wang**, Shuai Yuan, Mingbo Lei, Yibo Chen
+
+\[[**Website**](https://haruko386.github.io/research/)\] \[[Paper](https://haruko386.github.io/research/article.pdf)\] \[[Demo](https://huggingface.co/spaces/developy/ApDepth)\] 
+<p>
+This paper presents <span style="font-family: Georgia, 'Times New Roman', serif; font-weight: 800; font-style: italic; color: #2c3e50; font-variant: small-caps;">ApDepth</span>, a novel single-step diffusion framework for monocular depth estimation that achieves fast inference while preserving fine-grained edge details. Current diffusion-based models achieve impressive generalization through multi-step iterative denoising. However, they face a critical trade-off: multi-step inference incurs prohibitive runtime, whereas……
+</p>
+</div>
 </div>
 
 

@@ -44,93 +44,68 @@
 
 .paper-box {
     display: flex;
-    align-items: stretch;
-    gap: 1.2em;
-    padding: 1.5em 0;
-    border-bottom: 1px solid #eee;
+    justify-content: left;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border-bottom: 1px #efefef solid;
+    padding: 2em 0 2em 0;
+    
+
+    .paper-box-image{
+        justify-content: center;
+        display: flex;
+        width: 100%;
+        order: 2;
+        img {
+            max-width: 400px;
+            box-shadow: 3px 3px 6px #888;
+            object-fit: cover;
+        }
+    }
+    
+    .paper-box-text{
+        max-width: 100%;
+        order: 1;
+    }
+    
+    @include breakpoint($medium) {
+        .paper-box-image{
+            justify-content: left;
+            min-width: 200px;
+            max-width: 40%;
+            order: 1;
+        }
+        
+        .paper-box-text{
+            justify-content: left;
+            padding-left: 2em;
+            max-width: 60%;
+            order: 2;
+        }
+
+    }
+
+
 }
 
-.paper-box-image {
-    flex: 0 0 42%;
-}
-
-.img-wrapper {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    overflow: hidden;
-    border-radius: 6px;
-}
-
-.img-wrapper img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+$scroll_offset : 2em;
+h1:before, .anchor:before { 
+    content: ''; 
+    display: block; 
+    position: relative; 
+    width: 0; 
+    height: $scroll_offset; 
+    margin-top: -$scroll_offset;
 }
 
 .badge {
+    padding-left: 1rem;
+    padding-right: 1rem;
     position: absolute;
-    top: 8px;
-    left: -8px;
-    background-color: #00369f;
+    margin-top: .5em;
+    margin-left: -.5em;
     color: white;
-    padding: 0.2em 0.8em;
-    font-size: 0.7em;
-    border-radius: 2px;
-}
-
-.paper-box-text {
-    flex: 1;
-    font-size: 0.92rem;
-    line-height: 1.5;
-}
-
-.paper-box-text h3 {
-    margin: 0 0 0.4em 0;
-    font-size: 1.05rem;
-}
-
-.authors {
-    margin: 0 0 0.4em 0;
-    color: #444;
-}
-
-.links {
-    margin: 0 0 0.6em 0;
-}
-
-.links a {
-    margin-right: 0.8em;
-    font-size: 0.9em;
-    color: #3aa0c8;
-    text-decoration: none;
-}
-
-.links a:hover {
-    text-decoration: underline;
-}
-
-.paper-box-text ul {
-    margin: 0;
-    padding-left: 1.2em;
-}
-
-.paper-box-text li {
-    margin-bottom: 0.3em;
-}
-
-@media (max-width: 768px) {
-    .paper-box {
-        flex-direction: column;
-    }
-
-    .paper-box-image {
-        flex: none;
-        width: 100%;
-    }
-
-    .paper-box-text {
-        font-size: 0.9rem;
-    }
+    background-color: #00369f;
+    font-size: .8em;
 }
