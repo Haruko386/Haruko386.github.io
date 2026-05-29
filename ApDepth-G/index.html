@@ -8,31 +8,20 @@
   <meta name="keywords" content="Monocular Depth Estimation">
   <title>ApDepth-G</title>
 
-
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-
     gtag('config', 'G-PYVRSFMDRL');
   </script>
 
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
-        rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
   <link rel="stylesheet" href="./static/css/bulma.min.css">
   <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
   <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
   <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
-
-
-  <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
   <link rel="icon" href="../images/Celeste_2nd.ico">
 
@@ -56,30 +45,18 @@
   <div class="navbar-menu"></div>
 </nav>
 
-
 <section class="hero">
     <div class="hero-body">
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <h1 class="title is-1 publication-title">ApDepth-G: Mitigating Pseudo-Texture Artifacts 
-              in Diffusion-Based Models </h1>
+            <h1 class="title is-1 publication-title">ApDepth-G: Mitigating Pseudo-Texture Artifacts in Diffusion-Based Models </h1>
             <div class="is-size-5 publication-authors">
-              <span class="author-block">
-                <a href="">Jingxuan Wang<sup>1†</sup></a>
-              </span>
-              <span class="author-block">
-                <a href="https://haruko386.github.io/">Jiawei Wang<sup>2†</sup></a>,
-              </span>
-              <span class="author-block">
-                <a href="https://github.com/Ltohka">Mingbo Lei<sup>2</sup></a>,
-              </span>
-              <span class="author-block">
-                <a href="https://github.com/WuSangui571">Haoze Shou<sup>2</sup></a>,
-              </span>
-              <span class="author-block">
-                <a href="">Yusu Liang<sup>2</sup></a>,
-              </span>
+              <span class="author-block"><a href="">Jingxuan Wang<sup>1†</sup></a></span>
+              <span class="author-block"><a href="https://haruko386.github.io/">Jiawei Wang<sup>2†</sup></a>,</span>
+              <span class="author-block"><a href="https://github.com/Ltohka">Mingbo Lei<sup>2</sup></a>,</span>
+              <span class="author-block"><a href="https://github.com/WuSangui571">Haoze Shou<sup>2</sup></a>,</span>
+              <span class="author-block"><a href="">Yusu Liang<sup>2</sup></a>,</span>
             </div>
 
             <div class="is-size-5 publication-authors">
@@ -92,64 +69,43 @@
 
             <div class="column has-text-centered">
               <div class="publication-links">
-                <!-- PDF Link. -->
                 <span class="link-block">
                   <a href="./static/Methodology Section for Paper.pdf" class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="fas fa-file-pdf"></i>
-                    </span>
+                    <span class="icon"><i class="fas fa-file-pdf"></i></span>
                     <span>Paper</span>
                   </a>
                 </span>
-                <!-- Code Link. -->
                 <span class="link-block">
-                  <a href="https://github.com/Haruko386/ApDepth"
-                    class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="fab fa-github"></i>
-                    </span>
+                  <a href="https://github.com/Haruko386/ApDepth" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="fab fa-github"></i></span>
                     <span>Code</span>
                   </a>
                 </span>
-                <!-- Direct Model. -->
                 <span class="link-block">
-                  <a href="../research/index.html"
-                    class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      📖
-                    </span>
+                  <a href="../research/index.html" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">📖</span>
                     <span>ApDepth</span>
                   </a>
                 </span>
-                <!-- Huggingface. -->
                 <span class="link-block">
-                  <a href="https://huggingface.co/developy/ApDepth"
-                    class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      🤗
-                    </span>
+                  <a href="https://huggingface.co/developy/ApDepth" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">🤗</span>
                     <span>Huggingface Model</span>
                   </a>
                 </span>
-
                 <span class="link-block">
-                  <a href="https://huggingface.co/spaces/developy/ApDepth"
-                    class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      🖼️
-                    </span>
+                  <a href="https://huggingface.co/spaces/developy/ApDepth" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">🖼️</span>
                     <span>Huggingface Demo</span>
                   </a>
                 </span>
               </div>
-
             </div>
           </div>
         </div>
       </div>
     </div>
   </section>
-
 
 <section class="hero teaser">
   <div class="container is-max-desktop">
@@ -159,427 +115,46 @@
   </div>
 </section>
 
-
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
       <h4 class="subtitle has-text-centered">
         <div class="content has-text-justified"> 
           <p>
-            We have extended our work by introducing ApDepth-G, a diffusion model for multi-step inference, which demonstrates superior edge detail refinement capabilities 
-            compared to
-              <a href="../research/index.html">ApDepth</a>
-          <p>
+            We have extended our work by introducing ApDepth-G, a diffusion model for multi-step inference, which demonstrates superior edge detail refinement capabilities compared to <a href="../research/index.html">ApDepth</a>.
+          </p>
         </div>
       </h4>
     </div>
   </div>
 </section>
 
-<!-- Gallery -->
+<!-- Gallery: Indoor Scenarios -->
 <section class="hero is-small" style="margin-top: 30px; padding-top: 0px;">
-  <h2 class="title is-4" style="text-align: center;">Comparison with ApDepth on <span style="color: #4FACFA;">Fine-grained Details</span></h2>
+  <h2 class="title is-4" style="text-align: center;">Comparison with ApDepth on <span style="color: #4FACFA;">Indoor Scenarios</span></h2>
   <div class="hero-body">
-    
     <div class="container">
-      <div id="results-carousel" class="carousel results-carousel">
-
-        <div class="img-grid-3">
-          <div class="image-container">
-            <div class="caption">Raw Image</div>
-            <img src="./static/images/RGB_detail/14207812284_c4625ff7ad_k_img.jpg" width="100%">
-          </div>
-
-          <div class="image-container">
-            <div class="caption">ApDepth</div>
-            <img src="./static/images/RGB_detail_D/14207812284_c4625ff7ad_k_img_pred_colored.png" width="100%">
-          </div>
-
-          <div class="image-container">
-            <div class="caption">ApDepth-G</div>
-            <img src="./static/images/RGB_detail_G/14207812284_c4625ff7ad_k_img_pred_colored.png" width="100%">
-          </div>
-
-          <img src="./static/images/RGB_detail/17943623232_5f974cad30_k_img.jpg" width="100%">
-          <img src="./static/images/RGB_detail_D/17943623232_5f974cad30_k_img_pred_colored.png" width="100%">
-          <img src="./static/images/RGB_detail_G/17943623232_5f974cad30_k_img_pred_colored.png" width="100%">
-        
-        </div>
-
-        <div class="img-grid-3">
-          <div class="image-container">
-            <div class="caption">Raw Image</div>
-            <img src="./static/images/RGB_detail/18163676059_79c52d7d44_k_img.jpg" width="100%">
-          </div>
-
-          <div class="image-container">
-            <div class="caption">ApDepth</div>
-            <img src="./static/images/RGB_detail_D/18163676059_79c52d7d44_k_img_pred_colored.png" width="100%">
-          </div>
-
-          <div class="image-container">
-            <div class="caption">ApDepth-G</div>
-            <img src="./static/images/RGB_detail_G/18163676059_79c52d7d44_k_img_pred_colored.png" width="100%">
-          </div>
-
-          <img src="./static/images/RGB_detail//20304092008_ede0b1304e_k_img.jpg" width="100%">
-          <img src="./static/images/RGB_detail_D/20304092008_ede0b1304e_k_img_pred_colored.png" width="100%">
-          <img src="./static/images/RGB_detail_G/20304092008_ede0b1304e_k_img_pred_colored.png" width="100%">
-        
-        </div>
-
-        <div class="img-grid-3">
-          <div class="image-container">
-            <div class="caption">Raw Image</div>
-            <img src="./static/images/RGB_detail/20308243458_aa9a9e096d_k_img.jpg" width="100%">
-          </div>
-
-          <div class="image-container">
-            <div class="caption">ApDepth</div>
-            <img src="./static/images/RGB_detail_D/20308243458_aa9a9e096d_k_img_pred_colored.png" width="100%">
-          </div>
-
-          <div class="image-container">
-            <div class="caption">ApDepth-G</div>
-            <img src="./static/images/RGB_detail_G/20308243458_aa9a9e096d_k_img_pred_colored.png" width="100%">
-          </div>
-
-          <img src="./static/images/RGB_detail/21641503110_11ee9051d3_k_img.jpg" width="100%">
-          <img src="./static/images/RGB_detail_D/21641503110_11ee9051d3_k_img_pred_colored.png" width="100%">
-          <img src="./static/images/RGB_detail_G/21641503110_11ee9051d3_k_img_pred_colored.png" width="100%">
-        
-        </div>
-
-        <div class="img-grid-3">
-          <div class="image-container">
-            <div class="caption">Raw Image</div>
-            <img src="./static/images/RGB_detail/22390096157_4dceea42ae_k_img.jpg" width="100%">
-          </div>
-
-          <div class="image-container">
-            <div class="caption">ApDepth</div>
-            <img src="./static/images/RGB_detail_D/22390096157_4dceea42ae_k_img_pred_colored.png" width="100%">
-          </div>
-
-          <div class="image-container">
-            <div class="caption">ApDepth-G</div>
-            <img src="./static/images/RGB_detail_G/22390096157_4dceea42ae_k_img_pred_colored.png" width="100%">
-          </div>
-
-          <img src="./static/images/RGB_detail/25617303635_4e6320d859_b_img.jpg" width="100%">
-          <img src="./static/images/RGB_detail_D/25617303635_4e6320d859_b_img_pred_colored.png" width="100%">
-          <img src="./static/images/RGB_detail_G/25617303635_4e6320d859_b_img_pred_colored.png" width="100%">
-        
-        </div>
-
-        <div class="img-grid-3">
-          <div class="image-container">
-            <div class="caption">Raw Image</div>
-            <img src="./static/images/RGB_detail/26439902152_640a2d754e_k_img.jpg" width="100%">
-          </div>
-
-          <div class="image-container">
-            <div class="caption">ApDepth</div>
-            <img src="./static/images/RGB_detail_D/26439902152_640a2d754e_k_img_pred_colored.png" width="100%">
-          </div>
-
-          <div class="image-container">
-            <div class="caption">ApDepth-G</div>
-            <img src="./static/images/RGB_detail_G/26439902152_640a2d754e_k_img_pred_colored.png" width="100%">
-          </div>
-
-          <img src="./static/images/RGB_detail/27295431082_5e7d25ba64_k_img.jpg" width="100%">
-          <img src="./static/images/RGB_detail_D/27295431082_5e7d25ba64_k_img_pred_colored.png" width="100%">
-          <img src="./static/images/RGB_detail_G/27295431082_5e7d25ba64_k_img_pred_colored.png" width="100%">
-        
-        </div>
-
-        <div class="img-grid-3">
-          <div class="image-container">
-            <div class="caption">Raw Image</div>
-            <img src="./static/images/RGB_detail/27570847956_1934aa7d19_k_img.jpg" width="100%">
-          </div>
-
-          <div class="image-container">
-            <div class="caption">ApDepth</div>
-            <img src="./static/images/RGB_detail_D/27570847956_1934aa7d19_k_img_pred_colored.png" width="100%">
-          </div>
-
-          <div class="image-container">
-            <div class="caption">ApDepth-G</div>
-            <img src="./static/images/RGB_detail_G/27570847956_1934aa7d19_k_img_pred_colored.png" width="100%">
-          </div>
-
-          <img src="./static/images/RGB_detail/27800212632_56e67e7f43_k_img.jpg" width="100%">
-          <img src="./static/images/RGB_detail_D/27800212632_56e67e7f43_k_img_pred_colored.png" width="100%">
-          <img src="./static/images/RGB_detail_G/27800212632_56e67e7f43_k_img_pred_colored.png" width="100%">
-        
-        </div>
-
-        <div class="img-grid-3">
-          <div class="image-container">
-            <div class="caption">Raw Image</div>
-            <img src="./static/images/RGB_detail/32815687607_fa71f65a34_k_img.jpg" width="100%">
-          </div>
-
-          <div class="image-container">
-            <div class="caption">ApDepth</div>
-            <img src="./static/images/RGB_detail_D/32815687607_fa71f65a34_k_img_pred_colored.png" width="100%">
-          </div>
-
-          <div class="image-container">
-            <div class="caption">ApDepth-G</div>
-            <img src="./static/images/RGB_detail_G/32815687607_fa71f65a34_k_img_pred_colored.png" width="100%">
-          </div>
-
-          <img src="./static/images/RGB_detail/33163406365_e67ad6f831_k_img.jpg" width="100%">
-          <img src="./static/images/RGB_detail_D/33163406365_e67ad6f831_k_img_pred_colored.png" width="100%">
-          <img src="./static/images/RGB_detail_G/33163406365_e67ad6f831_k_img_pred_colored.png" width="100%">
-        
-        </div>
-
-        <div class="img-grid-3">
-          <div class="image-container">
-            <div class="caption">Raw Image</div>
-            <img src="./static/images/RGB_detail/41645368901_c15ef28ac3_k_img.jpg" width="100%">
-          </div>
-
-          <div class="image-container">
-            <div class="caption">ApDepth</div>
-            <img src="./static/images/RGB_detail_D/41645368901_c15ef28ac3_k_img_pred_colored.png" width="100%">
-          </div>
-
-          <div class="image-container">
-            <div class="caption">ApDepth-G</div>
-            <img src="./static/images/RGB_detail_G/41645368901_c15ef28ac3_k_img_pred_colored.png" width="100%">
-          </div>
-
-          <img src="./static/images/RGB_detail/52775552059_8566a4bde2_k_img.jpg" width="100%">
-          <img src="./static/images/RGB_detail_D/52775552059_8566a4bde2_k_img_pred_colored.png" width="100%">
-          <img src="./static/images/RGB_detail_G/52775552059_8566a4bde2_k_img_pred_colored.png" width="100%">
-        
-        </div>
-
-        <div class="img-grid-3">
-          <div class="image-container">
-            <div class="caption">Raw Image</div>
-            <img src="./static/images/RGB_detail/52845333940_6eb1a7a5ff_k_img.jpg" width="100%">
-          </div>
-
-          <div class="image-container">
-            <div class="caption">ApDepth</div>
-            <img src="./static/images/RGB_detail_D/52845333940_6eb1a7a5ff_k_img_pred_colored.png" width="100%">
-          </div>
-
-          <div class="image-container">
-            <div class="caption">ApDepth-G</div>
-            <img src="./static/images/RGB_detail_G/52845333940_6eb1a7a5ff_k_img_pred_colored.png" width="100%">
-          </div>
-
-          <img src="./static/images/RGB_detail/bicycle_img.jpg" width="100%">
-          <img src="./static/images/RGB_detail_D/bicycle_img_pred_colored.png" width="100%">
-          <img src="./static/images/RGB_detail_G/bicycle_img_pred_colored.png" width="100%">
-        
-        </div>
-
-        <div class="img-grid-3">
-          <div class="image-container">
-            <div class="caption">Raw Image</div>
-            <img src="./static/images/RGB_detail/demo5_img.jpg" width="100%">
-          </div>
-
-          <div class="image-container">
-            <div class="caption">ApDepth</div>
-            <img src="./static/images/RGB_detail_D/demo5_img_pred_colored.png" width="100%">
-          </div>
-
-          <div class="image-container">
-            <div class="caption">ApDepth-G</div>
-            <img src="./static/images/RGB_detail_G/demo5_img_pred_colored.png" width="100%">
-          </div>
-
-          <img src="./static/images/RGB_detail/demo7_img.jpg" width="100%">
-          <img src="./static/images/RGB_detail_D/demo7_img_pred_colored.png" width="100%">
-          <img src="./static/images/RGB_detail_G/demo7_img_pred_colored.png" width="100%">
-        
-        </div>
-
+      <div id="indoor-carousel" class="carousel results-carousel">
+        <!-- Dynamically populated from indoor.json -->
       </div>
     </div>
-    
   </div>
 </section>
 
-
+<!-- Gallery: Outdoor Scenarios -->
 <section class="hero is-small" style="margin-top: 50px; padding-top: 0px;">
-  <h2 class="title is-4" style="text-align: center;">Comparison with ApDepth on <span style="color: #4FACFA;">Robustness</span></h2>
+  <h2 class="title is-4" style="text-align: center;">Comparison with ApDepth on <span style="color: #4FACFA;">Outdoor Scenarios</span></h2>
   <div class="hero-body">
     <div class="container">
-      <div id="results-carousel" class="carousel results-carousel">
-
-        <div class="img-grid-3">
-          <div class="image-container">
-            <div class="caption">Raw Image</div>
-            <img src="./static/images/RGB_rob/20131434932_721d0b3d44_k_img.jpg" width="100%">
-          </div>
-
-          <div class="image-container">
-            <div class="caption">ApDepth</div>
-            <img src="./static/images/RGB_rob_D/20131434932_721d0b3d44_k_img_pred_colored.png" width="100%">
-          </div>
-
-          <div class="image-container">
-            <div class="caption">ApDepth-G</div>
-            <img src="./static/images/RGB_rob_G/20131434932_721d0b3d44_k_img_pred_colored.png" width="100%">
-          </div>
-
-          <img src="./static/images/RGB_rob/20661238074_30958d9dab_k_img.jpg" width="100%">
-          <img src="./static/images/RGB_rob_D/20661238074_30958d9dab_k_img_pred_colored.png" width="100%">
-          <img src="./static/images/RGB_rob_G/20661238074_30958d9dab_k_img_pred_colored.png" width="100%">
-        
-        </div>
-
-        <div class="img-grid-3">
-          <div class="image-container">
-            <div class="caption">Raw Image</div>
-            <img src="./static/images/RGB_rob/2320148152_2941ffc70a_k_img.jpg" width="100%">
-          </div>
-
-          <div class="image-container">
-            <div class="caption">ApDepth</div>
-            <img src="./static/images/RGB_rob_D/2320148152_2941ffc70a_k_img_pred_colored.png" width="100%">
-          </div>
-
-          <div class="image-container">
-            <div class="caption">ApDepth-G</div>
-            <img src="./static/images/RGB_rob_G/2320148152_2941ffc70a_k_img_pred_colored.png" width="100%">
-          </div>
-
-          <img src="./static/images/RGB_rob/25408139247_73cc35c730_h_img.jpg" width="100%">
-          <img src="./static/images/RGB_rob_D/25408139247_73cc35c730_h_img_pred_colored.png" width="100%">
-          <img src="./static/images/RGB_rob_G/25408139247_73cc35c730_h_img_pred_colored.png" width="100%">
-        
-        </div>
-
-        <div class="img-grid-3">
-          <div class="image-container">
-            <div class="caption">Raw Image</div>
-            <img src="./static/images/RGB_rob/26174451699_eea72c5539_k_img.jpg" width="100%">
-          </div>
-
-          <div class="image-container">
-            <div class="caption">ApDepth</div>
-            <img src="./static/images/RGB_rob_D/26174451699_eea72c5539_k_img_pred_colored.png" width="100%">
-          </div>
-
-          <div class="image-container">
-            <div class="caption">ApDepth-G</div>
-            <img src="./static/images/RGB_rob_G/26174451699_eea72c5539_k_img_pred_colored.png" width="100%">
-          </div>
-
-          <img src="./static/images/RGB_rob/27487831525_ebd549b2ee_k_img.jpg" width="100%">
-          <img src="./static/images/RGB_rob_D/27487831525_ebd549b2ee_k_img_pred_colored.png" width="100%">
-          <img src="./static/images/RGB_rob_G/27487831525_ebd549b2ee_k_img_pred_colored.png" width="100%">
-        
-        </div>
-
-        <div class="img-grid-3">
-          <div class="image-container">
-            <div class="caption">Raw Image</div>
-            <img src="./static/images/RGB_rob/28172788999_16bc37b927_k_img.jpg" width="100%">
-          </div>
-
-          <div class="image-container">
-            <div class="caption">ApDepth</div>
-            <img src="./static/images/RGB_rob_D/28172788999_16bc37b927_k_img_pred_colored.png" width="100%">
-          </div>
-
-          <div class="image-container">
-            <div class="caption">ApDepth-G</div>
-            <img src="./static/images/RGB_rob_G/28172788999_16bc37b927_k_img_pred_colored.png" width="100%">
-          </div>
-
-          <img src="./static/images/RGB_rob/37622979602_4b860bfac9_k_img.jpg" width="100%">
-          <img src="./static/images/RGB_rob_D/37622979602_4b860bfac9_k_img_pred_colored.png" width="100%">
-          <img src="./static/images/RGB_rob_G/37622979602_4b860bfac9_k_img_pred_colored.png" width="100%">
-        
-        </div>
-
-        <div class="img-grid-3">
-          <div class="image-container">
-            <div class="caption">Raw Image</div>
-            <img src="./static/images/RGB_rob/38510419542_dfbe2df30f_h_img.jpg" width="100%">
-          </div>
-
-          <div class="image-container">
-            <div class="caption">ApDepth</div>
-            <img src="./static/images/RGB_rob_D/38510419542_dfbe2df30f_h_img_pred_colored.png" width="100%">
-          </div>
-
-          <div class="image-container">
-            <div class="caption">ApDepth-G</div>
-            <img src="./static/images/RGB_rob_G/38510419542_dfbe2df30f_h_img_pred_colored.png" width="100%">
-          </div>
-
-          <img src="./static/images/RGB_rob/38512148842_4dfd8ee8f4_k_img.jpg" width="100%">
-          <img src="./static/images/RGB_rob_D/38512148842_4dfd8ee8f4_k_img_pred_colored.png" width="100%">
-          <img src="./static/images/RGB_rob_G/38512148842_4dfd8ee8f4_k_img_pred_colored.png" width="100%">
-        
-        </div>
-
-        <div class="img-grid-3">
-          <div class="image-container">
-            <div class="caption">Raw Image</div>
-            <img src="./static/images/RGB_rob/3991247448_dfa1a2397f_k_img.jpg" width="100%">
-          </div>
-
-          <div class="image-container">
-            <div class="caption">ApDepth</div>
-            <img src="./static/images/RGB_rob_D/3991247448_dfa1a2397f_k_img_pred_colored.png" width="100%">
-          </div>
-
-          <div class="image-container">
-            <div class="caption">ApDepth-G</div>
-            <img src="./static/images/RGB_rob_G/3991247448_dfa1a2397f_k_img_pred_colored.png" width="100%">
-          </div>
-
-          <img src="./static/images/RGB_rob/40277550594_7e379065f3_k_img.jpg" width="100%">
-          <img src="./static/images/RGB_rob_D/40277550594_7e379065f3_k_img_pred_colored.png" width="100%">
-          <img src="./static/images/RGB_rob_G/40277550594_7e379065f3_k_img_pred_colored.png" width="100%">
-        
-        </div>
-
-        <div class="img-grid-3">
-          <div class="image-container">
-            <div class="caption">Raw Image</div>
-            <img src="./static/images/RGB_rob/53263848580_d6b55b4277_k_img.jpg" width="100%">
-          </div>
-
-          <div class="image-container">
-            <div class="caption">ApDepth</div>
-            <img src="./static/images/RGB_rob_D/53263848580_d6b55b4277_k_img_pred_colored.png" width="100%">
-          </div>
-
-          <div class="image-container">
-            <div class="caption">ApDepth-G</div>
-            <img src="./static/images/RGB_rob_G/53263848580_d6b55b4277_k_img_pred_colored.png" width="100%">
-          </div>
-
-          <img src="./static/images/RGB_rob/transparent_car1_img.jpg" width="100%">
-          <img src="./static/images/RGB_rob_D/transparent_car1_img_pred_colored.png" width="100%">
-          <img src="./static/images/RGB_rob_G/transparent_car1_img_pred_colored.png" width="100%">
-        
-        </div>
-
+      <div id="outdoor-carousel" class="carousel results-carousel">
+        <!-- Dynamically populated from outdoor.json -->
       </div>
     </div>
-    
   </div>
 </section>
 
 <section class="hero is-small" style="margin-top: 50px; padding-top: 0px;">
   <h2 class="title is-4" style="text-align: center;"> Compared with other <span style="color: #155b95;">model-driven methods</span></h2>
-
   <div style="margin-top: 30px; padding-top: 0px; display: flex; justify-content: center;">
     <img id="method_inference" width="65%" src="table.png" alt="Result">
   </div>
@@ -591,20 +166,109 @@
         <div class="column is-8" align="center">
           <div class="content">
             <p>
-              Website template based on
-              <a href="https://github.com/nerfies/nerfies.github.io">
-                Nerfies
-              </a>
-              and licensed under
-              <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
-                CC-BY-SA-4.0
-              </a>.
+              Website template based on <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> and licensed under <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA-4.0</a>.
             </p>
           </div>
         </div>
       </div>
     </div>
   </footer>
+
+<!-- Dynamic JSON Loading and Carousel Initialization Script -->
+<script>
+  async function initCarousels() {
+    try {
+      // Fetch both json files concurrently
+      const [indoorData, outdoorData] = await Promise.all([
+        fetch('./static/images/indoor.json').then(res => res.ok ? res.json() : []).catch(() => []),
+        fetch('./static/images/outdoor.json').then(res => res.ok ? res.json() : []).catch(() => [])
+      ]);
+
+      renderCarouselRows('indoor-carousel', indoorData, 'Indoor');
+      renderCarouselRows('outdoor-carousel', outdoorData, 'Outdoor');
+
+      // Initialize bulmaCarousel after DOM elements are fully inserted
+      if (typeof bulmaCarousel !== 'undefined') {
+        bulmaCarousel.attach('.results-carousel', {
+          slidesToScroll: 1,
+          slidesToShow: 1,
+          loop: true,
+          infinite: true,
+          autoplay: false,
+          pagination: true,
+        });
+      }
+    } catch (error) {
+      console.error("Error loading or initializing carousels:", error);
+    }
+  }
+
+ function renderCarouselRows(containerId, items, folderName) {
+  const container = document.getElementById(containerId);
+  if (!container || !items || items.length === 0) return;
+
+  let html = '';
+
+  for (let i = 0; i < items.length; i += 2) {
+    const item1 = items[i];
+    const item2 = items[i + 1];
+
+    const file1 = item1.split('/').pop();
+    // 提取不带后缀的文件名 (例如把 "41.jpg" 变成 "41")
+    const baseName1 = file1.substring(0, file1.lastIndexOf('.'));
+    // 拼接预测图片的正确文件名
+    const predFile1 = `${baseName1}_pred_colored.png`;
+
+    html += `<div class="img-grid-3">`;
+
+    // 第一行
+    html += `
+      <div class="image-container">
+        <div class="caption">Raw Image</div>
+        <img src="./static/images/${folderName}/${file1}" width="100%">
+      </div>
+
+      <div class="image-container">
+        <div class="caption">ApDepth</div>
+        <img src="./static/images/${folderName}-D/${predFile1}" width="100%">
+      </div>
+
+      <div class="image-container">
+        <div class="caption">ApDepth-G</div>
+        <img src="./static/images/${folderName}-G/${predFile1}" width="100%">
+      </div>
+    `;
+
+    // 第二行
+    if (item2) {
+      const file2 = item2.split('/').pop();
+      const baseName2 = file2.substring(0, file2.lastIndexOf('.'));
+      const predFile2 = `${baseName2}_pred_colored.png`;
+
+      html += `
+        <img src="./static/images/${folderName}/${file2}" width="100%">
+        <img src="./static/images/${folderName}-D/${predFile2}" width="100%">
+        <img src="./static/images/${folderName}-G/${predFile2}" width="100%">
+      `;
+    }
+
+    html += `</div>`;
+  }
+
+  container.innerHTML = html;
+}
+
+  document.addEventListener('DOMContentLoaded', initCarousels);
+</script>
+
+<style>
+  .img-grid-3 img {
+  width: 100% !important;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  display: block;
+}
+</style>
 
 </body>
 </html>
