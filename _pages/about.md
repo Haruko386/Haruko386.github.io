@@ -80,14 +80,31 @@ I used to participate in many **ACM algorithm** competitions(***2022-2023***), b
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">ARXIV</div><img src='../files/cover/cover1.png' alt="cover1" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
-[ApDepth: Aiming for Precise Monocular Depth Estimation Based on Diffusion Models](https://haruko386.github.io/research/article.pdf)
+[ApDepth: Aiming for Precise Monocular Depth Estimation Based on Diffusion Models](https://haruko386.github.io/ApDepth-G/article.pdf)
 
 **Jiawei Wang**, Shuai Yuan, Mingbo Lei, Yibo Chen
 
-\[[**Website**](https://haruko386.github.io/research/)\] \[[Paper](https://haruko386.github.io/research/article.pdf)\] \[[Demo](https://huggingface.co/spaces/developy/ApDepth)\] 
+\[[**Website**](https://haruko386.github.io/research/)\] \[[Paper](https://haruko386.github.io/research/article.pdf)\] \[[Demo](https://huggingface.co/spaces/developy/ApDepth)\] \[[Model](https://huggingface.co/developy/ApDepth)\] 
 <p>
 <hr>
 This paper presents <span style="font-family: Georgia, 'Times New Roman', serif; font-weight: 800; font-style: italic; color: #2c3e50; font-variant: small-caps;">ApDepth</span>, a novel single-step diffusion framework for monocular depth estimation that achieves fast inference while preserving fine-grained edge details through a tailored two-stage training strategy combined with novel frequency-domain and cosine similarity losses.
+</p>
+</div>
+</div>
+
+<hr>
+
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">ARXIV</div><img src='../ApDepth-G/static/images/cover.png' alt="cover1" width="100%"></div></div>
+<div class='paper-box-text' markdown="1">
+
+[ApDepth-G: Mitigating Pseudo-Texture Artifacts in Diffusion-Based Models](https://haruko386.github.io/ApDepth-G)
+
+**Jiawei Wang**, Mingbo Lei, Haoze Shou, Yusu Liang
+
+\[[**Website**](https://haruko386.github.io/ApDepth-G/)\] \[[~~Paper~~](#)\] \[[Model](https://huggingface.co/developy/ApDepth-G)\] 
+<p>
+<hr>
+We presents <span style="font-family: Georgia, 'Times New Roman', serif; font-weight: 800; font-style: italic; color: #1a1236; font-variant: small-caps;">ApDepth-G</span>,  a multi-step geometric diffusion refinement framework for sky-stable monocular depth estimation. It progressively refines latent depth representations through multi-step denoising and improves training with offset noise regularization, SNR-based loss reweighting, and latent gradient consistency.
 </p>
 </div>
 </div>
