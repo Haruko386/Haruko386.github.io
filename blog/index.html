@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Haruko386 的年终总结">
+    <meta name="color-scheme" content="light dark">
+    <title>ANNUAL ARCHIVE</title>
+    <link rel="icon" type="image/png" href="../images/profile.png">
+    <link rel="apple-touch-icon" href="../images/profile.png">
+    <script>
+        (function () {
+            var savedTheme = localStorage.getItem("theme");
+            var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+            if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
+                document.documentElement.classList.add("dark-mode");
+            }
+        }());
+    </script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="site-header">
+        <a class="site-logo" href="https://haruko386.github.io" aria-label="返回 Haruko386 首页">Haruko386</a>
+
+        <div class="header-meta">
+            <span class="header-label">YEAR IN REVIEW</span>
+            <button class="theme-toggle" id="theme-toggle" type="button" aria-label="切换深色模式"
+                aria-pressed="false">
+                <span class="theme-toggle__light" aria-hidden="true">○</span>
+                <span class="theme-toggle__dark" aria-hidden="true">●</span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section class="view view--active" id="timeline-view" aria-labelledby="archive-title">
+            <div class="archive-heading">
+                <!-- <p class="eyebrow">ANNUAL ARCHIVE</p> -->
+                <h1 id="archive-title">ANNUAL ARCHIVE</h1>
+                <p class="archive-intro">Past is past, but can be remembered</p>
+            </div>
+
+            <div class="timeline" id="timeline" aria-label="年终总结文章列表">
+                <a class="timeline-item" href="#/2025" data-year="2025" data-document="2025.md"
+                    aria-label="阅读 2025 年终总结">
+                    <time class="timeline-year" datetime="2025">2025</time>
+                    <span class="timeline-copy">
+                        <span>年度总结</span>
+                        <span class="timeline-arrow" aria-hidden="true">↗</span>
+                    </span>
+                </a>
+
+                <a class="timeline-item" href="#/2024" data-year="2024" data-document="2024.md"
+                    style="animation-delay: 70ms" aria-label="阅读 2024 年终总结">
+                    <time class="timeline-year" datetime="2024">2024</time>
+                    <span class="timeline-copy">
+                        <span>年度总结</span>
+                        <span class="timeline-arrow" aria-hidden="true">↗</span>
+                    </span>
+                </a>
+
+                <a class="timeline-item" href="#/2023" data-year="2023" data-document="2023.md"
+                    style="animation-delay: 140ms" aria-label="阅读 2023 年终总结">
+                    <time class="timeline-year" datetime="2023">2023</time>
+                    <span class="timeline-copy">
+                        <span>年度总结</span>
+                        <span class="timeline-arrow" aria-hidden="true">↗</span>
+                    </span>
+                </a>
+            </div>
+        </section>
+
+        <section class="view article-view" id="article-view" aria-labelledby="article-year" hidden>
+            <nav class="article-nav" aria-label="文章导航">
+                <button class="back-button" id="back-button" type="button">
+                    <span aria-hidden="true">←</span>
+                    <span>年份归档</span>
+                </button>
+                <span class="article-year" id="article-year"></span>
+            </nav>
+
+            <div class="article-status" id="article-status" role="status"></div>
+            <article class="markdown-body" id="markdown-content"></article>
+
+            <footer class="article-footer" id="article-footer" hidden>
+                <button class="back-link" type="button" data-back-to-timeline>
+                    <span aria-hidden="true">←</span> 返回所有年份
+                </button>
+            </footer>
+        </section>
+    </main>
+
+    <noscript>
+        <p class="noscript-message">需要启用 JavaScript 才能读取年度文章。</p>
+    </noscript>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked@18.0.6/lib/marked.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.4.12/dist/purify.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/highlight.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
