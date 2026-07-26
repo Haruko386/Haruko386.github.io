@@ -27,10 +27,13 @@ body {
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    transition: max-width 0.25s ease;
 }
 
 .title-bar {
-    display: flex;
+    display: grid;
+    grid-template-columns: 72px minmax(0, 1fr) 104px;
+    gap: 12px;
     align-items: center;
     padding: 16px 20px;
     background-color: rgba(255, 255, 255, 0.4);
@@ -41,7 +44,6 @@ body {
 .mac-btns {
     display: flex;
     gap: 8px;
-    width: 60px;
 }
 
 .mac-btn {
@@ -69,14 +71,49 @@ body {
 }
 
 .title {
-    flex-grow: 1;
     text-align: center;
     color: #c8d1dc;
     /* GitHub标题 */
     font-size: 13px;
     font-weight: 500;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    margin-right: 60px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.view-toggle {
+    width: 104px;
+    min-height: 30px;
+    padding: 5px 10px;
+    border: 1px solid rgba(36, 41, 47, 0.18);
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.45);
+    color: #24292f;
+    cursor: pointer;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    transition: background-color 0.15s, border-color 0.15s;
+}
+
+.view-toggle:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.7);
+    border-color: rgba(36, 41, 47, 0.3);
+}
+
+.view-toggle:focus-visible {
+    outline: 2px solid #0969da;
+    outline-offset: 2px;
+}
+
+.view-toggle:disabled {
+    cursor: default;
+    opacity: 0.55;
+}
+
+body[data-view="split"] .window {
+    max-width: 1280px;
 }
 
 .main-content {
@@ -93,11 +130,13 @@ body {
     min-width: 520px; 
 }
 
-.row {
-    --diff-gutter-width: 179px;
+.code-rows {
+    width: 100%;
+}
+
+.source-row,
+.unified-row {
     display: grid;
-    grid-template-columns: 46px 46px 30px 1px 1fr;
-    /* [旧行号] [新行号] [标记] [分割线] [代码] */
     gap: 12px;
     align-items: center;
     line-height: 1.6;
@@ -106,33 +145,55 @@ body {
     transition: background 0.1s;
 }
 
-/* Diff 的 pre / cur 表头 */
-.row-header {
-    font-weight: 600;
-    font-size: 13px;
-    margin-bottom: 8px;
-    padding-top: 4px;
-    padding-bottom: 4px;
+.source-row {
+    grid-template-columns: 46px 1px minmax(0, 1fr);
 }
 
-.row-header .pre-text {
-    color: #cf222e;
+.unified-row {
+    --diff-gutter-width: 179px;
+    grid-template-columns: 46px 46px 30px 1px minmax(0, 1fr);
+}
+
+.source-row:hover,
+.unified-row:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+}
+
+.ln {
+    text-align: right;
+    color: #c8d1dc;
+    user-select: none;
+    font-size: 12px;
+}
+
+.marker {
     text-align: center;
+    user-select: none;
+    font-size: 14px;
+    font-weight: bold;
 }
-
-/* pre 用浅红 */
-.row-header .cur-text {
-    color: #1a7f37;
-    text-align: center;
-}
-
-/* cur 用浅绿 */
 
 .marker.minus {
     color: #cf222e;
 }
 
-.row.added { 
+.marker.plus {
+    color: #1a7f37;
+}
+
+.divider {
+    align-self: stretch;
+    background-color: rgba(0, 0, 0, 0.08);
+}
+
+.code {
+    min-width: 0;
+    text-align: left;
+    white-space: pre;
+    color: #24292f;
+}
+
+.unified-row.added {
     background: linear-gradient(
         to right,
         rgba(46, 160, 67, 0.18) 0,
@@ -141,7 +202,8 @@ body {
         rgba(46, 160, 67, 0.08) 100%
     );
 }
-.row.added:hover { 
+
+.unified-row.added:hover {
     background: linear-gradient(
         to right,
         rgba(46, 160, 67, 0.26) 0,
@@ -151,7 +213,7 @@ body {
     );
 }
 
-.row.removed { 
+.unified-row.removed {
     background: linear-gradient(
         to right,
         rgba(207, 34, 46, 0.16) 0,
@@ -160,7 +222,8 @@ body {
         rgba(207, 34, 46, 0.07) 100%
     );
 }
-.row.removed:hover { 
+
+.unified-row.removed:hover {
     background: linear-gradient(
         to right,
         rgba(207, 34, 46, 0.24) 0,
@@ -170,60 +233,69 @@ body {
     );
 }
 
-.row:hover { 
-    background-color: rgba(0, 0, 0, 0.04); 
+body[data-view="split"] .editor-body {
+    min-width: 920px;
 }
 
-/* 各列样式 */
-.row .ln {
-    text-align: right;
-    color: #c8d1dc;
-    user-select: none;
-    font-size: 12px;
-}
-
-.row .marker {
-    text-align: center;
-    user-select: none;
+.split-row {
+    display: grid;
+    grid-template-columns: minmax(450px, 1fr) minmax(450px, 1fr);
+    line-height: 1.6;
     font-size: 14px;
-    font-weight: bold;
 }
 
-.marker.dot {
-    color: #afb8c1;
-    font-weight: normal;
+.split-side {
+    display: grid;
+    grid-template-columns: 46px 30px 1px minmax(0, 1fr);
+    gap: 12px;
+    align-items: center;
+    min-width: 0;
+    padding: 2px 16px 2px 8px;
+    transition: background-color 0.1s;
 }
 
-/* 中圆点 */
-.marker.plus {
-    color: #1a7f37;
+.split-side.current {
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-/* 绿色 + */
-
-.row .divider {
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.08);
+.split-side.context:hover {
+    background-color: rgba(0, 0, 0, 0.04);
 }
 
-.row .code {
-    text-align: left;
-    white-space: pre;
-    color: #24292f;
+.split-side.removed {
+    background-color: rgba(207, 34, 46, 0.1);
 }
 
-.source-status .code,
+.split-side.removed:hover {
+    background-color: rgba(207, 34, 46, 0.17);
+}
+
+.split-side.added {
+    background-color: rgba(46, 160, 67, 0.11);
+}
+
+.split-side.added:hover {
+    background-color: rgba(46, 160, 67, 0.18);
+}
+
+.split-side.empty {
+    background-color: rgba(0, 0, 0, 0.025);
+}
+
+.split-side .code {
+    overflow: hidden;
+    text-overflow: clip;
+}
+
+.source-status,
 .source-message {
+    padding: 4px 20px 4px 58px;
     color: #57606a;
     font-size: 13px;
 }
 
-.source-status.error .code {
+.source-status.error {
     color: #cf222e;
-}
-
-.source-message {
-    padding: 4px 20px 4px 58px;
 }
 
 .c-orange {
@@ -326,19 +398,49 @@ body {
     }
     
     .title-bar {
+        grid-template-columns: 60px minmax(0, 1fr) 92px;
+        gap: 8px;
         padding: 12px 16px;
     }
 
-    .row {
-        --diff-gutter-width: 125px;
-        grid-template-columns: 32px 32px 24px 1px 1fr;
+    .view-toggle {
+        width: 92px;
+        padding: 4px 6px;
+        font-size: 11px;
+    }
+
+    .source-row,
+    .unified-row {
         gap: 8px;
         font-size: 13px;
         padding: 2px 12px 2px 4px;
     }
 
-    .row .ln {
+    .source-row {
+        grid-template-columns: 32px 1px minmax(0, 1fr);
+    }
+
+    .unified-row {
+        --diff-gutter-width: 125px;
+        grid-template-columns: 32px 32px 24px 1px 1fr;
+    }
+
+    .ln {
         font-size: 11px;
     }
 
+    body[data-view="split"] .editor-body {
+        min-width: 760px;
+    }
+
+    .split-row {
+        grid-template-columns: minmax(380px, 1fr) minmax(380px, 1fr);
+        font-size: 13px;
+    }
+
+    .split-side {
+        grid-template-columns: 32px 24px 1px minmax(0, 1fr);
+        gap: 8px;
+        padding: 2px 12px 2px 4px;
+    }
 }

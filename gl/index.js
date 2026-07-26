@@ -23,35 +23,51 @@ const GO_OPERATORS = [
     '<', '>',
 ];
 
-const codeRows = document.getElementById('code-rows');
-const windowTitle = document.querySelector('.title');
-const lineDiff = window.LineDiff;
-const wantsDiffView =
-    new URLSearchParams(window.location.search).get('diff') === '1';
+const VIEW_MODES = Object.freeze({
+    SOURCE: 'source',
+    UNIFIED: 'unified',
+    SPLIT: 'split',
+});
 
+const NEXT_VIEW_MODE = Object.freeze({
+    [VIEW_MODES.SOURCE]: VIEW_MODES.UNIFIED,
+    [VIEW_MODES.UNIFIED]: VIEW_MODES.SPLIT,
+    [VIEW_MODES.SPLIT]: VIEW_MODES.SOURCE,
+});
+
+const VIEW_BUTTON_LABELS = Object.freeze({
+    [VIEW_MODES.SOURCE]: '查看 Diff',
+    [VIEW_MODES.UNIFIED]: '左右 Diff',
+    [VIEW_MODES.SPLIT]: '浏览代码',
+});
+
+const codeRows = document.getElementById('code-rows');
+const viewToggle = document.getElementById('view-toggle');
+const lineDiff = window.LineDiff;
+let currentViewMode = getInitialViewMode();
+let currentSourceText = null;
+let previousSourceText = null;
+
+viewToggle.addEventListener('click', changeViewMode);
 loadPage();
 setupEgg();
 
 async function loadPage() {
-    try {
-        const currentSource = await fetchSource(CURRENT_SOURCE_URL);
+    viewToggle.disabled = true;
 
-        if (!wantsDiffView) {
-            setViewMode(false);
-            renderSource(currentSource);
-            return;
-        }
+    try {
+        currentSourceText = await fetchSource(CURRENT_SOURCE_URL);
 
         try {
-            const previousSource = await fetchSource(PREVIOUS_SOURCE_URL);
-            setViewMode(true);
-            renderDiff(previousSource, currentSource);
-        } catch (error) {
-            setViewMode(false);
-            renderSource(currentSource);
+            await activateView(currentViewMode, false);
+        } catch (viewError) {
+            currentViewMode = VIEW_MODES.SOURCE;
+            setViewMode(VIEW_MODES.SOURCE);
+            renderSource(currentSourceText);
+            updateViewUrl(VIEW_MODES.SOURCE);
             console.warn(
                 'Unable to load haruko386.old.go; showing the current source.',
-                error,
+                viewError,
             );
         }
     } catch (error) {
@@ -60,7 +76,51 @@ async function loadPage() {
             true,
         );
         console.error('Failed to load haruko386.go:', error);
+    } finally {
+        viewToggle.disabled = currentSourceText === null;
+        updateViewButton();
     }
+}
+
+async function changeViewMode() {
+    const nextMode = NEXT_VIEW_MODE[currentViewMode];
+    viewToggle.disabled = true;
+
+    try {
+        await activateView(nextMode, true);
+    } catch (error) {
+        currentViewMode = VIEW_MODES.SOURCE;
+        setViewMode(VIEW_MODES.SOURCE);
+        renderSource(currentSourceText);
+        updateViewUrl(VIEW_MODES.SOURCE);
+        console.error('Unable to switch code view:', error);
+    } finally {
+        viewToggle.disabled = false;
+        updateViewButton();
+    }
+}
+
+async function activateView(viewMode, shouldUpdateUrl) {
+    if (viewMode !== VIEW_MODES.SOURCE && previousSourceText === null) {
+        previousSourceText = await fetchSource(PREVIOUS_SOURCE_URL);
+    }
+
+    currentViewMode = viewMode;
+    setViewMode(viewMode);
+
+    if (viewMode === VIEW_MODES.SOURCE) {
+        renderSource(currentSourceText);
+    } else if (viewMode === VIEW_MODES.UNIFIED) {
+        renderUnifiedDiff(previousSourceText, currentSourceText);
+    } else {
+        renderSplitDiff(previousSourceText, currentSourceText);
+    }
+
+    if (shouldUpdateUrl) {
+        updateViewUrl(viewMode);
+    }
+
+    updateViewButton();
 }
 
 async function fetchSource(url) {
@@ -73,58 +133,136 @@ async function fetchSource(url) {
     return response.text();
 }
 
-function setViewMode(isDiffView) {
-    document.body.dataset.view = isDiffView ? 'diff' : 'source';
-    windowTitle.textContent = isDiffView
-        ? 'haruko386.go (diff)'
-        : 'haruko386.go';
+function getInitialViewMode() {
+    const searchParams = new URLSearchParams(window.location.search);
+    const requestedView = searchParams.get('view');
+
+    if (requestedView === VIEW_MODES.SPLIT) {
+        return VIEW_MODES.SPLIT;
+    }
+
+    if (
+        requestedView === VIEW_MODES.UNIFIED ||
+        requestedView === 'diff' ||
+        searchParams.get('diff') === '1'
+    ) {
+        return VIEW_MODES.UNIFIED;
+    }
+
+    return VIEW_MODES.SOURCE;
+}
+
+function setViewMode(viewMode) {
+    document.body.dataset.view = viewMode;
+    codeRows.className = `code-rows ${viewMode}-view`;
+}
+
+function updateViewButton() {
+    viewToggle.textContent = VIEW_BUTTON_LABELS[currentViewMode];
+    viewToggle.setAttribute(
+        'aria-label',
+        `${VIEW_BUTTON_LABELS[currentViewMode]}，当前为${currentViewMode}模式`,
+    );
+}
+
+function updateViewUrl(viewMode) {
+    const url = new URL(window.location.href);
+    url.searchParams.delete('diff');
+    url.searchParams.delete('view');
+
+    if (viewMode !== VIEW_MODES.SOURCE) {
+        url.searchParams.set('view', viewMode);
+    }
+
+    window.history.replaceState(null, '', url);
 }
 
 function renderSource(source) {
     const lines = lineDiff.splitLines(source);
     const highlightedLines = highlightSource(lines);
-    const rows = lines.map((text, index) => ({
-        type: 'context',
-        oldLine: null,
-        newLine: index + 1,
-        text,
-    }));
 
-    renderRows(rows, [], highlightedLines);
-}
-
-function renderDiff(previousSource, currentSource) {
-    const result = lineDiff.compare(previousSource, currentSource);
-    const previousHighlights = highlightSource(result.previousLines);
-    const currentHighlights = highlightSource(result.currentLines);
-
-    renderRows(result.rows, previousHighlights, currentHighlights);
-}
-
-function renderRows(rows, previousHighlights, currentHighlights) {
-    if (rows.length === 0) {
+    if (lines.length === 0) {
         renderStatus('No code to display.');
         return;
     }
 
     const fragment = document.createDocumentFragment();
 
-    rows.forEach((row) => {
-        const tokens = row.type === 'removed'
-            ? previousHighlights[row.oldLine - 1]
-            : currentHighlights[row.newLine - 1];
-
-        fragment.appendChild(createSourceRow(row, tokens));
+    lines.forEach((line, index) => {
+        fragment.appendChild(createBrowseRow(index + 1, highlightedLines[index]));
     });
 
     codeRows.replaceChildren(fragment);
 }
 
-function createSourceRow(diffRow, tokens) {
+function renderUnifiedDiff(previousSource, currentSource) {
+    const result = lineDiff.compare(previousSource, currentSource);
+    const previousHighlights = highlightSource(result.previousLines);
+    const currentHighlights = highlightSource(result.currentLines);
+
+    if (result.rows.length === 0) {
+        renderStatus('No code to display.');
+        return;
+    }
+
+    const fragment = document.createDocumentFragment();
+
+    result.rows.forEach((row) => {
+        const tokens = row.type === 'removed'
+            ? previousHighlights[row.oldLine - 1]
+            : currentHighlights[row.newLine - 1];
+
+        fragment.appendChild(createUnifiedRow(row, tokens));
+    });
+
+    codeRows.replaceChildren(fragment);
+}
+
+function renderSplitDiff(previousSource, currentSource) {
+    const result = lineDiff.compare(previousSource, currentSource);
+
+    if (result.rows.length === 0) {
+        renderStatus('No code to display.');
+        return;
+    }
+
+    const previousHighlights = highlightSource(result.previousLines);
+    const currentHighlights = highlightSource(result.currentLines);
+    const fragment = document.createDocumentFragment();
+
+    buildSplitPairs(result.rows).forEach((pair) => {
+        fragment.appendChild(
+            createSplitRow(pair, previousHighlights, currentHighlights),
+        );
+    });
+
+    codeRows.replaceChildren(fragment);
+}
+
+function createBrowseRow(lineNumber, tokens) {
+    const row = document.createElement('div');
+    row.className = 'source-row';
+
+    const number = document.createElement('div');
+    number.className = 'ln';
+    number.textContent = lineNumber;
+
+    const divider = document.createElement('div');
+    divider.className = 'divider';
+
+    const code = document.createElement('div');
+    code.className = 'code';
+    appendTokens(code, tokens);
+
+    row.append(number, divider, code);
+    return row;
+}
+
+function createUnifiedRow(diffRow, tokens) {
     const row = document.createElement('div');
     row.className = diffRow.type === 'context'
-        ? 'row'
-        : `row ${diffRow.type}`;
+        ? 'unified-row'
+        : `unified-row ${diffRow.type}`;
 
     const previousNumber = document.createElement('div');
     previousNumber.className = 'ln';
@@ -136,16 +274,10 @@ function createSourceRow(diffRow, tokens) {
 
     const marker = document.createElement('div');
     marker.className = 'marker';
+    marker.textContent = getDiffMarker(diffRow.type);
 
-    if (diffRow.type === 'added') {
-        marker.classList.add('plus');
-        marker.textContent = '+';
-    } else if (diffRow.type === 'removed') {
-        marker.classList.add('minus');
-        marker.textContent = '-';
-    } else {
-        marker.classList.add('dot');
-        marker.textContent = '·';
+    if (diffRow.type !== 'context') {
+        marker.classList.add(diffRow.type === 'added' ? 'plus' : 'minus');
     }
 
     const divider = document.createElement('div');
@@ -157,6 +289,108 @@ function createSourceRow(diffRow, tokens) {
 
     row.append(previousNumber, currentNumber, marker, divider, code);
     return row;
+}
+
+function buildSplitPairs(rows) {
+    const pairs = [];
+    let cursor = 0;
+
+    while (cursor < rows.length) {
+        if (rows[cursor].type === 'context') {
+            pairs.push({
+                previous: rows[cursor],
+                current: rows[cursor],
+            });
+            cursor += 1;
+            continue;
+        }
+
+        const removedRows = [];
+        const addedRows = [];
+
+        while (cursor < rows.length && rows[cursor].type !== 'context') {
+            if (rows[cursor].type === 'removed') {
+                removedRows.push(rows[cursor]);
+            } else {
+                addedRows.push(rows[cursor]);
+            }
+            cursor += 1;
+        }
+
+        const pairCount = Math.max(removedRows.length, addedRows.length);
+
+        for (let index = 0; index < pairCount; index += 1) {
+            pairs.push({
+                previous: removedRows[index] ?? null,
+                current: addedRows[index] ?? null,
+            });
+        }
+    }
+
+    return pairs;
+}
+
+function createSplitRow(pair, previousHighlights, currentHighlights) {
+    const row = document.createElement('div');
+    row.className = 'split-row';
+
+    const previousTokens = pair.previous
+        ? previousHighlights[pair.previous.oldLine - 1]
+        : [];
+    const currentTokens = pair.current
+        ? currentHighlights[pair.current.newLine - 1]
+        : [];
+
+    row.append(
+        createSplitSide(pair.previous, 'previous', previousTokens),
+        createSplitSide(pair.current, 'current', currentTokens),
+    );
+
+    return row;
+}
+
+function createSplitSide(diffRow, side, tokens) {
+    const container = document.createElement('div');
+    const rowType = diffRow?.type ?? 'empty';
+    container.className = `split-side ${side} ${rowType}`;
+
+    const number = document.createElement('div');
+    number.className = 'ln';
+    number.textContent = diffRow
+        ? (side === 'previous' ? diffRow.oldLine : diffRow.newLine)
+        : '';
+
+    const marker = document.createElement('div');
+    marker.className = 'marker';
+    marker.textContent = diffRow ? getDiffMarker(diffRow.type) : '';
+
+    if (rowType === 'added') {
+        marker.classList.add('plus');
+    } else if (rowType === 'removed') {
+        marker.classList.add('minus');
+    }
+
+    const divider = document.createElement('div');
+    divider.className = 'divider';
+
+    const code = document.createElement('div');
+    code.className = 'code';
+    appendTokens(code, tokens);
+
+    container.append(number, marker, divider, code);
+    return container;
+}
+
+function getDiffMarker(rowType) {
+    if (rowType === 'added') {
+        return '+';
+    }
+
+    if (rowType === 'removed') {
+        return '-';
+    }
+
+    return '';
 }
 
 function highlightSource(lines) {
@@ -324,27 +558,10 @@ function appendTokens(container, tokens = []) {
 }
 
 function renderStatus(message, isError = false) {
-    const row = document.createElement('div');
-    row.className = `row source-status${isError ? ' error' : ''}`;
-
-    const previousNumber = document.createElement('div');
-    previousNumber.className = 'ln';
-
-    const currentNumber = document.createElement('div');
-    currentNumber.className = 'ln';
-
-    const marker = document.createElement('div');
-    marker.className = 'marker';
-
-    const divider = document.createElement('div');
-    divider.className = 'divider';
-
-    const code = document.createElement('div');
-    code.className = 'code';
-    code.textContent = message;
-
-    row.append(previousNumber, currentNumber, marker, divider, code);
-    codeRows.replaceChildren(row);
+    const status = document.createElement('div');
+    status.className = `source-status${isError ? ' error' : ''}`;
+    status.textContent = message;
+    codeRows.replaceChildren(status);
 }
 
 function setupEgg() {
