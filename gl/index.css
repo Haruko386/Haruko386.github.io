@@ -94,9 +94,10 @@ body {
 }
 
 .row {
+    --diff-gutter-width: 179px;
     display: grid;
-    grid-template-columns: 46px 30px 30px 1px 1fr;
-    /* [行号] [pre] [cur] [分割线] [代码] */
+    grid-template-columns: 46px 46px 30px 1px 1fr;
+    /* [旧行号] [新行号] [标记] [分割线] [代码] */
     gap: 12px;
     align-items: center;
     line-height: 1.6;
@@ -132,17 +133,41 @@ body {
 }
 
 .row.added { 
-    background: linear-gradient(to right, rgba(46, 160, 67, 0.15) 0px, rgba(46, 160, 67, 0.15) 148px, transparent 148px); 
+    background: linear-gradient(
+        to right,
+        rgba(46, 160, 67, 0.18) 0,
+        rgba(46, 160, 67, 0.18) var(--diff-gutter-width),
+        rgba(46, 160, 67, 0.08) var(--diff-gutter-width),
+        rgba(46, 160, 67, 0.08) 100%
+    );
 }
 .row.added:hover { 
-    background: linear-gradient(to right, rgba(46, 160, 67, 0.25) 0px, rgba(46, 160, 67, 0.25) 148px, rgba(0, 0, 0, 0.04) 148px); 
+    background: linear-gradient(
+        to right,
+        rgba(46, 160, 67, 0.26) 0,
+        rgba(46, 160, 67, 0.26) var(--diff-gutter-width),
+        rgba(46, 160, 67, 0.13) var(--diff-gutter-width),
+        rgba(46, 160, 67, 0.13) 100%
+    );
 }
 
 .row.removed { 
-    background: linear-gradient(to right, rgba(207, 34, 46, 0.12) 0px, rgba(207, 34, 46, 0.12) 148px, transparent 148px); 
+    background: linear-gradient(
+        to right,
+        rgba(207, 34, 46, 0.16) 0,
+        rgba(207, 34, 46, 0.16) var(--diff-gutter-width),
+        rgba(207, 34, 46, 0.07) var(--diff-gutter-width),
+        rgba(207, 34, 46, 0.07) 100%
+    );
 }
 .row.removed:hover { 
-    background: linear-gradient(to right, rgba(207, 34, 46, 0.2) 0px, rgba(207, 34, 46, 0.2) 148px, rgba(0, 0, 0, 0.04) 148px); 
+    background: linear-gradient(
+        to right,
+        rgba(207, 34, 46, 0.24) 0,
+        rgba(207, 34, 46, 0.24) var(--diff-gutter-width),
+        rgba(207, 34, 46, 0.12) var(--diff-gutter-width),
+        rgba(207, 34, 46, 0.12) 100%
+    );
 }
 
 .row:hover { 
@@ -185,6 +210,20 @@ body {
     text-align: left;
     white-space: pre;
     color: #24292f;
+}
+
+.source-status .code,
+.source-message {
+    color: #57606a;
+    font-size: 13px;
+}
+
+.source-status.error .code {
+    color: #cf222e;
+}
+
+.source-message {
+    padding: 4px 20px 4px 58px;
 }
 
 .c-orange {
@@ -291,7 +330,8 @@ body {
     }
 
     .row {
-        grid-template-columns: 32px 24px 24px 1px 1fr;
+        --diff-gutter-width: 125px;
+        grid-template-columns: 32px 32px 24px 1px 1fr;
         gap: 8px;
         font-size: 13px;
         padding: 2px 12px 2px 4px;
@@ -301,16 +341,4 @@ body {
         font-size: 11px;
     }
 
-    .row.added { 
-        background: linear-gradient(to right, rgba(46, 160, 67, 0.15) 0px, rgba(46, 160, 67, 0.15) 110px, transparent 110px); 
-    }
-    .row.added:hover { 
-        background: linear-gradient(to right, rgba(46, 160, 67, 0.25) 0px, rgba(46, 160, 67, 0.25) 110px, rgba(0, 0, 0, 0.04) 110px); 
-    }
-    .row.removed { 
-        background: linear-gradient(to right, rgba(207, 34, 46, 0.12) 0px, rgba(207, 34, 46, 0.12) 110px, transparent 110px); 
-    }
-    .row.removed:hover { 
-        background: linear-gradient(to right, rgba(207, 34, 46, 0.2) 0px, rgba(207, 34, 46, 0.2) 110px, rgba(0, 0, 0, 0.04) 110px); 
-    }
 }
