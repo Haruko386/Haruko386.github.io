@@ -44,16 +44,12 @@
 
 .paper-box {
     display: flex;
-    justify-content: left;
+    justify-content: flex-start;
     align-items: center;
     flex-direction: row;
     flex-wrap: wrap;
     border-bottom: 1px #efefef solid;
-    padding: 2em 0 2em 0;
-
-    .p {
-        margin-bottom: 0.5em;
-    }
+    padding: 1.1em 0;
     
 
     .paper-box-image{
@@ -61,7 +57,13 @@
         display: flex;
         width: 100%;
         order: 2;
+
+        > div {
+            position: relative;
+        }
+
         img {
+            display: block;
             max-width: 400px;
             box-shadow: 3px 3px 6px #888;
             object-fit: cover;
@@ -71,19 +73,28 @@
     .paper-box-text{
         max-width: 100%;
         order: 1;
+
+        p {
+            margin: 0.45em 0;
+        }
+
+        .paper-summary {
+            margin-top: 0.8em;
+            line-height: 1.5;
+        }
     }
     
     @include breakpoint($medium) {
         .paper-box-image{
-            justify-content: left;
+            justify-content: flex-start;
             min-width: 200px;
             max-width: 40%;
             order: 1;
         }
         
         .paper-box-text{
-            justify-content: left;
-            padding-left: 2em;
+            justify-content: flex-start;
+            padding-left: 1.5em;
             max-width: 60%;
             order: 2;
         }
