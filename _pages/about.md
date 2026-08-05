@@ -35,49 +35,9 @@ I used to participate in many **ACM algorithm** competitions(***2022-2023***), b
       </tr></tbody>
 </table>
 
-<!-- ## 🔬Science
-<div style="display: flex; flex-direction: column; align-items: center; gap: 20px; margin-bottom: 30px; max-width: 800px; margin-left: auto; margin-right: auto;">
-    <div style="width: 100%; max-width: 750px;">
-        <img src="https://haruko386.github.io/research/cover.png" 
-             alt="Apdepth Architecture" 
-             style="width: 100%; 
-                    height: auto; 
-                    border-radius: 12px; 
-                    box-shadow: 5px 5px 15px rgba(0,0,0,0.2); 
-                    display: block;" />
-    </div>
-    <div style="width: 100%; text-align: center;">
-        <h3 style="margin-top: 0; text-align: center;">
-            <a href="https://haruko386.github.io/research/">ApDepth: Aiming for Precise Monocular Depth Estimation Based on Diffusion Models</a>
-        </h3>
-        <p style="margin-bottom: 10px; text-align: center;">
-            <strong>Jiawei Wang</strong>†<sup></sup>, Mengmeng Guo*, Mingbo Lei, Yibo Chen†
-        </p>
-        <p style="margin-bottom: 15px; text-align: center;">
-            <a href="https://github.com/Haruko386/ApDepth" style="margin-right: 8px;">[Code]</a>  
-            <a href="https://huggingface.co/developy/ApDepth" style="margin-right: 8px;">[Model]</a> 
-            <a href="https://huggingface.co/spaces/developy/ApDepth">[Demo]</a>
-        </p>
-        <p>
-            We present <strong>Apdepth</strong>, a diffusion model, and associated fine-tuning protocol for monocular depth estimation.
-        </p>
-        <ul style="padding-left: auto; list-style-type: disc; text-align: left;">
-            <li style="margin-bottom: 6px;">
-                <strong>Single-Step Inference:</strong> A fast single-step diffusion depth estimation via MDE priors.
-            </li>
-            <li>
-                <strong>Feature Alignment Stage: </strong> Feature alignment via a Conv Adapter and cosine loss prevents texture overfitting.
-            </li>
-            <li>
-                <strong>Depth Estimation Stage: </strong> Spatial and frequency-domain losses ensure metric accuracy and sharp depth edges.
-            </li>
-        </ul>
-    </div>
-</div> -->
-
 ## 📝 Publications 
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">ARXIV</div><img src='../files/cover/cover1.png' alt="ApDepth paper preview" width="100%"></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">TMM 2026</div><img src='../files/cover/cover1.png' alt="ApDepth paper preview" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
 [**ApDepth: Aiming for Precise Monocular Depth Estimation Based on Diffusion Models**](https://haruko386.github.io/research/)
@@ -89,7 +49,7 @@ This paper presents <span style="font-family: Georgia, 'Times New Roman', serif;
 </div>
 </div>
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">ARXIV</div><img src='../ApDepth-G/static/images/cover.png' alt="ApDepth-G paper preview" width="100%"></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">TCSVT 2026</div><img src='../ApDepth-G/static/images/cover.png' alt="ApDepth-G paper preview" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
 [**ApDepth-G: Mitigating Pseudo-Texture Artifacts in Diffusion-Based Models**](https://haruko386.github.io/ApDepth-G)
