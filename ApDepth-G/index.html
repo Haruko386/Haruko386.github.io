@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=0.2">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta charset="utf-8">
   <meta name="description"
-        content="ApDepth-G">
-  <meta name="keywords" content="Monocular Depth Estimation">
-  <title>ApDepth-G</title>
+        content="ApDepth-G is a multi-step geometric diffusion refinement framework for robust monocular depth estimation and sky-stable outdoor prediction.">
+  <meta name="keywords"
+        content="ApDepth-G, Diffusion Model, Monocular Depth Estimation, Sky Collapse, Depth Refinement, Geometric Diffusion">
+  <title>ApDepth-G: Multi-Step Geometric Diffusion Refinement for Robust Monocular Depth Estimation</title>
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
   <script>
@@ -34,100 +35,94 @@
 </head>
 <body>
 
-<nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-  <div class="navbar-menu"></div>
-</nav>
+<main class="ieee-paper">
+  <header class="ieee-running-head" aria-label="Paper header">
+    <span>IEEE-STYLE PREPRINT, SEPTEMBER 2026</span>
+    <span aria-label="Page 1">1</span>
+  </header>
 
-<section class="hero">
-    <div class="hero-body">
-      <div class="container is-max-desktop">
-        <div class="columns is-centered">
-          <div class="column has-text-centered">
-            <h1 class="title is-1 publication-title">ApDepth-G: Mitigating Pseudo-Texture Artifacts in Diffusion-Based Models </h1>
-            <div class="is-size-5 publication-authors">
-              <span class="author-block"><a href="">Jingxuan Wang<sup>1†</sup></a></span>
-              <span class="author-block"><a href="https://haruko386.github.io/">Jiawei Wang<sup>2†</sup></a>,</span>
-              <span class="author-block"><a href="https://github.com/Ltohka">Mingbo Lei<sup>2</sup></a>,</span>
-              <span class="author-block"><a href="https://github.com/WuSangui571">Haoze Shou<sup>2</sup></a>,</span>
-              <span class="author-block"><a href="">Yusu Liang<sup>2</sup></a>,</span>
-            </div>
+  <section class="ieee-title-block" aria-labelledby="paper-title">
+    <h1 id="paper-title">ApDepth-G: Multi-Step Geometric Diffusion Refinement<br class="ieee-title-break">
+      for Robust Monocular Depth Estimation</h1>
 
-            <div class="is-size-5 publication-authors">
-              <span class="author-block"><sup>1</sup> Beijing University Of Chinese Medicine</span><br>
-              <span class="author-block"><sup>2</sup> Shenyang Jianzhu University</span><br>
-              <span class="author-block" style="font-size: 0.7em; color: #555;">
-                <sup>†</sup> These authors contributed equally to this work.
-              </span>
-            </div>
+    <p class="ieee-authors">
+      <span>Jiawei Wang<sup>a,c,d,†</sup>,</span>
+      <span>Jingxuan Wang<sup>b,†</sup>,</span>
+      <span>Mingbo Lei<sup>a,c</sup>,</span>
+      <span>Haoze Shou<sup>a,c</sup>,</span>
+      <span>and Yusu Liang<sup>a,c</sup></span>
+    </p>
 
-            <div class="column has-text-centered">
-              <div class="publication-links">
-                <span class="link-block">
-                  <a href="./static/Methodology Section for Paper.pdf" class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon"><i class="fas fa-file-pdf"></i></span>
-                    <span>Paper</span>
-                  </a>
-                </span>
-                <span class="link-block">
-                  <a href="https://github.com/Haruko386/ApDepth" class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon"><i class="fab fa-github"></i></span>
-                    <span>Code</span>
-                  </a>
-                </span>
-                <span class="link-block">
-                  <a href="../research/index.html" class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">📖</span>
-                    <span>ApDepth</span>
-                  </a>
-                </span>
-                <span class="link-block">
-                  <a href="https://huggingface.co/developy/ApDepth" class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">🤗</span>
-                    <span>Huggingface Model</span>
-                  </a>
-                </span>
-                <span class="link-block">
-                  <a href="https://huggingface.co/spaces/developy/ApDepth" class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">🖼️</span>
-                    <span>Huggingface Demo</span>
-                  </a>
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="ieee-affiliations">
+      <p><sup>a</sup>School of Computer Science and Engineering, Shenyang Jianzhu University</p>
+      <p><sup>b</sup>School of Chinese Medicine, Beijing University of Chinese Medicine</p>
+      <p><sup>c</sup>Shenyang Branch of the National Special Computer Engineering Technology Research Center</p>
+      <p><sup>d</sup>InfiniFlow (Shanghai) Information Technology Co., Ltd.</p>
+      <p class="ieee-author-notes"><sup>†</sup>These authors contributed equally to this work.</p>
     </div>
+
+    <nav class="ieee-links" aria-label="Project resources">
+      <a href="./cas-sc-sample.pdf" target="_blank" rel="noopener">
+        <i class="fas fa-file-pdf" aria-hidden="true"></i> Paper
+      </a>
+      <a href="https://github.com/Haruko386/ApDepth-G" target="_blank" rel="noopener">
+        <i class="fab fa-github" aria-hidden="true"></i> Code
+      </a>
+      <a href="../research/index.html">
+        <i class="fas fa-book-open" aria-hidden="true"></i> ApDepth
+      </a>
+    </nav>
   </section>
 
-<section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-      <img id="teaser" width="100%" src="./static/images/cover.png"/>
-    </div>
-  </div>
-</section>
+  <section class="ieee-abstract" aria-labelledby="abstract-heading">
+    <h2 id="abstract-heading" class="is-sr-only">Abstract</h2>
+    <p><strong><em>Abstract</em>—</strong>Diffusion-based monocular depth estimation methods have shown strong
+      generalization ability through generative priors and iterative denoising. However, they often suffer from
+      sky-depth collapse in outdoor scenes, where sky regions that should be distant and smooth are incorrectly
+      estimated as finite, distorted, or affected by pseudo-texture artifacts. This issue also appears in our previous
+      ApDepth framework and is common in diffusion-based depth models due to the ambiguity of textureless and
+      cloud-textured regions. To address this problem, we propose <strong>ApDepth-G</strong>, a multi-step geometric
+      diffusion refinement framework for sky-stable monocular depth estimation. ApDepth-G progressively refines latent
+      depth representations through multi-step denoising and improves training with offset noise regularization,
+      SNR-based loss reweighting, and latent gradient consistency. In addition, sky-aware refinement is introduced to
+      suppress unreliable sky-region responses and reduce pseudo-depth structures. Experimental observations show that
+      ApDepth-G effectively alleviates sky-depth collapse in challenging outdoor scenes while maintaining robust depth
+      estimation performance.</p>
+    <p class="ieee-index-terms"><strong><em>Index Terms</em>—</strong>Diffusion model, monocular depth estimation,
+      sky collapse, depth refinement, geometric diffusion.</p>
+  </section>
 
-<section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-      <h4 class="subtitle has-text-centered">
-        <div class="content has-text-justified"> 
-          <p>
-            We have extended our work by introducing ApDepth-G, a diffusion model for multi-step inference, which demonstrates superior edge detail refinement capabilities compared to <a href="../research/index.html">ApDepth</a>.
-          </p>
-        </div>
-      </h4>
+  <figure class="ieee-teaser">
+    <img src="./static/images/cover.png"
+      alt="Three RGB scenes and their corresponding ApDepth-G depth predictions.">
+    <figcaption><strong>Fig. 1.</strong> Representative RGB inputs and ApDepth-G predictions. The framework is designed
+      to retain coherent scene geometry while improving sky and long-range depth stability.</figcaption>
+  </figure>
+
+  <section class="ieee-contributions" aria-labelledby="contributions-heading">
+    <h2 id="contributions-heading">Key Contributions</h2>
+    <div class="ieee-contribution-grid">
+      <article>
+        <span class="ieee-contribution-number">I</span>
+        <h3>Sky-Collapse Analysis</h3>
+        <p>Identifies finite, locally distorted, and pseudo-textured sky depth as a recurring failure mode in
+          diffusion-based monocular depth models.</p>
+      </article>
+      <article>
+        <span class="ieee-contribution-number">II</span>
+        <h3>Geometric Refinement</h3>
+        <p>Restores a multi-step, depth-prior-guided reverse trajectory that progressively corrects uncertain latent
+          geometry in sky and long-range regions.</p>
+      </article>
+      <article>
+        <span class="ieee-contribution-number">III</span>
+        <h3>Stable Optimization</h3>
+        <p>Combines offset-noise regularization, SNR-based loss reweighting, latent gradient consistency, and sky-aware
+          refinement.</p>
+      </article>
     </div>
-  </div>
-</section>
+  </section>
+</main>
 
 <!-- Gallery: Indoor Scenarios -->
 <section class="hero is-small" style="margin-top: 30px; padding-top: 0px;">

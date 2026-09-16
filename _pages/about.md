@@ -42,7 +42,7 @@ I used to participate in many **ACM algorithm** competitions(***2022-2023***), b
 
 [**ApDepth: Aiming for Precise Monocular Depth Estimation Based on Diffusion Models**](https://haruko386.github.io/research/)
 
-\[[**Website**](https://haruko386.github.io/research/)\] \[[Paper](https://haruko386.github.io/research/article.pdf)\] \[[Demo](https://huggingface.co/spaces/developy/ApDepth)\] \[[Model](https://huggingface.co/developy/ApDepth)\] 
+\[[**Website**](https://haruko386.github.io/research/)\] \[[Paper](https://haruko386.github.io/research/cas-dc-sample.pdf)\] \[[Demo](https://huggingface.co/spaces/developy/ApDepth)\] \[[Model](https://huggingface.co/developy/ApDepth)\] 
 <p class="paper-summary">
 This paper presents <span style="font-family: Georgia, 'Times New Roman', serif; font-weight: 800; font-style: italic; color: #2c3e50; font-variant: small-caps;">ApDepth</span>, a novel single-step diffusion framework for monocular depth estimation that achieves fast inference while preserving fine-grained edge details through a tailored two-stage training strategy combined with novel frequency-domain and cosine similarity losses.
 </p>
@@ -52,7 +52,7 @@ This paper presents <span style="font-family: Georgia, 'Times New Roman', serif;
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">TCSVT 2026</div><img src='../ApDepth-G/static/images/cover.png' alt="ApDepth-G paper preview" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
-[**ApDepth-G: Mitigating Pseudo-Texture Artifacts in Diffusion-Based Models**](https://haruko386.github.io/ApDepth-G)
+[**ApDepth-G: Multi-Step Geometric Diffusion Refinement for Robust Monocular Depth Estimation**](https://haruko386.github.io/ApDepth-G)
 
 \[[**Website**](https://haruko386.github.io/ApDepth-G/)\] \[[~~Paper~~](#)\] \[[Model](https://huggingface.co/developy/ApDepth-G)\] 
 <p class="paper-summary">

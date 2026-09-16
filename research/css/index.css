@@ -33,13 +33,233 @@ body {
 }
 
 
-.teaser .hero-body {
-    padding-top: 0;
-    padding-bottom: 2px;
+.journal-banner {
+    width: min(98%, 1400px);
+    margin: 1.25rem auto 0;
+    padding: 0.9rem 0;
+    border-top: 2px solid #2c2c2c;
+    border-bottom: 8px solid #111;
+    font-family: Georgia, 'Times New Roman', serif;
 }
 
-.teaser {
-    font-family: 'Google Sans', sans-serif;
+.journal-banner__inner {
+    display: grid;
+    grid-template-columns: 180px minmax(0, 1fr) 130px;
+    align-items: stretch;
+    gap: 1.5rem;
+}
+
+.journal-banner__publisher {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.journal-banner__publisher img {
+    display: block;
+    width: 138px;
+    max-height: 164px;
+}
+
+.journal-banner__masthead {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.25rem 1.25rem 0.45rem;
+    background: #ededf0;
+    text-align: center;
+}
+
+.journal-banner__kicker,
+.journal-banner__homepage {
+    margin: 0;
+    font-size: clamp(1rem, 1.45vw, 1.55rem);
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.journal-banner__title {
+    margin: 0.25rem 0;
+    color: #080808;
+    font-size: clamp(2rem, 3vw, 3.5rem);
+    line-height: 1;
+}
+
+.journal-banner a {
+    color: #173b92;
+}
+
+.journal-cover {
+    position: relative;
+    display: flex;
+    overflow: hidden;
+    min-height: 164px;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.35rem;
+    border: 2px solid #333;
+    background: #a59e9a;
+    color: #f4d923 !important;
+    text-align: center;
+}
+
+.journal-cover__meta {
+    align-self: flex-end;
+    color: #303030;
+    font-size: 0.35rem;
+}
+
+.journal-cover__name {
+    margin-top: 1.1rem;
+    font-size: 0.92rem;
+    font-variant: small-caps;
+}
+
+.journal-cover__subtitle {
+    color: #684f5b;
+    font-size: 0.32rem;
+    text-transform: uppercase;
+}
+
+.journal-cover__grid {
+    width: 34px;
+    height: 34px;
+    margin-top: 0.35rem;
+    background-image: linear-gradient(#c57a9d 1px, transparent 1px),
+        linear-gradient(90deg, #c57a9d 1px, transparent 1px);
+    background-size: 7px 7px;
+}
+
+.journal-cover__footer {
+    margin-top: auto;
+    font-size: 0.46rem;
+    font-weight: 700;
+    line-height: 1.05;
+    text-transform: uppercase;
+}
+
+.paper-summary {
+    width: min(94%, 1120px);
+    margin: 0 auto 3.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid #8c8c8c;
+    border-bottom: 1px solid #8c8c8c;
+    color: #111;
+    font-family: Georgia, 'Times New Roman', serif;
+}
+
+.paper-summary__columns {
+    display: grid;
+    grid-template-columns: minmax(190px, 1fr) minmax(0, 2.6fr);
+    gap: clamp(2.5rem, 8vw, 7rem);
+}
+
+.paper-summary h2 {
+    margin: 0;
+    color: #111;
+    font-size: 1.18rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    line-height: 1.2;
+    text-transform: uppercase;
+}
+
+.paper-summary__rule {
+    width: 100%;
+    height: 1px;
+    margin: 0.65rem 0 0.45rem;
+    background: #111;
+}
+
+.article-info__label,
+.article-info__keywords,
+.paper-abstract p {
+    font-size: 0.96rem;
+    line-height: 1.23;
+}
+
+.article-info__label {
+    margin: 0;
+    font-style: italic;
+    font-weight: 700;
+}
+
+.article-info__keywords {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.paper-abstract p {
+    margin: 0;
+    text-align: justify;
+}
+
+.paper-abstract a {
+    color: #1c4d82;
+}
+
+.paper-summary__figure {
+    margin: 3.8rem 0 1rem;
+    padding-top: 3.8rem;
+    border-top: 1px solid #8c8c8c;
+}
+
+.paper-summary__figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+@media screen and (max-width: 768px) {
+    .journal-banner {
+        width: calc(100% - 1rem);
+        margin-top: 0.5rem;
+        padding: 0.5rem 0;
+        border-bottom-width: 5px;
+    }
+
+    .journal-banner__inner {
+        grid-template-columns: 82px minmax(0, 1fr);
+        gap: 0.65rem;
+    }
+
+    .journal-banner__publisher img {
+        width: 72px;
+    }
+
+    .journal-banner__masthead {
+        padding: 0.4rem;
+    }
+
+    .journal-banner__kicker,
+    .journal-banner__homepage {
+        font-size: clamp(0.58rem, 2.7vw, 0.85rem);
+    }
+
+    .journal-banner__title {
+        font-size: clamp(1.35rem, 7vw, 2rem);
+    }
+
+    .journal-cover {
+        display: none;
+    }
+
+    .paper-summary {
+        width: calc(100% - 1.5rem);
+    }
+
+    .paper-summary__columns {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .paper-summary__figure {
+        margin-top: 2.5rem;
+        padding-top: 2.5rem;
+    }
 }
 
 

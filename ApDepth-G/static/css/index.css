@@ -2,6 +2,253 @@ body {
   font-family: 'Noto Sans', sans-serif;
 }
 
+.ieee-paper {
+  width: min(96%, 1500px);
+  margin: 0 auto;
+  padding: 1.6rem 1.25rem 3.5rem;
+  color: #050505;
+  font-family: 'Noto Sans', sans-serif;
+}
+
+.ieee-running-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: clamp(3rem, 7vw, 6.5rem);
+  font-size: clamp(0.78rem, 1.25vw, 1.15rem);
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+}
+
+.ieee-title-block {
+  text-align: center;
+}
+
+.ieee-title-block h1 {
+  max-width: 1450px;
+  margin: 0 auto;
+  color: #000;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: clamp(2.6rem, 5.25vw, 5rem);
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  line-height: 1.08;
+}
+
+.ieee-authors {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.25rem 0.45rem;
+  margin: 2rem auto 0;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: clamp(1.25rem, 2.1vw, 1.95rem);
+  line-height: 1.35;
+}
+
+.ieee-authors sup,
+.ieee-affiliations sup {
+  font-size: 0.58em;
+  font-style: italic;
+}
+
+.ieee-affiliations {
+  max-width: 1080px;
+  margin: 1.35rem auto 0;
+  color: #222;
+  font-size: clamp(0.88rem, 1.15vw, 1.05rem);
+  font-style: italic;
+  line-height: 1.35;
+}
+
+.ieee-affiliations p {
+  margin: 0.16rem 0;
+}
+
+.ieee-affiliations .ieee-author-notes {
+  margin-top: 0.65rem;
+  color: #4a4a4a;
+  font-size: 0.92em;
+  font-style: normal;
+}
+
+.ieee-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.65rem;
+  margin-top: 1.5rem;
+  font-family: 'Noto Sans', sans-serif;
+}
+
+.ieee-links a {
+  display: inline-flex;
+  min-width: 7.25rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.55rem 1rem;
+  border: 1px solid #111;
+  border-radius: 2px;
+  color: #111;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: background-color 160ms ease, color 160ms ease;
+}
+
+.ieee-links a:hover,
+.ieee-links a:focus-visible {
+  background: #111;
+  color: #fff;
+}
+
+.ieee-abstract {
+  max-width: 1120px;
+  margin: 3.5rem auto 0;
+  padding: 1.25rem 1.5rem 1.1rem;
+  border-top: 1.5px solid #111;
+  border-bottom: 1.5px solid #111;
+  font-size: clamp(0.96rem, 1.25vw, 1.08rem);
+  line-height: 1.38;
+  text-align: justify;
+}
+
+.ieee-abstract p {
+  margin: 0;
+}
+
+.ieee-abstract .ieee-index-terms {
+  margin-top: 0.85rem;
+}
+
+.ieee-teaser {
+  max-width: 1160px;
+  margin: 3rem auto 0;
+}
+
+.ieee-teaser img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid #c4c4c4;
+}
+
+.ieee-teaser figcaption {
+  margin-top: 0.65rem;
+  font-size: clamp(0.82rem, 1vw, 0.94rem);
+  line-height: 1.35;
+  text-align: justify;
+}
+
+.ieee-contributions {
+  max-width: 1160px;
+  margin: 3.5rem auto 0;
+  padding-top: 1.1rem;
+  border-top: 3px double #111;
+}
+
+.ieee-contributions > h2 {
+  margin: 0 0 1.2rem;
+  color: #000;
+  font-family: 'Noto Sans', sans-serif;
+  font-size: 1.55rem;
+  font-variant: small-caps;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-align: center;
+}
+
+.ieee-contribution-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid #aaa;
+  border-bottom: 1px solid #aaa;
+}
+
+.ieee-contribution-grid article {
+  position: relative;
+  min-width: 0;
+  padding: 1.25rem 1.4rem 1.35rem 3.8rem;
+}
+
+.ieee-contribution-grid article + article {
+  border-left: 1px solid #aaa;
+}
+
+.ieee-contribution-number {
+  position: absolute;
+  top: 1.05rem;
+  left: 1.2rem;
+  color: #555;
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+.ieee-contribution-grid h3 {
+  margin: 0 0 0.45rem;
+  color: #000;
+  font-family: 'Noto Sans', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.ieee-contribution-grid p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.38;
+  text-align: justify;
+}
+
+@media screen and (max-width: 768px) {
+  .ieee-paper {
+    width: 100%;
+    padding: 1rem 1rem 2.75rem;
+  }
+
+  .ieee-running-head {
+    margin-bottom: 3rem;
+    font-size: 0.68rem;
+  }
+
+  .ieee-title-block h1 {
+    font-size: clamp(2.15rem, 10vw, 3.2rem);
+  }
+
+  .ieee-title-break {
+    display: none;
+  }
+
+  .ieee-authors {
+    margin-top: 1.5rem;
+    font-size: 1.18rem;
+  }
+
+  .ieee-affiliations {
+    font-size: 0.83rem;
+  }
+
+  .ieee-abstract {
+    margin-top: 2.5rem;
+    padding: 1rem 0.25rem;
+    text-align: left;
+  }
+
+  .ieee-teaser {
+    margin-top: 2.25rem;
+  }
+
+  .ieee-contribution-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ieee-contribution-grid article + article {
+    border-top: 1px solid #aaa;
+    border-left: 0;
+  }
+}
+
 
 .footer .icon-link {
     font-size: 25px;

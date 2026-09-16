@@ -3,7 +3,8 @@
 
 <head>
   <meta charset="utf-8">
-  <meta name="description" content="Depth Estimation based on Diffusion Model.">
+  <meta name="description"
+    content="ApDepth is a single-step diffusion framework for fast monocular depth estimation with fine-grained edge preservation.">
   <meta name="keywords" content="ApDepth, Monocular Depth Estimation, Diffusion Models">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>ApDepth: Aiming for Precise Monocular Depth Estimation Based on Diffusion Models</title>
@@ -96,6 +97,35 @@
   </div> -->
   </nav>
 
+  <section class="journal-banner" aria-label="Neurocomputing journal banner">
+    <div class="journal-banner__inner">
+      <a class="journal-banner__publisher" href="https://www.elsevier.com/" target="_blank" rel="noopener"
+        aria-label="Elsevier website">
+        <img src="./assets/elsevier.svg" alt="Elsevier">
+      </a>
+      <div class="journal-banner__masthead">
+        <p class="journal-banner__kicker">
+          Contents lists available at
+          <a href="https://www.sciencedirect.com/journal/neurocomputing" target="_blank"
+            rel="noopener">ScienceDirect</a>
+        </p>
+        <p class="journal-banner__title">Neurocomputing</p>
+        <p class="journal-banner__homepage">
+          journal homepage:
+          <a href="https://www.sciencedirect.com/journal/neurocomputing" target="_blank"
+            rel="noopener">www.elsevier.com/locate/neucom</a>
+        </p>
+      </div>
+      <a class="journal-cover" href="https://www.sciencedirect.com/journal/neurocomputing" target="_blank"
+        rel="noopener" aria-label="Neurocomputing journal homepage">
+        <span class="journal-cover__meta">ISSN 0925-2312</span>
+        <span class="journal-cover__name">Neurocomputing</span>
+        <span class="journal-cover__subtitle">An International Journal</span>
+        <span class="journal-cover__grid" aria-hidden="true"></span>
+        <span class="journal-cover__footer">Original Software<br>Publications</span>
+      </a>
+    </div>
+  </section>
 
   <section class="hero">
     <div class="hero-body">
@@ -104,36 +134,47 @@
           <div class="column has-text-centered">
             <h1 class="title is-1 publication-title">ApDepth: Aiming for Precise Monocular Depth Estimation Based on
               Diffusion Models</h1>
-            <!-- <div class="is-size-5 publication-authors">
+            <div class="is-size-5 publication-authors">
               <span class="author-block">
-                <a href="https://haruko386.github.io/">Jiawei Wang<sup>1†</sup></a>
+                <a>Jiawei Wang<sup>a,c,d,†</sup></a>
               </span>
               <span class="author-block">
-                <a href="#">MengMeng Guo<sup>2</sup></a>,
+                <a>Mingbo Lei<sup>a,c</sup></a>,
+              </span>
+              <span class="author-blocl">
+                <a>Haoze Shou<sup>a,c</sup></a>
               </span>
               <span class="author-block">
-                <a href="#">Mingbo Lei<sup>1</sup></a>,
+                <a>Haoze Shou<sup>a,c</sup></a>
               </span>
               <span class="author-block">
-                <a href="#">Yibo Chen<sup>3†</sup></a>,
+                <a href="#">Yusu Liang<sup>a,c</sup></a>,
+              </span>
+              <span class="author-block">
+                <a href="#">Yibo Chen<sup>b†</sup></a>,
               </span>
 
             </div>
 
+            <br>
+
             <div class="is-size-5 publication-authors">
-              <span class="author-block"><sup>1</sup>School of Computer Science and Engineering, Shenyang Jianzhu University</span><br>
-              <span class="author-block"><sup>1</sup>School of Computer Science and Engineering, National University of Defense Technology</span><br>
-              <span class="author-block"><sup>2</sup>School of Computer Science and Technology, Zhejiang Sci-Tech University</span><br>
+              <span class="author-block"><sup>a</sup>School of Computer Science and Engineering, Shenyang Jianzhu University</span><br>
+              <span class="author-block"><sup>b</sup>School of Computer Science and Technology, Zhejiang Sci-Tech University</span><br>
+              <span class="author-block"><sup>c</sup>Shenyang Branch of the National Special Computer Engineering Technology Research Center</span><br>
+              <span class="author-block"><sup>d</sup>InfiniFlow (Shanghai) Information Technology Co., Ltd.</span><br>
+
               <span class="author-block" style="font-size: 0.7em; color: #555;">
                 <sup>†</sup> These authors contributed equally to this work.
               </span>
-            </div> -->
+            </div>
 
             <div class="column has-text-centered">
               <div class="publication-links">
                 <!-- PDF Link. -->
                 <span class="link-block">
-                  <a href="#" class="external-link button is-normal is-rounded is-dark">
+                  <a href="./cas-dc-sample.pdf" target="_blank" rel="noopener"
+                    class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="fas fa-file-pdf"></i>
                     </span>
@@ -188,52 +229,46 @@
       </div>
     </div>
   </section>
-<div align="center">
-  <img id="teaser" width="75%" src="cover.png" alt="cover.">
-</div>
-  <section class="hero teaser">
-    <div class="container is-max-desktop">
-      <div class="hero-body">
-        <h2 class="subtitle has-text-centered">
-          <span class="methodname">Apdepth</span> achieved ideal results in object edge refinement
-        </h2>
-      </div>
+  <section class="paper-summary" aria-labelledby="abstract-heading">
+    <div class="paper-summary__columns">
+      <aside class="article-info">
+        <h2>Article info</h2>
+        <div class="paper-summary__rule"></div>
+        <p class="article-info__label">Keywords:</p>
+        <ul class="article-info__keywords">
+          <li>Diffusion Models</li>
+          <li>Monocular Depth Estimation</li>
+          <li>Two-Stage Training</li>
+          <li>Frequency-Domain Learning</li>
+        </ul>
+      </aside>
+      <article class="paper-abstract">
+        <h2 id="abstract-heading">Abstract</h2>
+        <div class="paper-summary__rule"></div>
+        <p>
+          This paper presents <strong>ApDepth</strong>, a novel single-step diffusion framework for monocular depth
+          estimation that enables fast inference while preserving fine-grained edge details. Current diffusion-based
+          models achieve impressive generalization through iterative denoising. However, they face a critical trade-off:
+          multi-step inference incurs prohibitive latency, whereas compressing the process into a single deterministic
+          step can severely degrade local structural boundaries. Our model addresses this challenge by integrating a
+          pre-trained, data-driven MDE model that provides strong semantic priors and maintains robust global structure
+          despite the compressed diffusion process. To mitigate the inherent edge degradation, we introduce a
+          coarse-to-fine two-stage training paradigm with two novel designs: 1) <strong>Feature Alignment via Cosine
+          Similarity</strong>, which enriches the U-Net's structural understanding by explicitly aligning its intermediate
+          features with an auxiliary encoder; and 2) an <strong>Iteration-Based Loss Scheduling Strategy</strong>, which
+          initially employs spatial-domain constraints (latent MSE and pixel L<sub>1</sub> losses) to establish an accurate
+          global metric scale and subsequently transitions to a novel <strong>Frequency-Domain (FFT) Loss</strong> in the
+          final training phase to explicitly recover sharp high-frequency edges. By effectively balancing inference
+          efficiency and detail preservation, ApDepth significantly accelerates inference and achieves performance
+          competitive with or superior to existing methods across multiple benchmarks. Code is available at
+          <a href="https://haruko386.github.io/research/">https://haruko386.github.io/research/</a>.
+        </p>
+      </article>
     </div>
-  </section>
-  <hr>
-  <section class="section">
-    <div class="container is-max-desktop">
-      <!-- Overview. -->
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-          <h2 class="title is-3">Overview</h2>
-          <div class="content has-text-justified">
-            <p>
-              We present <b><span class="methodname">Apdepth</span></b>, a diffusion model, and associated fine-tuning
-              protocol for monocular depth estimation.
-            </p>
-            <p>
-              Based on Marigold, its core innovation lies in addressing the deficiency of diffusion models in feature
-              representation capability.
-              Our model followed Marigold, derived from Stable Diffusion and fine-tuned with synthetic data: Hypersim
-              and VKitti, achieved ideal results in object edge refinement.
-            </p>
-            <p>
-              We first fine-tuned the model, resolving the issue of excessive inference time by replacing multi-step
-              reasoning with single-step reasoning.
-              Then, we introduced pre-trained models to assist diffusion models in deep estimation learning. we only
-              used <b><span class="methodname">Depth Anything V2 <b>small</b></span></b> as our
-              "Teacher Model" to aid our model to generate more accurate depth maps, and achieve great result.
-              Finally, we introduced a two-stage training strats, combine <b><span class="methodname">
-                  MSE_Loss</span></b> and our <b><span class="methodname">Latent_Frequence_Loss</span></b> to enhance
-              the model's
-              ability to capture edge information.
-            </p>
-          </div>
-        </div>
-      </div>
-      <!--/ Overview. -->
-    </div>
+    <figure class="paper-summary__figure">
+      <img id="teaser" src="./cover.png"
+        alt="Qualitative comparison of RGB inputs, ApDepth predictions, and Marigold predictions, highlighting edge details.">
+    </figure>
   </section>
 
   <section class="section pt-0 pb-4">
