@@ -2,6 +2,18 @@ body {
     font-family: 'Noto Sans', sans-serif;
 }
 
+:root {
+    --research-content-width: 1200px;
+    --research-content-inset: 3rem;
+}
+
+.container.research-content-width {
+    width: 100%;
+    max-width: var(--research-content-width) !important;
+    margin-right: auto;
+    margin-left: auto;
+}
+
 
 .footer .icon-link {
     font-size: 25px;
@@ -19,22 +31,17 @@ body {
 
 .gpu {
     font-family: monospace;
-    /* 等宽字体 */
+
     font-variant: small-caps;
-    /* 小号大写 */
     font-weight: 700;
-    /* 加粗 */
     letter-spacing: 0.05em;
-    /* 字母间距微调 */
     color: #007bff;
-    /* 科技蓝 */
     text-transform: uppercase;
-    /* 确保所有字母大写 */
 }
 
 
 .journal-banner {
-    width: min(98%, 1400px);
+    width: min(calc(100% - var(--research-content-inset)), var(--research-content-width));
     margin: 1.25rem auto 0;
     padding: 0.9rem 0;
     border-top: 2px solid #2c2c2c;
@@ -141,7 +148,7 @@ body {
 }
 
 .paper-summary {
-    width: min(94%, 1120px);
+    width: min(calc(100% - var(--research-content-inset)), var(--research-content-width));
     margin: 0 auto 3.5rem;
     padding-top: 1rem;
     border-top: 1px solid #8c8c8c;
@@ -203,7 +210,7 @@ body {
 
 .paper-summary__figure {
     margin: 3.8rem 0 1rem;
-    padding-top: 3.8rem;
+    padding-top: 1.8rem;
     border-top: 1px solid #8c8c8c;
 }
 
@@ -213,9 +220,129 @@ body {
     height: auto;
 }
 
+.benchmark-section {
+    width: 100%;
+    margin: 4.5rem auto 0;
+}
+
+.benchmark-section > h2 {
+    margin: 0 0 1.75rem;
+    color: #111;
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.3;
+    text-align: center;
+}
+
+.benchmark-section > h2 span {
+    color: #155b95;
+}
+
+.benchmark-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    margin-inline: auto;
+    padding-bottom: 0.5rem;
+    overscroll-behavior-x: contain;
+    scrollbar-gutter: stable;
+}
+
+.benchmark-table {
+    width: 100%;
+    min-width: 1120px;
+    margin-inline: auto;
+    border-collapse: collapse;
+    border-top: 2px solid #111;
+    border-bottom: 2px solid #111;
+    color: #111;
+    font-size: clamp(0.8rem, 1.05vw, 1rem);
+    font-variant-numeric: tabular-nums;
+    line-height: 1.18;
+}
+
+.benchmark-table th,
+.benchmark-table td {
+    padding: 0.48rem 0.52rem;
+    border: 0;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.benchmark-table thead th {
+    font-weight: 700;
+    vertical-align: middle;
+}
+
+.benchmark-table thead tr:first-child th[colspan] {
+    border-bottom: 1px solid #777;
+    font-size: 1.08em;
+}
+
+.benchmark-table thead .metric-row th,
+.benchmark-table thead th[rowspan] {
+    border-bottom: 1.5px solid #111;
+}
+
+.benchmark-table .method-column,
+.benchmark-table tbody th[scope="row"] {
+    text-align: left;
+}
+
+.benchmark-table tbody th[scope="row"] {
+    padding-left: 0.85rem;
+    font-weight: 400;
+}
+
+.benchmark-table .benchmark-type {
+    width: 3rem;
+    min-width: 3rem;
+    padding: 0.4rem 0.25rem;
+    background: #fafafa;
+    font-weight: 400;
+    vertical-align: middle;
+}
+
+.benchmark-type span {
+    display: inline-block;
+    font-style: italic;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+}
+
+.benchmark-table .generative-group tr:first-child > * {
+    border-top: 1.5px solid #111;
+}
+
+.benchmark-table .ours-start > * {
+    border-top: 1px solid #777;
+}
+
+.benchmark-table .ours-row {
+    background: #fbfcfe;
+}
+
+.benchmark-table .ours-row th[scope="row"] {
+    font-weight: 500;
+}
+
+.benchmark-table strong {
+    color: #000;
+    font-weight: 800;
+}
+
+.benchmark-table .second-best {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.18em;
+}
+
+.benchmark-table-wrap:focus-visible {
+    outline: 2px solid #155b95;
+    outline-offset: 4px;
+}
+
 @media screen and (max-width: 768px) {
     .journal-banner {
-        width: calc(100% - 1rem);
         margin-top: 0.5rem;
         padding: 0.5rem 0;
         border-bottom-width: 5px;
@@ -247,10 +374,6 @@ body {
         display: none;
     }
 
-    .paper-summary {
-        width: calc(100% - 1.5rem);
-    }
-
     .paper-summary__columns {
         grid-template-columns: 1fr;
         gap: 2rem;
@@ -259,6 +382,24 @@ body {
     .paper-summary__figure {
         margin-top: 2.5rem;
         padding-top: 2.5rem;
+    }
+
+    .benchmark-section {
+        margin-top: 3.5rem;
+    }
+
+    .benchmark-section > h2 {
+        margin-bottom: 1.25rem;
+        font-size: 1.25rem;
+    }
+
+    .benchmark-table {
+        font-size: 0.78rem;
+    }
+
+    .benchmark-table th,
+    .benchmark-table td {
+        padding: 0.44rem 0.42rem;
     }
 }
 
