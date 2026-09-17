@@ -264,6 +264,127 @@ body {
   top: -0.34em;
 }
 
+.benchmark-section {
+  width: min(80%, 1500px);
+  margin: 4.5rem auto 0;
+}
+
+.benchmark-section > h2 {
+  margin: 0 0 1.75rem;
+  color: #111;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.3;
+  text-align: center;
+}
+
+.benchmark-section > h2 span {
+  color: #155b95;
+}
+
+.benchmark-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  margin-inline: auto;
+  padding-bottom: 0.5rem;
+  overscroll-behavior-x: contain;
+  scrollbar-gutter: stable;
+}
+
+.benchmark-table {
+  width: min(100%, 1400px);
+  min-width: 1240px;
+  margin-inline: auto;
+  border-collapse: collapse;
+  border-top: 2px solid #111;
+  border-bottom: 2px solid #111;
+  color: #111;
+  font-size: clamp(0.8rem, 1.05vw, 1rem);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.18;
+}
+
+.benchmark-table th,
+.benchmark-table td {
+  padding: 0.48rem 0.52rem;
+  border: 0;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.benchmark-table thead th {
+  font-weight: 700;
+  vertical-align: middle;
+}
+
+.benchmark-table thead tr:first-child th[colspan] {
+  border-bottom: 1px solid #777;
+  font-size: 1.08em;
+}
+
+.benchmark-table thead .metric-row th,
+.benchmark-table thead th[rowspan] {
+  border-bottom: 1.5px solid #111;
+}
+
+.benchmark-table .method-column,
+.benchmark-table tbody th[scope="row"] {
+  text-align: left;
+}
+
+.benchmark-table tbody th[scope="row"] {
+  padding-left: 0.85rem;
+  font-weight: 400;
+}
+
+.benchmark-table .benchmark-type {
+  width: 3rem;
+  min-width: 3rem;
+  padding: 0.4rem 0.25rem;
+  background: #fafafa;
+  font-weight: 400;
+  vertical-align: middle;
+}
+
+.benchmark-type span {
+  display: inline-block;
+  font-style: italic;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+
+.benchmark-table .generative-group tr:first-child > * {
+  border-top: 1.5px solid #111;
+}
+
+.benchmark-table .ours-start > * {
+  border-top: 1px solid #777;
+}
+
+.benchmark-table .ours-row {
+  background: #fbfcfe;
+}
+
+.benchmark-table .ours-row th[scope="row"] {
+  font-weight: 500;
+}
+
+.benchmark-table strong {
+  color: #000;
+  font-weight: 800;
+}
+
+.benchmark-table .second-best {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+.benchmark-table-wrap:focus-visible {
+  outline: 2px solid #155b95;
+  outline-offset: 4px;
+}
+
 @media screen and (max-width: 768px) {
   .ieee-paper {
     width: 100%;
@@ -325,6 +446,26 @@ body {
     font-size: 0.86rem;
     line-height: 1.45;
     text-align: left;
+  }
+
+  .benchmark-section {
+    width: calc(100% - 1rem);
+    margin-top: 3.5rem;
+  }
+
+  .benchmark-section > h2 {
+    margin-bottom: 1.25rem;
+    font-size: 1.25rem;
+  }
+
+  .benchmark-table {
+    min-width: 1120px;
+    font-size: 0.78rem;
+  }
+
+  .benchmark-table th,
+  .benchmark-table td {
+    padding: 0.44rem 0.42rem;
   }
 }
 
