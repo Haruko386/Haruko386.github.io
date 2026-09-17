@@ -201,6 +201,69 @@ body {
   text-align: justify;
 }
 
+.training-framework {
+  width: min(94%, 1320px);
+  margin: 3.5rem auto 0;
+  padding-top: 1.25rem;
+  border-top: 3px double #111;
+}
+
+.training-framework > h2 {
+  margin: 0 0 1.75rem;
+  color: #000;
+  font-family: 'Noto Sans', sans-serif;
+  font-size: 1.55rem;
+  font-variant: small-caps;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  line-height: 1.25;
+  text-align: center;
+}
+
+.training-framework__figure {
+  margin: 0;
+}
+
+.training-framework__figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+.training-framework__figure figcaption {
+  max-width: 1160px;
+  margin: 0.9rem auto 0;
+  color: #222;
+  font-size: clamp(0.88rem, 1.05vw, 0.98rem);
+  line-height: 1.5;
+  text-align: justify;
+}
+
+.math-symbol {
+  display: inline-block;
+  font-family: 'Cambria Math', 'STIX Two Math', 'Times New Roman', serif;
+  font-style: italic;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.math-symbol sub,
+.math-symbol sup {
+  position: relative;
+  font-size: 0.72em;
+  line-height: 0;
+  vertical-align: baseline;
+}
+
+.math-symbol sub {
+  bottom: -0.18em;
+}
+
+.math-symbol sup {
+  top: -0.34em;
+}
+
 @media screen and (max-width: 768px) {
   .ieee-paper {
     width: 100%;
@@ -246,6 +309,22 @@ body {
   .ieee-contribution-grid article + article {
     border-top: 1px solid #aaa;
     border-left: 0;
+  }
+
+  .training-framework {
+    width: calc(100% - 1.5rem);
+    margin-top: 2.75rem;
+  }
+
+  .training-framework > h2 {
+    margin-bottom: 1.1rem;
+    font-size: 1.35rem;
+  }
+
+  .training-framework__figure figcaption {
+    font-size: 0.86rem;
+    line-height: 1.45;
+    text-align: left;
   }
 }
 

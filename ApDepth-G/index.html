@@ -49,8 +49,8 @@
       <span>Jiawei Wang<sup>a,c,d,†</sup>,</span>
       <span>Jingxuan Wang<sup>b,†</sup>,</span>
       <span>Mingbo Lei<sup>a,c</sup>,</span>
-      <span>Haoze Shou<sup>a,c</sup>,</span>
-      <span>and Yusu Liang<sup>a,c</sup></span>
+      <span>Liang Yao<sup>a,c</sup>,</span>
+      <span>and Tianyu Lu<sup>a,c</sup></span>
     </p>
 
     <div class="ieee-affiliations">
@@ -124,8 +124,32 @@
   </section>
 </main>
 
+<section class="training-framework" aria-labelledby="training-framework-heading">
+  <h2 id="training-framework-heading">Training Framework</h2>
+  <figure class="training-framework__figure">
+    <img src="./framework.png" width="75%" alt="ApDepth-G training framework with depth-prior conditioning, latent diffusion, robust noise augmentation, and geometry-aware losses.">
+    <figcaption>
+      <strong>Fig. 2.</strong> Overview of <strong>ApDepth-G</strong>. A frozen foundation depth model
+      <span class="math-symbol">M<sub>FFD</sub></span> predicts the prior depth
+      <span class="math-symbol">d<sub>p</sub></span>, and a frozen VAE maps the RGB image, prior depth, and
+      ground-truth depth to the four-channel latent representations
+      <span class="math-symbol">z<sub>x</sub></span>,
+      <span class="math-symbol">z<sub>p</sub></span>, and
+      <span class="math-symbol">z<sub>gt</sub></span>, respectively. At diffusion timestep
+      <span class="math-symbol">t</span>, the noisy depth latent
+      <span class="math-symbol">z<sub>gt</sub><sup>t</sup></span> is concatenated with the RGB and prior latents and
+      progressively refined by the trainable latent diffusion U-Net. During training, annealed multi-resolution noise
+      is augmented with a channel-wise offset, and the model is optimized using the Min-SNR-reweighted latent objective
+      <span class="math-symbol">ℒ<sub>latent</sub></span>, latent gradient consistency
+      <span class="math-symbol">ℒ<sub>grad</sub></span>, and validity-guided completion
+      <span class="math-symbol">ℒ<sub>VGC</sub></span> in regions without valid depth supervision. Snowflake and flame
+      symbols denote frozen and trainable modules, respectively.
+    </figcaption>
+  </figure>
+</section>
+
 <!-- Gallery: Indoor Scenarios -->
-<section class="hero is-small" style="margin-top: 30px; padding-top: 0px;">
+<section class="hero is-small ieee-contributions" style="margin-top: 30px; padding-top: 0px;">
   <h2 class="title is-4" style="text-align: center;">Comparison with ApDepth on <span style="color: #4FACFA;">Indoor Scenarios</span></h2>
   <div class="hero-body">
     <div class="container">
@@ -137,7 +161,7 @@
 </section>
 
 <!-- Gallery: Outdoor Scenarios -->
-<section class="hero is-small" style="margin-top: 50px; padding-top: 0px;">
+<section class="hero is-small ieee-contributions" style="margin-top: 50px; padding-top: 0px;">
   <h2 class="title is-4" style="text-align: center;">Comparison with ApDepth on <span style="color: #4FACFA;">Outdoor Scenarios</span></h2>
   <div class="hero-body">
     <div class="container">
@@ -148,10 +172,10 @@
   </div>
 </section>
 
-<section class="hero is-small" style="margin-top: 50px; padding-top: 0px;">
+<section class="hero is-small ieee-contributions" style="margin-top: 50px; padding-top: 0px;">
   <h2 class="title is-4" style="text-align: center;"> Compared with other <span style="color: #155b95;">model-driven methods</span></h2>
   <div style="margin-top: 30px; padding-top: 0px; display: flex; justify-content: center;">
-    <img id="method_inference" width="65%" src="table.png" alt="Result">
+    <img id="method_inference" width="85%" src="table.png" alt="Result">
   </div>
 </section>
 
@@ -161,7 +185,7 @@
         <div class="column is-8" align="center">
           <div class="content">
             <p>
-              Website template based on <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> and licensed under <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA-4.0</a>.
+              Copyright 2026 Haruko386 · SJZU. All Rights Reserved.
             </p>
           </div>
         </div>
@@ -209,9 +233,7 @@
     const item2 = items[i + 1];
 
     const file1 = item1.split('/').pop();
-    // 提取不带后缀的文件名 (例如把 "41.jpg" 变成 "41")
     const baseName1 = file1.substring(0, file1.lastIndexOf('.'));
-    // 拼接预测图片的正确文件名
     const predFile1 = `${baseName1}_pred_colored.png`;
 
     html += `<div class="img-grid-3">`;
