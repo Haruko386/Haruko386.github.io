@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="ISS is a geometry-guided conditional diffusion framework for image stitching.">
+  <meta name="keywords" content="ISS, image stitching, panorama, diffusion model, computer vision">
+  <title>ISS: Geometry-Guided Diffusion for Image Stitching</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="icon" href="../images/Celeste_3rd.ico">
+  <link rel="stylesheet" href="./assets/style.css">
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <div class="container has-text-centered">
+        <p class="project-label">Research Project</p>
+        <h1>ISS: Geometry-Guided Conditional Diffusion<br>for Image Stitching</h1>
+
+        <div class="project-links">
+          <a class="button" href="https://github.com/Haruko386/ISS" target="_blank" rel="noopener">Code</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="container teaser-section">
+      <!-- Replace this block with the final overview image when it is ready. -->
+      <div class="image-placeholder large-placeholder">
+        <span>Project overview image</span>
+        <small>Input pair · geometric alignment · diffusion refinement · panorama</small>
+      </div>
+    </section>
+
+    <section class="container section">
+      <h2>Abstract</h2>
+      <p class="abstract">
+        Image stitching usually relies on geometric alignment and handcrafted blending. While geometry can place two overlapping images on a shared canvas, the resulting panorama may still contain visible seams, exposure inconsistencies, and small residual misalignments. <strong>ISS</strong> addresses this limitation with a two-stage framework. It first estimates a homography from local feature correspondences and produces aligned image conditions, validity masks, and a coarse feather-blended panorama. A conditional latent diffusion model then refines the aligned result using both source images as explicit spatial conditions. This design preserves the dependable global structure provided by classical geometry while using generative priors to improve local appearance around difficult overlap regions.
+      </p>
+    </section>
+
+    <section class="container section">
+      <h2>Method</h2>
+      <div class="method-flow" aria-label="ISS method pipeline">
+        <div class="method-block">
+          <span>01</span>
+          <h3>Input Pair</h3>
+          <p>Two images with an overlapping field of view.</p>
+        </div>
+        <div class="arrow" aria-hidden="true">→</div>
+        <div class="method-block">
+          <span>02</span>
+          <h3>Geometry</h3>
+          <p>SIFT or ORB matching, RANSAC homography, warping, and masks.</p>
+        </div>
+        <div class="arrow" aria-hidden="true">→</div>
+        <div class="method-block highlight">
+          <span>03</span>
+          <h3>Diffusion</h3>
+          <p>Seam-aware latent refinement conditioned on both aligned images.</p>
+        </div>
+        <div class="arrow" aria-hidden="true">→</div>
+        <div class="method-block">
+          <span>04</span>
+          <h3>Panorama</h3>
+          <p>A coherent stitched image with improved local transitions.</p>
+        </div>
+      </div>
+
+      <div class="method-details">
+        <article>
+          <h3>Geometry-guided initialization</h3>
+          <p>Feature matching and homography estimation establish the panorama layout. Feather blending provides a stable coarse result instead of asking the diffusion model to infer the entire geometry from scratch.</p>
+        </article>
+        <article>
+          <h3>Multi-image conditioning</h3>
+          <p>The default U-Net input contains a 4-channel noisy target latent, two 4-channel aligned image latents, and two 1-channel validity masks, for a total of 14 channels.</p>
+        </article>
+        <article>
+          <h3>Controlled refinement</h3>
+          <p>At inference time, ISS can refine a noised coarse panorama while preserving known regions, or perform complete conditional generation from random latent noise.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="container section">
+      <h2>Training Objective</h2>
+      <p>
+        ISS is trained with the scheduler-native diffusion target together with optional pixel-space objectives for reconstruction, seam correction, gradient consistency, and content preservation.
+      </p>
+      <div class="equation" aria-label="Total loss equals weighted diffusion, reconstruction, seam, gradient, and preservation losses">
+        ℒ = λ<sub>diff</sub>ℒ<sub>diff</sub> + λ<sub>rec</sub>ℒ<sub>rec</sub> + λ<sub>seam</sub>ℒ<sub>seam</sub> + λ<sub>grad</sub>ℒ<sub>grad</sub> + λ<sub>preserve</sub>ℒ<sub>preserve</sub>
+      </div>
+    </section>
+
+    <section class="container section">
+      <h2>Qualitative Results</h2>
+      <p class="section-intro">The following slots are reserved for trained results. Each row is ready for a source pair, the geometry-only baseline, and the final ISS output.</p>
+
+      <!--
+        Replace any .image-placeholder below with:
+        <img src="./assets/images/your-image.jpg" alt="Description">
+      -->
+      <div class="result-group">
+        <h3>Example 01</h3>
+        <div class="result-grid">
+          <figure><div class="image-placeholder">Input A</div><figcaption>Left input</figcaption></figure>
+          <figure><div class="image-placeholder">Input B</div><figcaption>Right input</figcaption></figure>
+          <figure><div class="image-placeholder">Coarse</div><figcaption>Geometry baseline</figcaption></figure>
+          <figure><div class="image-placeholder output">ISS</div><figcaption>Diffusion-refined output</figcaption></figure>
+        </div>
+      </div>
+
+      <div class="result-group">
+        <h3>Example 02</h3>
+        <div class="result-grid">
+          <figure><div class="image-placeholder">Input A</div><figcaption>Left input</figcaption></figure>
+          <figure><div class="image-placeholder">Input B</div><figcaption>Right input</figcaption></figure>
+          <figure><div class="image-placeholder">Coarse</div><figcaption>Geometry baseline</figcaption></figure>
+          <figure><div class="image-placeholder output">ISS</div><figcaption>Diffusion-refined output</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="container section implementation">
+      <h2>Implementation</h2>
+      <p>
+        The full backend is built on Stable Diffusion 2. ISS reuses its frozen VAE, OpenCLIP conditioning space, U-Net, and scheduler configuration while introducing its own geometric alignment, multi-image conditioning, training losses, and sampling flow. The repository includes commands for data preparation, training, evaluation, inference, and a lightweight CPU smoke-test pipeline.
+      </p>
+      <a class="text-link" href="https://github.com/Haruko386/ISS" target="_blank" rel="noopener">View the implementation on GitHub →</a>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>ISS · Geometry-Guided Conditional Diffusion for Image Stitching</p>
+    </div>
+  </footer>
+</body>
+</html>
