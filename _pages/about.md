@@ -37,7 +37,7 @@ I used to participate in many **ACM algorithm** competitions(***2022-2023***), b
 
 ## 📝 Publications 
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">Neurocomputing</div><img src='../files/cover/cover1.png' alt="ApDepth paper preview" width="100%"></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">IMAVIS 2026</div><img src='../files/cover/cover1.png' alt="ApDepth paper preview" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
 [**ApDepth: Aiming for Precise Monocular Depth Estimation Based on Diffusion Models**](https://haruko386.github.io/research/)

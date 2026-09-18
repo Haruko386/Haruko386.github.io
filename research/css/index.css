@@ -147,6 +147,18 @@ body {
     text-transform: uppercase;
 }
 
+.journal-banner__cover-link {
+    display: block;
+}
+
+.journal-banner__cover-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+    border: 2px solid #333;
+}
+
 .paper-summary {
     width: min(calc(100% - var(--research-content-inset)), var(--research-content-width));
     margin: 0 auto 3.5rem;
@@ -370,7 +382,8 @@ body {
         font-size: clamp(1.35rem, 7vw, 2rem);
     }
 
-    .journal-cover {
+    .journal-cover,
+    .journal-banner__cover-link {
         display: none;
     }
 
