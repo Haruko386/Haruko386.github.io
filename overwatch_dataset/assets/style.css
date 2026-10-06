@@ -46,6 +46,12 @@
   font-size: 12px;
 }
 
+.video-grid video {
+  height: auto;
+  aspect-ratio: 32 / 9;
+  object-fit: contain;
+}
+
 @media (max-width: 768px) {
   .gallery-section .results-carousel { width: 88%; }
   .img-grid-3 { grid-gap: 5px; }

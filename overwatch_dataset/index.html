@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,175 +19,237 @@
   <script defer src="./assets/theme/js/fontawesome.all.min.js"></script>
   <script src="./assets/theme/js/bulma-carousel.min.js"></script>
 </head>
+
 <body>
 
-<nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand"></div>
-</nav>
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand"></div>
+  </nav>
 
-<section class="hero">
-  <div class="hero-body">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">Overwatch Depth Dataset</h1>
-
-          <div class="is-size-5 publication-authors">
-            <span class="author-block">An Outdoor RGB–Depth Dataset for Monocular Depth Estimation</span>
-          </div>
-
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
           <div class="column has-text-centered">
-            <div class="publication-links">
-              <span class="link-block">
-                <a href="https://huggingface.co/datasets/developy/overwatch" target="_blank" rel="noopener"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon"><i class="fas fa-database"></i></span>
-                  <span>Dataset</span>
-                </a>
-              </span>
+            <h1 class="title is-1 publication-title">Overwatch Depth Dataset</h1>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">An Outdoor RGB–Depth Dataset for Monocular Depth Estimation</span>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <span class="link-block">
+                  <a href="https://huggingface.co/datasets/developy/overwatch" target="_blank" rel="noopener"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">🤗</span>
+                    <span>Dataset</span>
+                  </a>
+                </span>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-      <div class="img-grid-3 teaser-images">
-        <div class="image-container">
-          <div class="caption">RGB</div>
-          <img src="./assets/images/havana/rgb_000033.png" alt="Overwatch RGB image">
-        </div>
-        <div class="image-container">
-          <div class="caption">Grayscale Depth</div>
-          <img src="./assets/images/havana/depth_000033.png" alt="Overwatch grayscale depth image">
-        </div>
-        <div class="image-container">
-          <div class="caption">Spectral Depth</div>
-          <img src="./assets/images/havana/spectral_000033.png" alt="Overwatch Spectral depth image">
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <div class="img-grid-3 teaser-images">
+          <div class="image-container">
+            <div class="caption">RGB</div>
+            <img src="./assets/images/havana/rgb_000033.png" alt="Overwatch RGB image">
+          </div>
+          <div class="image-container">
+            <div class="caption">Grayscale Depth</div>
+            <img src="./assets/images/havana/depth_000033.png" alt="Overwatch grayscale depth image">
+          </div>
+          <div class="image-container">
+            <div class="caption">Spectral Depth</div>
+            <img src="./assets/images/havana/spectral_000033.png" alt="Overwatch Spectral depth image">
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="hero teaser dataset-summary">
-  <div class="container is-max-desktop">
+  <section class="hero teaser dataset-summary">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <h4 class="subtitle has-text-centered">
+          <div class="content has-text-justified">
+            <p>
+              The <b>Overwatch Depth Dataset</b> contains pixel-aligned RGB images and dense depth maps captured from
+              diverse synthetic outdoor environments. Streets, buildings, vegetation, open spaces, and long-range sky
+              regions provide varied geometry for training and evaluating monocular depth estimation models.
+            </p>
+            <ul>
+              <li>Paired RGB and depth images are provided at a preview resolution of <b>1024 × 576</b>.</li>
+              <li>Depth is stored on a <b>shared 8-bit dataset scale</b>: black represents nearer geometry and white
+                represents farther geometry. The images are not independently min–max normalized per frame.</li>
+              <li>The scale is relative and its conversion to meters is not available. The dataset is therefore intended
+                for relative-depth training and scale-aligned evaluation rather than reporting metric errors in meters.
+              </li>
+              <li>Spectral color is used only for visualization and does not change the underlying grayscale depth
+                values.</li>
+              <li>Five environments form the training split, while <b>Midtown</b> is reserved for testing.</li>
+            </ul>
+          </div>
+        </h4>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero is-small gallery-section">
+    <h2 class="title is-4 has-text-centered">Training Split — <span class="accent-text">Outdoor Scenes</span></h2>
     <div class="hero-body">
-      <h4 class="subtitle has-text-centered">
-        <div class="content has-text-justified">
+      <div class="container">
+        <div class="carousel results-carousel" aria-label="Training examples">
+          <div class="img-grid-3">
+            <div class="image-container">
+              <div class="caption">RGB</div><img src="./assets/images/circuit_royal/rgb_000326.png"
+                alt="Training RGB image">
+            </div>
+            <div class="image-container">
+              <div class="caption">Grayscale Depth</div><img src="./assets/images/circuit_royal/depth_000326.png"
+                alt="Training grayscale depth image">
+            </div>
+            <div class="image-container">
+              <div class="caption">Spectral Depth</div><img src="./assets/images/circuit_royal/spectral_000326.png"
+                alt="Training Spectral depth image">
+            </div>
+            <img loading="lazy" src="./assets/images/colosseo/rgb_001000.png" alt="Training RGB image">
+            <img loading="lazy" src="./assets/images/colosseo/depth_001000.png" alt="Training grayscale depth image">
+            <img loading="lazy" src="./assets/images/colosseo/spectral_001000.png" alt="Training Spectral depth image">
+          </div>
+
+          <div class="img-grid-3">
+            <div class="image-container">
+              <div class="caption">RGB</div><img loading="lazy" src="./assets/images/colosseo/rgb_001125.png"
+                alt="Training RGB image">
+            </div>
+            <div class="image-container">
+              <div class="caption">Grayscale Depth</div><img loading="lazy"
+                src="./assets/images/colosseo/depth_001125.png" alt="Training grayscale depth image">
+            </div>
+            <div class="image-container">
+              <div class="caption">Spectral Depth</div><img loading="lazy"
+                src="./assets/images/colosseo/spectral_001125.png" alt="Training Spectral depth image">
+            </div>
+            <img loading="lazy" src="./assets/images/havana/rgb_000033.png" alt="Training RGB image">
+            <img loading="lazy" src="./assets/images/havana/depth_000033.png" alt="Training grayscale depth image">
+            <img loading="lazy" src="./assets/images/havana/spectral_000033.png" alt="Training Spectral depth image">
+          </div>
+
+          <div class="img-grid-3">
+            <div class="image-container">
+              <div class="caption">RGB</div><img loading="lazy" src="./assets/images/havana/rgb_000161.png"
+                alt="Training RGB image">
+            </div>
+            <div class="image-container">
+              <div class="caption">Grayscale Depth</div><img loading="lazy"
+                src="./assets/images/havana/depth_000161.png" alt="Training grayscale depth image">
+            </div>
+            <div class="image-container">
+              <div class="caption">Spectral Depth</div><img loading="lazy"
+                src="./assets/images/havana/spectral_000161.png" alt="Training Spectral depth image">
+            </div>
+            <img loading="lazy" src="./assets/images/royal_way/rgb_000920.png" alt="Training RGB image">
+            <img loading="lazy" src="./assets/images/royal_way/depth_000920.png" alt="Training grayscale depth image">
+            <img loading="lazy" src="./assets/images/royal_way/spectral_000920.png" alt="Training Spectral depth image">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero is-small gallery-section">
+    <h2 class="title is-4 has-text-centered">Test Split — <span class="accent-text">Midtown</span></h2>
+    <div class="hero-body">
+      <div class="container">
+        <div class="carousel results-carousel" aria-label="Midtown test examples">
+          <div class="img-grid-3">
+            <div class="image-container">
+              <div class="caption">RGB</div><img loading="lazy" src="./assets/images/midtown/rgb_000037.png"
+                alt="Midtown RGB image">
+            </div>
+            <div class="image-container">
+              <div class="caption">Grayscale Depth</div><img loading="lazy"
+                src="./assets/images/midtown/depth_000037.png" alt="Midtown grayscale depth image">
+            </div>
+            <div class="image-container">
+              <div class="caption">Spectral Depth</div><img loading="lazy"
+                src="./assets/images/midtown/spectral_000037.png" alt="Midtown Spectral depth image">
+            </div>
+          </div>
+
+          <div class="img-grid-3">
+            <div class="image-container">
+              <div class="caption">RGB</div><img loading="lazy" src="./assets/images/midtown/rgb_000772.png"
+                alt="Midtown RGB image">
+            </div>
+            <div class="image-container">
+              <div class="caption">Grayscale Depth</div><img loading="lazy"
+                src="./assets/images/midtown/depth_000772.png" alt="Midtown grayscale depth image">
+            </div>
+            <div class="image-container">
+              <div class="caption">Spectral Depth</div><img loading="lazy"
+                src="./assets/images/midtown/spectral_000772.png" alt="Midtown Spectral depth image">
+            </div>
+          </div>
+
+          <div class="img-grid-3">
+            <div class="image-container">
+              <div class="caption">RGB</div><img loading="lazy" src="./assets/images/midtown/rgb_001108.png"
+                alt="Midtown RGB image">
+            </div>
+            <div class="image-container">
+              <div class="caption">Grayscale Depth</div><img loading="lazy"
+                src="./assets/images/midtown/depth_001108.png" alt="Midtown grayscale depth image">
+            </div>
+            <div class="image-container">
+              <div class="caption">Spectral Depth</div><img loading="lazy"
+                src="./assets/images/midtown/spectral_001108.png" alt="Midtown Spectral depth image">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section video-section">
+    <h2 class="title is-4 has-text-centered">Depth Visualization on Videos</h2>
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <div class="video-grid">
+            <video autoplay muted loop playsinline preload="metadata" aria-label="Circuit Royal depth sequence">
+              <source src="./assets/images/circuit_royal.mp4" type="video/mp4">
+            </video>
+            <video autoplay muted loop playsinline preload="metadata" aria-label="Midtown depth sequence">
+              <source src="./assets/images/midtown.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="content">
           <p>
-            The <b>Overwatch Depth Dataset</b> contains pixel-aligned RGB images and dense depth maps captured from diverse synthetic outdoor environments. Streets, buildings, vegetation, open spaces, and long-range sky regions provide varied geometry for training and evaluating monocular depth estimation models.
+            Copyright 2025 Haruko386 · SJZU. All Rights Reserved.
           </p>
-          <ul>
-            <li>Paired RGB and depth images are provided at a preview resolution of <b>1024 × 576</b>.</li>
-            <li>Depth is stored as an <b>8-bit grayscale image</b>: black represents nearer geometry and white represents farther geometry within the capture range.</li>
-            <li>The displayed depth is normalized rather than expressed directly in meters. Spectral color is used only for visualization and does not change the depth values.</li>
-            <li>Five environments form the training split, while <b>Midtown</b> is reserved for testing.</li>
-          </ul>
-        </div>
-      </h4>
-    </div>
-  </div>
-</section>
-
-<section class="hero is-small gallery-section">
-  <h2 class="title is-4 has-text-centered">Training Split — <span class="accent-text">Outdoor Scenes</span></h2>
-  <div class="hero-body">
-    <div class="container">
-      <div class="carousel results-carousel" aria-label="Training examples">
-        <div class="img-grid-3">
-          <div class="image-container"><div class="caption">RGB</div><img src="./assets/images/circuit_royal/rgb_000326.png" alt="Training RGB image"></div>
-          <div class="image-container"><div class="caption">Grayscale Depth</div><img src="./assets/images/circuit_royal/depth_000326.png" alt="Training grayscale depth image"></div>
-          <div class="image-container"><div class="caption">Spectral Depth</div><img src="./assets/images/circuit_royal/spectral_000326.png" alt="Training Spectral depth image"></div>
-          <img loading="lazy" src="./assets/images/colosseo/rgb_001000.png" alt="Training RGB image">
-          <img loading="lazy" src="./assets/images/colosseo/depth_001000.png" alt="Training grayscale depth image">
-          <img loading="lazy" src="./assets/images/colosseo/spectral_001000.png" alt="Training Spectral depth image">
-        </div>
-
-        <div class="img-grid-3">
-          <div class="image-container"><div class="caption">RGB</div><img loading="lazy" src="./assets/images/colosseo/rgb_001125.png" alt="Training RGB image"></div>
-          <div class="image-container"><div class="caption">Grayscale Depth</div><img loading="lazy" src="./assets/images/colosseo/depth_001125.png" alt="Training grayscale depth image"></div>
-          <div class="image-container"><div class="caption">Spectral Depth</div><img loading="lazy" src="./assets/images/colosseo/spectral_001125.png" alt="Training Spectral depth image"></div>
-          <img loading="lazy" src="./assets/images/havana/rgb_000033.png" alt="Training RGB image">
-          <img loading="lazy" src="./assets/images/havana/depth_000033.png" alt="Training grayscale depth image">
-          <img loading="lazy" src="./assets/images/havana/spectral_000033.png" alt="Training Spectral depth image">
-        </div>
-
-        <div class="img-grid-3">
-          <div class="image-container"><div class="caption">RGB</div><img loading="lazy" src="./assets/images/havana/rgb_000161.png" alt="Training RGB image"></div>
-          <div class="image-container"><div class="caption">Grayscale Depth</div><img loading="lazy" src="./assets/images/havana/depth_000161.png" alt="Training grayscale depth image"></div>
-          <div class="image-container"><div class="caption">Spectral Depth</div><img loading="lazy" src="./assets/images/havana/spectral_000161.png" alt="Training Spectral depth image"></div>
-          <img loading="lazy" src="./assets/images/royal_way/rgb_000920.png" alt="Training RGB image">
-          <img loading="lazy" src="./assets/images/royal_way/depth_000920.png" alt="Training grayscale depth image">
-          <img loading="lazy" src="./assets/images/royal_way/spectral_000920.png" alt="Training Spectral depth image">
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </footer>
 
-<section class="hero is-small gallery-section">
-  <h2 class="title is-4 has-text-centered">Test Split — <span class="accent-text">Midtown</span></h2>
-  <div class="hero-body">
-    <div class="container">
-      <div class="carousel results-carousel" aria-label="Midtown test examples">
-        <div class="img-grid-3">
-          <div class="image-container"><div class="caption">RGB</div><img loading="lazy" src="./assets/images/midtown/rgb_000037.png" alt="Midtown RGB image"></div>
-          <div class="image-container"><div class="caption">Grayscale Depth</div><img loading="lazy" src="./assets/images/midtown/depth_000037.png" alt="Midtown grayscale depth image"></div>
-          <div class="image-container"><div class="caption">Spectral Depth</div><img loading="lazy" src="./assets/images/midtown/spectral_000037.png" alt="Midtown Spectral depth image"></div>
-        </div>
-
-        <div class="img-grid-3">
-          <div class="image-container"><div class="caption">RGB</div><img loading="lazy" src="./assets/images/midtown/rgb_000772.png" alt="Midtown RGB image"></div>
-          <div class="image-container"><div class="caption">Grayscale Depth</div><img loading="lazy" src="./assets/images/midtown/depth_000772.png" alt="Midtown grayscale depth image"></div>
-          <div class="image-container"><div class="caption">Spectral Depth</div><img loading="lazy" src="./assets/images/midtown/spectral_000772.png" alt="Midtown Spectral depth image"></div>
-        </div>
-
-        <div class="img-grid-3">
-          <div class="image-container"><div class="caption">RGB</div><img loading="lazy" src="./assets/images/midtown/rgb_001108.png" alt="Midtown RGB image"></div>
-          <div class="image-container"><div class="caption">Grayscale Depth</div><img loading="lazy" src="./assets/images/midtown/depth_001108.png" alt="Midtown grayscale depth image"></div>
-          <div class="image-container"><div class="caption">Spectral Depth</div><img loading="lazy" src="./assets/images/midtown/spectral_001108.png" alt="Midtown Spectral depth image"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section video-section">
-  <h2 class="title is-4 has-text-centered">Depth Visualization on Videos</h2>
-  <div class="container is-max-desktop">
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <p><b>Note:</b> Animated Midtown sequence previews will be added here as 2048 × 576 GIFs.</p>
-        <br>
-        <div class="video-grid">
-          <div class="gif-placeholder"><span>GIF placeholder</span><small>2048 × 576</small></div>
-          <div class="gif-placeholder"><span>GIF placeholder</span><small>2048 × 576</small></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<footer class="footer">
-  <div class="container">
-    <div class="content has-text-centered">
-      <a class="icon-link" href="https://huggingface.co/datasets/developy/overwatch" target="_blank" rel="noopener" aria-label="Overwatch dataset on Hugging Face">
-        <i class="fas fa-database"></i>
-      </a>
-    </div>
-    <div class="columns is-centered">
-      <div class="content">
-        <p>Page theme based on <a href="https://depth-anything-v2.github.io/" target="_blank" rel="noopener">Depth Anything V2</a>.</p>
-      </div>
-    </div>
-  </div>
-</footer>
-
-<script src="./assets/carousel.js"></script>
+  <script src="./assets/carousel.js"></script>
 </body>
+
 </html>
