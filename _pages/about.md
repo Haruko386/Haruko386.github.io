@@ -66,7 +66,7 @@ We presents <span style="font-family: Georgia, 'Times New Roman', serif; font-we
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">huggingface</div><video autoplay muted loop playsinline preload="metadata" width="100%" aria-label="Overwatch depth dataset preview"><source src="../images/dataset.mp4" type="video/mp4"></video></div></div>
 <div class='paper-box-text' markdown="1">
 
-[**Overwatch Depth Dataset**](https://huggingface.co/datasets/developy/overwatch)
+[**Overwatch Depth Dataset**](https://haruko386.github.io/overwatch_dataset)
 
 \[[Dataset](https://huggingface.co/datasets/developy/overwatch)\] 
 <p class="paper-summary">
