@@ -37,17 +37,18 @@ I used to participate in many **ACM algorithm** competitions(***2022-2023***), b
 
 ## 📝 Publications 
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">IMAVIS 2026</div><img src='../files/cover/cover1.png' alt="ApDepth paper preview" width="100%"></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">ACM</div><img src='../ApDepth-G/static/images/cover.png' alt="ApDepth V2 paper preview" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
-[**ApDepth: Aiming for Precise Monocular Depth Estimation Based on Diffusion Models**](https://haruko386.github.io/research/)
+[**ApDepth V2: Geometry-Aware Refinement for Single-Step Monocular Depth Estimation**]()
 
-\[[Paper](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7604741)\] \[[Demo](https://huggingface.co/spaces/developy/ApDepth)\] \[[Model](https://huggingface.co/developy/ApDepth)\] 
+\[[Paper(Pre-release)]()\] \[[~~Model~~]()\] 
 <p class="paper-summary">
-This paper presents <span style="font-family: Georgia, 'Times New Roman', serif; font-weight: 800; font-style: italic; color: #2c3e50; font-variant: small-caps;">ApDepth</span>, a novel single-step diffusion framework for monocular depth estimation that achieves fast inference while preserving fine-grained edge details through a tailored two-stage training strategy combined with novel frequency-domain and cosine similarity losses.
+We introduce <span style="font-family: Georgia, 'Times New Roman', serif; font-weight: 800; font-style: italic; color: #355C7D; font-variant: small-caps;">ApDepth V2</span>, an enhanced single-step monocular depth estimation framework built upon Stable Diffusion 2.1. It introduces a continuous fine-tuning strategy with delayed decoder adaptation and Spatially Debiased Window Transport (SDWT), enabling misalignment-tolerant local geometry supervision while preserving depth reconstruction consistency.
 </p>
 </div>
 </div>
+
 
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">arXiv</div><img src='../ApDepth-G/static/images/cover.png' alt="ApDepth-G paper preview" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
@@ -60,6 +61,20 @@ We presents <span style="font-family: Georgia, 'Times New Roman', serif; font-we
 </p>
 </div>
 </div>
+
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">IMAVIS 2026</div><img src='../files/cover/cover1.png' alt="ApDepth paper preview" width="100%"></div></div>
+<div class='paper-box-text' markdown="1">
+
+[**ApDepth: Aiming for Precise Monocular Depth Estimation Based on Diffusion Models**](https://haruko386.github.io/research/)
+
+\[[Paper](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7604741)\] \[[Demo](https://huggingface.co/spaces/developy/ApDepth)\] \[[Model](https://huggingface.co/developy/ApDepth)\] 
+<p class="paper-summary">
+This paper presents <span style="font-family: Georgia, 'Times New Roman', serif; font-weight: 800; font-style: italic; color: #2c3e50; font-variant: small-caps;">ApDepth</span>, a novel single-step diffusion framework for monocular depth estimation that achieves fast inference while preserving fine-grained edge details through a tailored two-stage training strategy combined with novel frequency-domain and cosine similarity losses.
+</p>
+</div>
+</div>
+
+## 🤗Dataset
 
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">huggingface</div><video autoplay muted loop playsinline preload="metadata" width="100%" aria-label="Overwatch depth dataset preview"><source src="../images/dataset.mp4" type="video/mp4"></video></div></div>
 <div class='paper-box-text' markdown="1">
