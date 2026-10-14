@@ -37,7 +37,7 @@ I used to participate in many **ACM algorithm** competitions(***2022-2023***), b
 
 ## 📝 Publications 
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">ACM</div><img src='../ApDepth-G/static/images/cover.png' alt="ApDepth V2 paper preview" width="100%"></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">ACM</div><img src='../ApDepth-v2/asset/training_framework.png' alt="ApDepth V2 paper preview" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
 [**ApDepth V2: Geometry-Aware Refinement for Single-Step Monocular Depth Estimation**]()
@@ -50,7 +50,7 @@ We introduce <span style="font-family: Georgia, 'Times New Roman', serif; font-w
 </div>
 
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">arXiv</div><img src='../ApDepth-v2/asset/training_framework.png' alt="ApDepth-G paper preview" width="100%"></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">arXiv</div><img src='../ApDepth-G/static/images/cover.png' alt="ApDepth-G paper preview" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
 [**ApDepth-G: Multi-Step Geometric Diffusion Refinement for Robust Monocular Depth Estimation**](https://haruko386.github.io/ApDepth-G)
