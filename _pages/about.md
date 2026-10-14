@@ -42,7 +42,7 @@ I used to participate in many **ACM algorithm** competitions(***2022-2023***), b
 
 [**ApDepth: Aiming for Precise Monocular Depth Estimation Based on Diffusion Models**](https://haruko386.github.io/research/)
 
-\[[Paper](https://haruko386.github.io/research/cas-dc-sample.pdf)\] \[[Demo](https://huggingface.co/spaces/developy/ApDepth)\] \[[Model](https://huggingface.co/developy/ApDepth)\] 
+\[[Paper](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7604741)\] \[[Demo](https://huggingface.co/spaces/developy/ApDepth)\] \[[Model](https://huggingface.co/developy/ApDepth)\] 
 <p class="paper-summary">
 This paper presents <span style="font-family: Georgia, 'Times New Roman', serif; font-weight: 800; font-style: italic; color: #2c3e50; font-variant: small-caps;">ApDepth</span>, a novel single-step diffusion framework for monocular depth estimation that achieves fast inference while preserving fine-grained edge details through a tailored two-stage training strategy combined with novel frequency-domain and cosine similarity losses.
 </p>
