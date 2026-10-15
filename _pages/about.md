@@ -50,7 +50,28 @@ We introduce <span style="font-family: Georgia, 'Times New Roman', serif; font-w
 </div>
 
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">arXiv</div><img src='../ApDepth-G/static/images/banner.png' alt="ApDepth-G paper preview" width="100%"></div></div>
+<div class='paper-box'><div class='paper-box-image'><div class="apdepth-preview" data-apdepth-preview>
+  <div class="badge">arXiv</div>
+  <a class="apdepth-preview__comparison" href="{{ '/ApDepth-G/' | relative_url }}" aria-label="View ApDepth-G: fixed RGB and Ours predictions compared with Marigold v2, Lotus-2, PPD, Lotus, Marigold, and DepthMaster in a horizontal slideshow.">
+    <span class="apdepth-preview__columns" aria-hidden="true">
+      <span class="apdepth-preview__panel" style="--panel: 0;"></span>
+      <span class="apdepth-preview__panel" style="--panel: 1;"></span>
+      <span class="apdepth-preview__window">
+        <span class="apdepth-preview__track">
+          <span class="apdepth-preview__panel" style="--panel: 2;"></span>
+          <span class="apdepth-preview__panel" style="--panel: 3;"></span>
+          <span class="apdepth-preview__panel" style="--panel: 4;"></span>
+          <span class="apdepth-preview__panel" style="--panel: 5;"></span>
+          <span class="apdepth-preview__panel" style="--panel: 6;"></span>
+          <span class="apdepth-preview__panel" style="--panel: 7;"></span>
+          <span class="apdepth-preview__panel" style="--panel: 2;"></span>
+        </span>
+      </span>
+    </span>
+  </a>
+  <button class="apdepth-preview__toggle" type="button" aria-label="Pause comparison slideshow" aria-pressed="false" hidden><span aria-hidden="true">Ⅱ</span></button>
+</div></div>
+<script src="{{ '/assets/js/apdepth-preview.js' | relative_url }}" defer></script>
 <div class='paper-box-text' markdown="1">
 
 [**ApDepth-G: Multi-Step Geometric Diffusion Refinement for Robust Monocular Depth Estimation**](https://haruko386.github.io/ApDepth-G)

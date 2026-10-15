@@ -1,0 +1,122 @@
+// Use the original banner as a sprite so its insets, colors, and labels stay intact.
+.paper-box .paper-box-image > .apdepth-preview {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    aspect-ratio: 16 / 9;
+    background: #fff;
+    box-shadow: 3px 3px 6px #888;
+}
+
+.apdepth-preview {
+    .badge {
+        z-index: 1;
+    }
+
+    &__comparison {
+        position: absolute;
+        inset: 0;
+        display: block;
+        overflow: hidden;
+    }
+
+    &__columns {
+        // Three 513.5 x 938 panels centered in a 16:9 frame without stretching.
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        width: 92.3807%;
+        height: 100%;
+        margin: 0 auto;
+    }
+
+    &__panel {
+        display: block;
+        height: 100%;
+        background-image: url("../../ApDepth-G/static/images/banner-hor.png");
+        background-repeat: no-repeat;
+        background-size: 800% 100%;
+        background-position: calc(var(--panel) * 100% / 7) 0;
+    }
+
+    &__window {
+        display: block;
+        min-width: 0;
+        overflow: hidden;
+    }
+
+    &__track {
+        display: flex;
+        width: 100%;
+        height: 100%;
+
+        > .apdepth-preview__panel {
+            flex: 0 0 100%;
+        }
+    }
+
+    &.is-enhanced &__track {
+        // Six seconds to compare each method, followed by a one-second slide.
+        animation: apdepth-methods 42s ease-in-out infinite;
+    }
+
+    &[data-paused="true"] &__track,
+    &.is-page-hidden &__track {
+        animation-play-state: paused;
+    }
+
+    &__toggle {
+        position: absolute;
+        z-index: 2;
+        top: 6px;
+        right: 6px;
+        display: grid;
+        place-items: center;
+        width: 28px;
+        height: 28px;
+        padding: 0;
+        border: 1px solid #fff;
+        border-radius: 50%;
+        background: rgba(26, 18, 54, 0.85);
+        color: #fff;
+        font: 14px/1 sans-serif;
+        cursor: pointer;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 160ms ease;
+
+        &[hidden] {
+            display: none;
+        }
+
+        &:focus-visible {
+            outline: 2px solid #00369f;
+            outline-offset: 2px;
+        }
+    }
+
+    &:hover &__toggle,
+    &:focus-within &__toggle {
+        opacity: 1;
+        pointer-events: auto;
+    }
+}
+
+@keyframes apdepth-methods {
+    0%, 14.2857% { transform: translateX(0); }
+    16.6667%, 30.9524% { transform: translateX(-100%); }
+    33.3333%, 47.6190% { transform: translateX(-200%); }
+    50%, 64.2857% { transform: translateX(-300%); }
+    66.6667%, 80.9524% { transform: translateX(-400%); }
+    83.3333%, 97.6190% { transform: translateX(-500%); }
+    100% { transform: translateX(-600%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .apdepth-preview.is-enhanced .apdepth-preview__track {
+        animation: none;
+    }
+
+    .apdepth-preview .apdepth-preview__toggle {
+        display: none;
+    }
+}
