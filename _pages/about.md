@@ -74,7 +74,7 @@ We introduce <span style="font-family: Georgia, 'Times New Roman', serif; font-w
 <script src="{{ '/assets/js/apdepth-preview.js' | relative_url }}" defer></script>
 <div class='paper-box-text' markdown="1">
 
-[**ApDepth-G: Multi-Step Geometric Diffusion Refinement for Robust Monocular Depth Estimation**](https://haruko386.github.io/ApDepth-G)
+[**Mind the Sky: Resolving Sky-Depth Collapse with Validity-Guided Diffusion**](https://haruko386.github.io/ApDepth-G)
 
 \[[~~Paper~~](#)\] \[[Model](https://huggingface.co/developy/ApDepth-G)\] 
 <p class="paper-summary">
