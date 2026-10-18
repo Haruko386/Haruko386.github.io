@@ -74,11 +74,11 @@ We introduce <span style="font-family: Georgia, 'Times New Roman', serif; font-w
 <script src="{{ '/assets/js/apdepth-preview.js' | relative_url }}" defer></script>
 <div class='paper-box-text' markdown="1">
 
-[**Mind the Sky: Resolving Sky-Depth Collapse with Validity-Guided Diffusion**](https://haruko386.github.io/ApDepth-G)
+[**Mind the Sky: Resolving Sky-Depth Collapse with Validity-Guided Diffusion**]({{ '/Celeste/' | relative_url }})
 
-\[[~~Paper~~](#)\] \[[Model](https://huggingface.co/developy/ApDepth-G)\] 
+\[[~~Paper~~](#)\] \[[Model](https://huggingface.co/developy/Celeste)\] 
 <p class="paper-summary">
-We presents <span style="font-family: Georgia, 'Times New Roman', serif; font-weight: 800; font-style: italic; color: #1a1236; font-variant: small-caps;">ApDepth-G</span>,  a multi-step geometric diffusion refinement framework for sky-stable monocular depth estimation. It progressively refines latent depth representations through multi-step denoising and improves training with offset noise regularization, SNR-based loss reweighting, and latent gradient consistency.
+We presents <span style="font-family: Georgia, 'Times New Roman', serif; font-weight: 800; font-style: italic; color: #1a1236; font-variant: small-caps;">Celeste</span>,  a multi-step latent diffusion framework that addresses this gap through validity-guided completion. The method separates fully valid, fully invalid, and mixed latent cells, applies weak region-level anchoring and interior smoothness on invalid support, and adds a selective far-fieldanchor to reduce the ambiguity of distant regions.
 </p>
 </div>
 </div>
@@ -86,7 +86,7 @@ We presents <span style="font-family: Georgia, 'Times New Roman', serif; font-we
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">IMAVIS 2026</div><img src='../files/cover/cover1.png' alt="ApDepth paper preview" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
-[**ApDepth: Aiming for Precise Monocular Depth Estimation Based on Diffusion Models**](https://haruko386.github.io/research/)
+[**ApDepth: Aiming for Precise Monocular Depth Estimation Based on Diffusion Models**]({{ '/research/' | relative_url }})
 
 \[[Paper](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7604741)\] \[[Demo](https://huggingface.co/spaces/developy/ApDepth)\] \[[Model](https://huggingface.co/developy/ApDepth)\] 
 <p class="paper-summary">
@@ -100,7 +100,7 @@ This paper presents <span style="font-family: Georgia, 'Times New Roman', serif;
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">huggingface</div><video autoplay muted loop playsinline preload="metadata" width="100%" aria-label="Overwatch depth dataset preview"><source src="../images/dataset.mp4" type="video/mp4"></video></div></div>
 <div class='paper-box-text' markdown="1">
 
-[**Overwatch Depth Dataset**](https://haruko386.github.io/overwatch_dataset)
+[**Overwatch Depth Dataset**](../overwatch_dataset)
 
 \[[Dataset](https://huggingface.co/datasets/developy/overwatch)\] 
 <p class="paper-summary">

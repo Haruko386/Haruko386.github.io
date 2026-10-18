@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <meta name="description"
+    content="Celeste is a multi-step geometric diffusion refinement framework for robust monocular depth estimation and sky-stable outdoor prediction.">
+  <meta name="keywords"
+    content="Celeste, Diffusion Model, Monocular Depth Estimation, Sky Collapse, Depth Refinement, Geometric Diffusion">
+  <title>Mind the Sky: Resolving Sky-Depth Collapse with Validity-Guided Diffusion</title>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="../images/Celeste_2nd.ico">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  <script src="./static/js/script.js"></script>
+</head>
+
+<body>
+
+  <main class="ieee-paper">
+    <header class="ieee-running-head" aria-label="Paper header">
+      <span>IEEE PREPRINT, SEPTEMBER 2026</span>
+      <span aria-label="Page 1">Haruko386</span>
+    </header>
+
+    <section class="ieee-title-block" aria-labelledby="paper-title">
+      <h1 id="paper-title">Mind the Sky: Resolving Sky-Depth Collapse with Validity-Guided Diffusion</h1>
+
+      <p class="ieee-authors">
+        <span>Jiawei Wang<sup>a,c,d,†</sup>,</span>
+        <span>Jingxuan Wang<sup>b,†</sup>,</span>
+        <span>Mingbo Lei<sup>a,c</sup>,</span>
+        <span>Liang Yao<sup>a,c</sup>,</span>
+        <span>and Tianyu Lu<sup>a,c</sup></span>
+      </p>
+
+      <div class="ieee-affiliations">
+        <p><sup>a</sup>School of Computer Science and Engineering, Shenyang Jianzhu University</p>
+        <p><sup>b</sup>School of Chinese Medicine, Beijing University of Chinese Medicine</p>
+        <p><sup>c</sup>Shenyang Branch of the National Special Computer Engineering Technology Research Center</p>
+        <p><sup>d</sup>InfiniFlow (Shanghai) Information Technology Co., Ltd.</p>
+        <p class="ieee-author-notes">† These authors contributed equally to this work.</p>
+      </div>
+
+      <nav class="ieee-links" aria-label="Project resources">
+        <a href="./cas-sc-sample.pdf" target="_blank" rel="noopener">
+          <i class="fas fa-file-pdf" aria-hidden="true"></i> Paper
+        </a>
+        <a href="https://github.com/Haruko386/ApDepth-G" target="_blank" rel="noopener">
+          <i class="fab fa-github" aria-hidden="true"></i> Code
+        </a>
+        <a href="../research/index.html">
+          <i class="fas fa-book-open" aria-hidden="true"></i> ApDepth
+        </a>
+      </nav>
+    </section>
+
+    <section class="ieee-abstract" aria-labelledby="abstract-heading">
+      <h2 id="abstract-heading" class="is-sr-only">Abstract</h2>
+      <p><strong><em>Abstract</em>—</strong>Diffusion-based monocular depth estimation can recover detailed scene
+        geometry, yet their outdoor predictions may assign nearby depths or artificial depth variations to the sky.
+        We study this sky-depth collapse as a supervision problem: depth validity masks remove unreliable measurements,
+        but can also leave large sky and out-of-range regions without a direct training signal.
+        We present <b>Celeste</b>, a multi-step latent diffusion framework that addresses this gap through validity-guided
+        completion. The method separates fully valid, fully invalid, and mixed latent cells,
+        applies weak region-level anchoring and interior smoothness on invalid support, and adds a selective far-field
+        anchor to reduce the ambiguity of distant regions. We use a frozen depth estimation model as
+        an auxiliary condition and a weak reference. To make the denoising trajectory consistent with its pure-noise
+        initialization,
+        we align the high-noise training endpoint with inference and attenuate structured noise near that endpoint. The
+        resulting formulation is designed to improve sky stability while preserving supervised foreground
+        structure, without requiring sky annotations during training.</p>
+      <p class="ieee-index-terms"><strong><em>Index Terms</em>—</strong>Diffusion model, monocular depth estimation,
+        sky collapse, depth refinement, geometric diffusion.</p>
+    </section>
+
+    <figure class="ieee-teaser">
+      <img src="./static/images/banner-hor.png" width="4108" height="938"
+        alt="RGB input and depth predictions from Celeste (Ours), Marigold v2, Lotus-2, PPD, Lotus, Marigold, and DepthMaster, with enlarged tree and sky details.">
+      <!-- <figcaption><strong>Fig. 1.</strong> Representative RGB inputs and Celeste predictions. The framework is designed
+      to retain coherent scene geometry while improving sky and long-range depth stability.</figcaption> -->
+    </figure>
+
+    <section class="ieee-contributions" aria-labelledby="contributions-heading">
+      <h2 id="contributions-heading">Key Contributions</h2>
+      <div class="ieee-contribution-grid">
+        <article>
+          <span class="ieee-contribution-number">I</span>
+          <h3>Sky-Collapse Analysis</h3>
+          <p>Identifies finite, locally distorted, and pseudo-textured sky depth as a recurring failure mode in
+            diffusion-based monocular depth models.</p>
+        </article>
+        <article>
+          <span class="ieee-contribution-number">II</span>
+          <h3>Geometric Refinement</h3>
+          <p>Restores a multi-step, depth-prior-guided reverse trajectory that progressively corrects uncertain latent
+            geometry in sky and long-range regions.</p>
+        </article>
+        <article>
+          <span class="ieee-contribution-number">III</span>
+          <h3>Stable Optimization</h3>
+          <p>Combines offset-noise regularization, SNR-based loss reweighting, latent gradient consistency, and
+            sky-aware
+            refinement.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <section class="training-framework" aria-labelledby="training-framework-heading">
+    <h2 id="training-framework-heading">Fine-Tune Framework</h2>
+    <figure class="training-framework__figure">
+      <img src="./framework.png" width="75%"
+        alt="Celeste training framework with depth-prior conditioning, latent diffusion, robust noise augmentation, and geometry-aware losses.">
+      <figcaption>
+        <strong>Fig. 2.</strong> Overview of <strong>Celeste</strong>. A frozen foundation depth model
+        <span class="math-symbol">M<sub>FFD</sub></span> predicts the prior depth
+        <span class="math-symbol">d<sub>p</sub></span>, and a frozen VAE maps the RGB image, prior depth, and
+        ground-truth depth to the four-channel latent representations
+        <span class="math-symbol">z<sub>x</sub></span>,
+        <span class="math-symbol">z<sub>p</sub></span>, and
+        <span class="math-symbol">z<sub>gt</sub></span>, respectively. At diffusion timestep
+        <span class="math-symbol">t</span>, the noisy depth latent
+        <span class="math-symbol">z<sub>gt</sub><sup>t</sup></span> is concatenated with the RGB and prior latents and
+        progressively refined by the trainable latent diffusion U-Net. During training, annealed multi-resolution noise
+        is augmented with a channel-wise offset, and the model is optimized using the Min-SNR-reweighted latent
+        objective
+        <span class="math-symbol">ℒ<sub>latent</sub></span>, latent gradient consistency
+        <span class="math-symbol">ℒ<sub>grad</sub></span>, and validity-guided completion
+        <span class="math-symbol">ℒ<sub>VGC</sub></span> in regions without valid depth supervision. Snowflake and flame
+        symbols denote frozen and trainable modules, respectively.
+      </figcaption>
+    </figure>
+  </section>
+
+  <!-- Gallery: Indoor Scenarios -->
+  <section class="hero is-small ieee-contributions comparison-gallery" style="margin-top: 30px; padding-top: 0px;">
+    <h2 class="title is-4" style="text-align: center;">Comparison with ApDepth on <span style="color: #4FACFA;">Indoor
+        Scenarios</span></h2>
+    <div class="hero-body">
+      <div class="container">
+        <div id="indoor-carousel" class="carousel results-carousel">
+          <!-- Dynamically populated from indoor.json -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery: Outdoor Scenarios -->
+  <section class="hero is-small ieee-contributions comparison-gallery" style="margin-top: 50px; padding-top: 0px;">
+    <h2 class="title is-4" style="text-align: center;">Comparison with ApDepth on <span style="color: #4FACFA;">Outdoor
+        Scenarios</span></h2>
+    <div class="hero-body">
+      <div class="container">
+        <div id="outdoor-carousel" class="carousel results-carousel">
+          <!-- Dynamically populated from outdoor.json -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="benchmark-section" aria-labelledby="benchmark-heading">
+    <h2 id="benchmark-heading">Compared with Other <span>Model-Driven Methods</span></h2>
+    <div class="benchmark-table-wrap" role="region" aria-label="Benchmark comparison table" tabindex="0">
+      <table class="benchmark-table">
+        <caption class="is-sr-only">Zero-shot monocular depth estimation benchmark comparison.</caption>
+        <thead>
+          <tr>
+            <th rowspan="2" scope="col">Type</th>
+            <th rowspan="2" scope="col" class="method-column">Method</th>
+            <th rowspan="2" scope="col">Training Data</th>
+            <th colspan="2" scope="colgroup">NYUv2</th>
+            <th colspan="2" scope="colgroup">KITTI</th>
+            <th colspan="2" scope="colgroup">ETH3D</th>
+            <th colspan="2" scope="colgroup">ScanNet</th>
+            <th colspan="2" scope="colgroup">DIODE</th>
+          </tr>
+          <tr class="metric-row">
+            <th scope="col">AbsRel<span aria-label="lower is better">↓</span></th>
+            <th scope="col">δ<sub>1</sub><span aria-label="higher is better">↑</span></th>
+            <th scope="col">AbsRel<span aria-label="lower is better">↓</span></th>
+            <th scope="col">δ<sub>1</sub><span aria-label="higher is better">↑</span></th>
+            <th scope="col">AbsRel<span aria-label="lower is better">↓</span></th>
+            <th scope="col">δ<sub>1</sub><span aria-label="higher is better">↑</span></th>
+            <th scope="col">AbsRel<span aria-label="lower is better">↓</span></th>
+            <th scope="col">δ<sub>1</sub><span aria-label="higher is better">↑</span></th>
+            <th scope="col">AbsRel<span aria-label="lower is better">↓</span></th>
+            <th scope="col">δ<sub>1</sub><span aria-label="higher is better">↑</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th rowspan="7" scope="rowgroup" class="benchmark-type"><span>Discriminative</span></th>
+            <th scope="row">DiverseDepth</th>
+            <td>320K</td>
+            <td>11.7</td>
+            <td>87.5</td>
+            <td>19.0</td>
+            <td>70.4</td>
+            <td>22.8</td>
+            <td>69.4</td>
+            <td>10.9</td>
+            <td>88.2</td>
+            <td>&ndash;</td>
+            <td>&ndash;</td>
+          </tr>
+          <tr>
+            <th scope="row">MiDaS</th>
+            <td>2M</td>
+            <td>11.1</td>
+            <td>88.5</td>
+            <td>23.6</td>
+            <td>63.0</td>
+            <td>18.4</td>
+            <td>75.2</td>
+            <td>12.1</td>
+            <td>84.6</td>
+            <td>&ndash;</td>
+            <td>&ndash;</td>
+          </tr>
+          <tr>
+            <th scope="row">LeReS</th>
+            <td>354K</td>
+            <td>9.0</td>
+            <td>91.6</td>
+            <td>14.9</td>
+            <td>78.4</td>
+            <td>17.1</td>
+            <td>77.7</td>
+            <td>9.1</td>
+            <td>91.7</td>
+            <td>&ndash;</td>
+            <td>&ndash;</td>
+          </tr>
+          <tr>
+            <th scope="row">Omnidata</th>
+            <td>12.2M</td>
+            <td>7.4</td>
+            <td>94.5</td>
+            <td>14.9</td>
+            <td>83.5</td>
+            <td>16.6</td>
+            <td>77.8</td>
+            <td>7.5</td>
+            <td>93.6</td>
+            <td>&ndash;</td>
+            <td>&ndash;</td>
+          </tr>
+          <tr>
+            <th scope="row">HDN</th>
+            <td>300K</td>
+            <td>6.9</td>
+            <td>94.8</td>
+            <td>11.5</td>
+            <td>86.7</td>
+            <td>12.1</td>
+            <td>83.3</td>
+            <td>8.0</td>
+            <td>93.9</td>
+            <td>&ndash;</td>
+            <td>&ndash;</td>
+          </tr>
+          <tr>
+            <th scope="row">DPT</th>
+            <td>1.4M</td>
+            <td>9.8</td>
+            <td>90.3</td>
+            <td>10.0</td>
+            <td>90.1</td>
+            <td>7.8</td>
+            <td>94.6</td>
+            <td>8.2</td>
+            <td>93.4</td>
+            <td>&ndash;</td>
+            <td>&ndash;</td>
+          </tr>
+          <tr>
+            <th scope="row">Depth Anything V2</th>
+            <td>63.5M</td>
+            <td><strong>4.3</strong></td>
+            <td><strong>98.0</strong></td>
+            <td><strong>8.0</strong></td>
+            <td><strong>94.6</strong></td>
+            <td><strong>6.2</strong></td>
+            <td><strong>98.0</strong></td>
+            <td><strong>4.3</strong></td>
+            <td><strong>98.1</strong></td>
+            <td><strong>6.6</strong></td>
+            <td><strong>95.2</strong></td>
+          </tr>
+        </tbody>
+        <tbody class="generative-group">
+          <tr>
+            <th rowspan="8" scope="rowgroup" class="benchmark-type"><span>Generative</span></th>
+            <th scope="row">Marigold</th>
+            <td>74K</td>
+            <td>5.5</td>
+            <td>96.4</td>
+            <td>9.9</td>
+            <td>91.6</td>
+            <td>6.5</td>
+            <td>96.0</td>
+            <td>6.4</td>
+            <td>95.1</td>
+            <td>10.0</td>
+            <td>90.7</td>
+          </tr>
+          <tr>
+            <th scope="row">GeoWizard</th>
+            <td>280K</td>
+            <td>5.2</td>
+            <td>96.6</td>
+            <td>9.7</td>
+            <td>92.1</td>
+            <td>6.4</td>
+            <td>96.1</td>
+            <td>6.1</td>
+            <td>95.3</td>
+            <td>12.0</td>
+            <td>89.8</td>
+          </tr>
+          <tr>
+            <th scope="row">DepthFM</th>
+            <td>74K</td>
+            <td>6.0</td>
+            <td>95.5</td>
+            <td>9.1</td>
+            <td>90.2</td>
+            <td>6.5</td>
+            <td>95.4</td>
+            <td>6.6</td>
+            <td>94.9</td>
+            <td>&ndash;</td>
+            <td>&ndash;</td>
+          </tr>
+          <tr>
+            <th scope="row">GenPercept</th>
+            <td>90K</td>
+            <td>5.6</td>
+            <td>96.0</td>
+            <td>9.9</td>
+            <td>90.4</td>
+            <td>6.2</td>
+            <td>95.8</td>
+            <td>5.6</td>
+            <td>96.5</td>
+            <td>&ndash;</td>
+            <td>&ndash;</td>
+          </tr>
+          <tr>
+            <th scope="row">Lotus</th>
+            <td>54K</td>
+            <td>5.3</td>
+            <td>96.7</td>
+            <td>8.5</td>
+            <td>92.8</td>
+            <td>5.9</td>
+            <td>97.0</td>
+            <td>5.9</td>
+            <td>95.7</td>
+            <td>9.8</td>
+            <td>92.4</td>
+          </tr>
+          <tr>
+            <th scope="row">DepthMaster</th>
+            <td>74K</td>
+            <td>5.0</td>
+            <td>97.2</td>
+            <td><span class="second-best">8.2</span></td>
+            <td><span class="second-best">93.7</span></td>
+            <td><span class="second-best">5.3</span></td>
+            <td><strong>97.4</strong></td>
+            <td>5.5</td>
+            <td>96.7</td>
+            <td>&ndash;</td>
+            <td>&ndash;</td>
+          </tr>
+          <tr class="ours-row ours-start">
+            <th scope="row">ApDepth (Ours)</th>
+            <td>74K</td>
+            <td><strong>4.5</strong></td>
+            <td><strong>97.3</strong></td>
+            <td>8.7</td>
+            <td><span class="second-best">93.7</span></td>
+            <td>5.6</td>
+            <td>96.3</td>
+            <td><strong>4.5</strong></td>
+            <td><strong>97.3</strong></td>
+            <td><span class="second-best">8.3</span></td>
+            <td><span class="second-best">93.2</span></td>
+          </tr>
+          <tr class="ours-row">
+            <th scope="row">Celeste (Ours)</th>
+            <td>74K</td>
+            <td><strong>4.5</strong></td>
+            <td><span class="second-best">97.2</span></td>
+            <td><strong>8.0</strong></td>
+            <td><strong>94.4</strong></td>
+            <td><strong>5.1</strong></td>
+            <td><span class="second-best">96.9</span></td>
+            <td><strong>4.5</strong></td>
+            <td><strong>97.3</strong></td>
+            <td><strong>7.8</strong></td>
+            <td><strong>94.2</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer class="footer pt-4 pb-0">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8" align="center">
+          <div class="content">
+            <p>Copyright 2026 Haruko386. All Rights Reserved.</p>
+            <p>
+              Created by Haruko386 during an internship at <strong>InfiniFlow (Shanghai) Information Technology Co.,
+                Ltd. </strong>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Dynamic JSON Loading and Carousel Initialization Script -->
+  <script>
+    async function initCarousels() {
+      try {
+        // Fetch both json files concurrently
+        const [indoorData, outdoorData] = await Promise.all([
+          fetch('./static/images/indoor.json').then(res => res.ok ? res.json() : []).catch(() => []),
+          fetch('./static/images/outdoor.json').then(res => res.ok ? res.json() : []).catch(() => [])
+        ]);
+
+        renderCarouselRows('indoor-carousel', indoorData, 'Indoor');
+        renderCarouselRows('outdoor-carousel', outdoorData, 'Outdoor');
+
+        // Initialize bulmaCarousel after DOM elements are fully inserted
+        if (typeof bulmaCarousel !== 'undefined') {
+          bulmaCarousel.attach('.results-carousel', {
+            slidesToScroll: 1,
+            slidesToShow: 1,
+            loop: true,
+            infinite: true,
+            autoplay: false,
+            pagination: true,
+          });
+        }
+      } catch (error) {
+        console.error("Error loading or initializing carousels:", error);
+      }
+    }
+
+    function renderCarouselRows(containerId, items, folderName) {
+      const container = document.getElementById(containerId);
+      if (!container || !items || items.length === 0) return;
+
+      let html = '';
+
+      for (let i = 0; i < items.length; i += 2) {
+        const item1 = items[i];
+        const item2 = items[i + 1];
+
+        const file1 = item1.split('/').pop();
+        const baseName1 = file1.substring(0, file1.lastIndexOf('.'));
+        const predFile1 = `${baseName1}_pred_colored.png`;
+
+        html += `<div class="img-grid-3">`;
+
+        // 第一行
+        html += `
+      <div class="image-container">
+        <div class="caption">Raw Image</div>
+        <img src="./static/images/${folderName}/${file1}" width="100%">
+      </div>
+
+      <div class="image-container">
+        <div class="caption">ApDepth</div>
+        <img src="./static/images/${folderName}-D/${predFile1}" width="100%">
+      </div>
+
+      <div class="image-container">
+        <div class="caption">Celeste</div>
+        <img src="./static/images/${folderName}-G/${predFile1}" width="100%">
+      </div>
+    `;
+
+        // 第二行
+        if (item2) {
+          const file2 = item2.split('/').pop();
+          const baseName2 = file2.substring(0, file2.lastIndexOf('.'));
+          const predFile2 = `${baseName2}_pred_colored.png`;
+
+          html += `
+        <img src="./static/images/${folderName}/${file2}" width="100%">
+        <img src="./static/images/${folderName}-D/${predFile2}" width="100%">
+        <img src="./static/images/${folderName}-G/${predFile2}" width="100%">
+      `;
+        }
+
+        html += `</div>`;
+      }
+
+      container.innerHTML = html;
+    }
+
+    document.addEventListener('DOMContentLoaded', initCarousels);
+  </script>
+
+  <style>
+    .img-grid-3 img {
+      width: 100% !important;
+      aspect-ratio: 3 / 2;
+      object-fit: cover;
+      display: block;
+    }
+  </style>
+
+</body>
+
+</html>
