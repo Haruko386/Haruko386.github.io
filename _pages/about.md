@@ -52,7 +52,7 @@ We introduce <span style="font-family: Georgia, 'Times New Roman', serif; font-w
 
 <div class='paper-box'><div class='paper-box-image'><div class="apdepth-preview" data-apdepth-preview>
   <div class="badge">arXiv</div>
-  <a class="apdepth-preview__comparison" href="{{ '/ApDepth-G/' | relative_url }}" aria-label="View ApDepth-G: fixed RGB and Ours predictions compared with Marigold v2, Lotus-2, PPD, Lotus, Marigold, and DepthMaster in a horizontal slideshow.">
+  <a class="apdepth-preview__comparison" href="{{ '/Celeste/' | relative_url }}" aria-label="View Celeste: fixed RGB and Ours predictions compared with Marigold v2, Lotus-2, PPD, Lotus, Marigold, and DepthMaster in a horizontal slideshow.">
     <span class="apdepth-preview__columns" aria-hidden="true">
       <span class="apdepth-preview__panel" style="--panel: 0;"></span>
       <span class="apdepth-preview__panel" style="--panel: 1;"></span>
