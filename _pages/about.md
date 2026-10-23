@@ -44,7 +44,7 @@ I used to participate in many **ACM algorithm** competitions(***2022-2023***), b
 
 \[[Paper(Pre-release)]()\] \[[~~Model~~]()\] 
 <p class="paper-summary">
-We introduce <span style="font-family: Georgia, 'Times New Roman', serif; font-weight: 800; font-style: italic; color: #355C7D; font-variant: small-caps;">ApDepth V2</span>, an enhanced single-step monocular depth estimation framework built upon Stable Diffusion 2.1. It introduces a continuous fine-tuning strategy with delayed decoder adaptation and Spatially Debiased Window Transport (SDWT), enabling misalignment-tolerant local geometry supervision while preserving depth reconstruction consistency.
+We introduce <span class="paper-name paper-name--apdepth-v2">ApDepth V2</span>, an enhanced single-step monocular depth estimation framework built upon Stable Diffusion 2.1. It introduces a continuous fine-tuning strategy with delayed decoder adaptation and Spatially Debiased Window Transport (SDWT), enabling misalignment-tolerant local geometry supervision while preserving depth reconstruction consistency.
 </p>
 </div>
 </div>
@@ -78,7 +78,7 @@ We introduce <span style="font-family: Georgia, 'Times New Roman', serif; font-w
 
 \[[~~Paper~~](#)\] \[[Model](https://huggingface.co/developy/Celeste)\] 
 <p class="paper-summary">
-We presents <span style="font-family: Georgia, 'Times New Roman', serif; font-weight: 800; font-style: italic; color: #1a1236; font-variant: small-caps;">Celeste</span>,  a multi-step latent diffusion framework that addresses this gap through validity-guided completion. The method separates fully valid, fully invalid, and mixed latent cells, applies weak region-level anchoring and interior smoothness on invalid support, and adds a selective far-fieldanchor to reduce the ambiguity of distant regions.
+We presents <span class="paper-name paper-name--celeste">Celeste</span>,  a multi-step latent diffusion framework that addresses this gap through validity-guided completion. The method separates fully valid, fully invalid, and mixed latent cells, applies weak region-level anchoring and interior smoothness on invalid support, and adds a selective far-fieldanchor to reduce the ambiguity of distant regions.
 </p>
 </div>
 </div>
@@ -90,7 +90,7 @@ We presents <span style="font-family: Georgia, 'Times New Roman', serif; font-we
 
 \[[Paper](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7604741)\] \[[Demo](https://huggingface.co/spaces/developy/ApDepth)\] \[[Model](https://huggingface.co/developy/ApDepth)\] 
 <p class="paper-summary">
-This paper presents <span style="font-family: Georgia, 'Times New Roman', serif; font-weight: 800; font-style: italic; color: #2c3e50; font-variant: small-caps;">ApDepth</span>, a novel single-step diffusion framework for monocular depth estimation that achieves fast inference while preserving fine-grained edge details through a tailored two-stage training strategy combined with novel frequency-domain and cosine similarity losses.
+This paper presents <span class="paper-name paper-name--slate">ApDepth</span>, a novel single-step diffusion framework for monocular depth estimation that achieves fast inference while preserving fine-grained edge details through a tailored two-stage training strategy combined with novel frequency-domain and cosine similarity losses.
 </p>
 </div>
 </div>
@@ -104,7 +104,7 @@ This paper presents <span style="font-family: Georgia, 'Times New Roman', serif;
 
 \[[Dataset](https://huggingface.co/datasets/developy/overwatch)\] 
 <p class="paper-summary">
-The <span style="font-family: Georgia, 'Times New Roman', serif; font-weight: 800; font-style: italic; color: #2c3e50; font-variant: small-caps;">Overwatch Depth Dataset</span> contains pixel-aligned RGB images and dense depth maps captured from diverse synthetic outdoor environments. Streets, buildings, vegetation, open spaces, and long-range sky regions provide varied geometry for training and evaluating monocular depth estimation models.
+The <span class="paper-name paper-name--slate">Overwatch Depth Dataset</span> contains pixel-aligned RGB images and dense depth maps captured from diverse synthetic outdoor environments. Streets, buildings, vegetation, open spaces, and long-range sky regions provide varied geometry for training and evaluating monocular depth estimation models.
 </p>
 </div>
 </div>

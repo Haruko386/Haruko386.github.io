@@ -44,6 +44,23 @@
 
 @import "components/apdepth-preview";
 
+.paper-name {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 800;
+    font-style: italic;
+    font-variant: small-caps;
+}
+
+.paper-name--apdepth-v2 { color: #355c7d; }
+.paper-name--celeste { color: #1a1236; }
+.paper-name--slate { color: #2c3e50; }
+
+html[data-theme="dark"] {
+    .paper-name--apdepth-v2 { color: #a9d4f2; }
+    .paper-name--celeste { color: #d8c4f4; }
+    .paper-name--slate { color: #bdd7e4; }
+}
+
 .paper-box {
     display: flex;
     justify-content: flex-start;
