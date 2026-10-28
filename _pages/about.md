@@ -37,14 +37,14 @@ I used to participate in many **ACM algorithm** competitions(***2022-2023***), b
 
 ## 📝 Publications 
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">ACM</div><img src='../ApDepth-v2/asset/training_framework.png' alt="ApDepth V2 paper preview" width="100%"></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">axXiv</div><img src='../ApDepth-v2/asset/training_framework.png' alt="ApDepth V2 paper preview" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
-[**ApDepth V2: Geometry-Aware Refinement for Single-Step Monocular Depth Estimation**]()
+[**ApDepth V2: Look at or look through the window**]()
 
-\[[Paper(Pre-release)]()\] \[[~~Model~~]()\] 
+\[[~~Paper~~]()\] \[[~~Model~~]()\] 
 <p class="paper-summary">
-We introduce <span class="paper-name paper-name--apdepth-v2">ApDepth V2</span>, an enhanced single-step monocular depth estimation framework built upon Stable Diffusion 2.1. It introduces a continuous fine-tuning strategy with delayed decoder adaptation and Spatially Debiased Window Transport (SDWT), enabling misalignment-tolerant local geometry supervision while preserving depth reconstruction consistency.
+We introduce <span class="paper-name paper-name--apdepth-v2">ApDepth V2</span>, an enhanced single-step monocular depth estimation framework built upon <b>stable-diffusion-xl-base-1.0</b>. It introduces a continuous fine-tuning strategy with delayed decoder adaptation and Spatially Debiased Window Transport (SDWT), enabling misalignment-tolerant local geometry supervision while preserving depth reconstruction consistency.
 </p>
 </div>
 </div>
@@ -76,7 +76,7 @@ We introduce <span class="paper-name paper-name--apdepth-v2">ApDepth V2</span>, 
 
 [**Mind the Sky: Resolving Sky-Depth Collapse with Validity-Guided Diffusion**]({{ '/Celeste/' | relative_url }})
 
-\[[~~Paper~~](#)\] \[[Model](https://huggingface.co/developy/Celeste)\] 
+\[[Paper(Ablation underway)](#)\] \[[Code](https://github.com/cvrs-yx801/Celeste)] \[[~~Model~~](https://huggingface.co/developy/Celeste)\] 
 <p class="paper-summary">
 We presents <span class="paper-name paper-name--celeste">Celeste</span>,  a multi-step latent diffusion framework that addresses this gap through validity-guided completion. The method separates fully valid, fully invalid, and mixed latent cells, applies weak region-level anchoring and interior smoothness on invalid support, and adds a selective far-fieldanchor to reduce the ambiguity of distant regions.
 </p>
@@ -88,7 +88,7 @@ We presents <span class="paper-name paper-name--celeste">Celeste</span>,  a mult
 
 [**ApDepth: Aiming for Precise Monocular Depth Estimation Based on Diffusion Models**]({{ '/research/' | relative_url }})
 
-\[[Paper](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7604741)\] \[[Demo](https://huggingface.co/spaces/developy/ApDepth)\] \[[Model](https://huggingface.co/developy/ApDepth)\] 
+\[[Paper](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7604741)\] \[[Code](https://github.com/Haruko386/ApDepth)] \[[Demo](https://huggingface.co/spaces/developy/ApDepth)\] \[[Model](https://huggingface.co/developy/ApDepth)\] 
 <p class="paper-summary">
 This paper presents <span class="paper-name paper-name--slate">ApDepth</span>, a novel single-step diffusion framework for monocular depth estimation that achieves fast inference while preserving fine-grained edge details through a tailored two-stage training strategy combined with novel frequency-domain and cosine similarity losses.
 </p>
