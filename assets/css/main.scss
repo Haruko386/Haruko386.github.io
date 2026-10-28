@@ -143,3 +143,51 @@ h1:before, .anchor:before {
     background-color: #00369f;
     font-size: .8em;
 }
+
+.bibtex-dialog {
+    width: max-content;
+    max-width: 90vw;
+    max-height: 85vh;
+    padding: 1.5em;
+    font-size: 0.85rem;
+    border: 1px solid var(--global-border-color);
+    border-radius: 4px;
+    background: var(--global-bg-color);
+    color: var(--global-text-color);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+
+    &::backdrop { background: rgba(0, 0, 0, 0.5); }
+    pre { white-space: pre-wrap; overflow-wrap: anywhere; }
+    pre, pre code { font-size: 0.75rem; line-height: 1.5; }
+    pre > code { color: var(--global-text-color); }
+    &__header { display: flex; align-items: center; justify-content: space-between; gap: 1em; }
+    &__header h2 { margin: 0; font-size: 1.15rem; }
+    &__actions { display: flex; align-items: center; gap: 0.6em; }
+    &__copy {
+        padding: 0.45em 0.9em;
+        border: 1px solid var(--global-dark-border-color);
+        border-radius: 4px;
+        background: var(--global-bg-color);
+        color: var(--global-text-color);
+        font: inherit;
+        cursor: pointer;
+    }
+    &__copy:hover { background: var(--global-border-color); }
+    &__close {
+        padding: 0 0.2em;
+        border: 0;
+        background: transparent;
+        color: inherit;
+        font-size: 1.8em;
+        line-height: 1;
+        cursor: pointer;
+    }
+}
+
+.bibtex-page {
+    font-size: 0.85rem;
+
+    pre { overflow-x: auto; }
+    pre, pre code { font-size: 0.75rem; line-height: 1.5; }
+    pre > code { color: var(--global-text-color); }
+}

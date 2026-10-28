@@ -88,12 +88,25 @@ We presents <span class="paper-name paper-name--celeste">Celeste</span>,  a mult
 
 [**ApDepth: Aiming for Precise Monocular Depth Estimation Based on Diffusion Models**]({{ '/research/' | relative_url }})
 
-\[[Paper](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7604741)\] \[[Code](https://github.com/Haruko386/ApDepth)] \[[Demo](https://huggingface.co/spaces/developy/ApDepth)\] \[[Model](https://huggingface.co/developy/ApDepth)\] 
+\[[Paper](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7604741)\] \[[Code](https://github.com/Haruko386/ApDepth)] \[[Demo](https://huggingface.co/spaces/developy/ApDepth)\] \[[Model](https://huggingface.co/developy/ApDepth)\] \[<a href="{{ '/apdepth-bibtex/' | relative_url }}" data-bibtex-open>Bibtex</a>\]
 <p class="paper-summary">
 This paper presents <span class="paper-name paper-name--slate">ApDepth</span>, a novel single-step diffusion framework for monocular depth estimation that achieves fast inference while preserving fine-grained edge details through a tailored two-stage training strategy combined with novel frequency-domain and cosine similarity losses.
 </p>
 </div>
 </div>
+
+<dialog class="bibtex-dialog" aria-labelledby="bibtex-title" data-bibtex-dialog>
+  <div class="bibtex-dialog__header">
+    <h2 id="bibtex-title">BibTeX</h2>
+    <div class="bibtex-dialog__actions">
+      <button type="button" class="bibtex-dialog__copy" data-bibtex-copy>Copy BibTeX</button>
+      <button type="button" class="bibtex-dialog__close" aria-label="Close BibTeX" data-bibtex-close>&times;</button>
+    </div>
+  </div>
+  <p>Please cite our paper if you find it useful:</p>
+  <pre><code data-bibtex-content>{% include apdepth-bibtex.txt %}</code></pre>
+</dialog>
+<script src="{{ '/assets/js/bibtex-dialog.js' | relative_url }}" defer></script>
 
 ## 🤗Dataset
 
