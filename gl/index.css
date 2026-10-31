@@ -6,7 +6,7 @@ body {
     justify-content: center;
     align-items: center;
     /* background: #f6f8fa; */
-    background: url("./doc/go.png") no-repeat center center fixed;
+    background: url("./doc/go.webp") no-repeat center center fixed;
     background-size: cover;
     backdrop-filter: blur(4px);
     font-family: 'Fira Code', 'JetBrains Mono', 'Consolas', 'Monaco', monospace;
