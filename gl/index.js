@@ -24,8 +24,15 @@ const GO_OPERATORS = [
 
 const codeRows = document.getElementById('code-rows');
 
+const MIN_FONT_SIZE = 7;
+const VIEWPORT_MARGIN = 32;
+
+let sourceLines = [];
+let fitFrameId = 0;
+
 loadPage();
 setupEgg();
+setupFit();
 
 async function loadPage() {
     try {
@@ -69,7 +76,122 @@ function renderSource(source) {
         fragment.appendChild(createBrowseRow(index + 1, highlightedLines[index]));
     });
 
+    sourceLines = lines;
     codeRows.replaceChildren(fragment);
+    fitCodeToViewport();
+}
+
+function setupFit() {
+    window.addEventListener('resize', scheduleFit);
+    window.addEventListener('load', fitCodeToViewport);
+}
+
+function scheduleFit() {
+    if (fitFrameId) {
+        return;
+    }
+
+    fitFrameId = window.requestAnimationFrame(() => {
+        fitFrameId = 0;
+        fitCodeToViewport();
+    });
+}
+
+function fitCodeToViewport() {
+    const rows = codeRows.querySelectorAll('.source-row');
+
+    if (rows.length === 0 || sourceLines.length === 0) {
+        return;
+    }
+
+    const windowElement = codeRows.closest('.window');
+
+    if (!windowElement) {
+        return;
+    }
+
+    codeRows.style.removeProperty('--code-font-size');
+
+    const firstRow = rows[0];
+    const baseFontSize = parseFloat(getComputedStyle(firstRow).fontSize) || 14;
+    let fontSize = Math.min(
+        baseFontSize,
+        getWidthFitFontSize(firstRow, baseFontSize),
+    );
+
+    const availableHeight = Math.max(
+        document.documentElement.clientHeight - VIEWPORT_MARGIN,
+        1,
+    );
+
+    setCodeFontSize(fontSize);
+
+    for (let i = 0; i < 8 && fontSize > MIN_FONT_SIZE; i += 1) {
+        const currentHeight = windowElement.getBoundingClientRect().height;
+
+        if (currentHeight <= availableHeight) {
+            break;
+        }
+
+        fontSize = Math.max(
+            fontSize * (availableHeight / currentHeight),
+            MIN_FONT_SIZE,
+        );
+        setCodeFontSize(fontSize);
+    }
+
+    if (fontSize >= baseFontSize - 0.01) {
+        codeRows.style.removeProperty('--code-font-size');
+    }
+}
+
+function getWidthFitFontSize(firstRow, baseFontSize) {
+    const probe = document.createElement('span');
+    probe.className = 'code-probe';
+    probe.textContent = findWidestLine(sourceLines);
+    firstRow.appendChild(probe);
+
+    const rowRect = firstRow.getBoundingClientRect();
+    const codeRect = firstRow.querySelector('.code').getBoundingClientRect();
+    const naturalCodeWidth = probe.getBoundingClientRect().width;
+    probe.remove();
+
+    const chromeWidth =
+        (codeRect.left - rowRect.left) + (rowRect.right - codeRect.right);
+    const availableCodeWidth = rowRect.width - chromeWidth;
+
+    if (naturalCodeWidth <= 0 || availableCodeWidth <= 0) {
+        return baseFontSize;
+    }
+
+    if (naturalCodeWidth <= availableCodeWidth) {
+        return baseFontSize;
+    }
+
+    return Math.max(
+        (baseFontSize * availableCodeWidth) / naturalCodeWidth,
+        MIN_FONT_SIZE,
+    );
+}
+
+function setCodeFontSize(fontSize) {
+    codeRows.style.setProperty('--code-font-size', `${fontSize}px`);
+}
+
+function findWidestLine(lines) {
+    let widest = '';
+    let widestWidth = -1;
+
+    lines.forEach((line) => {
+        const width = line.replace(/\t/g, '        ').length;
+
+        if (width > widestWidth) {
+            widest = line;
+            widestWidth = width;
+        }
+    });
+
+    return widest;
 }
 
 function createBrowseRow(lineNumber, tokens) {

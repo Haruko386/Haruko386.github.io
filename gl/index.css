@@ -6,9 +6,9 @@ body {
     justify-content: center;
     align-items: center;
     /* background: #f6f8fa; */
-    background: url("./doc/back.jpg") no-repeat center center fixed;
+    background: url("./doc/go.png") no-repeat center center fixed;
     background-size: cover;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(4px);
     font-family: 'Fira Code', 'JetBrains Mono', 'Consolas', 'Monaco', monospace;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -87,13 +87,13 @@ body {
     flex-grow: 1;
     padding: 16px 0 24px 0;
     position: relative;
-    overflow-x: auto; 
+    overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
 }
 
 .editor-body {
     flex: 1;
-    min-width: 520px; 
+    min-width: 0;
 }
 
 .code-rows {
@@ -105,7 +105,7 @@ body {
     gap: 12px;
     align-items: center;
     line-height: 1.6;
-    font-size: 14px;
+    font-size: var(--code-font-size, 14px);
     padding: 2px 16px 2px 8px;
     transition: background 0.1s;
 }
@@ -122,7 +122,14 @@ body {
     text-align: right;
     color: #c8d1dc;
     user-select: none;
-    font-size: 12px;
+    font-size: 0.86em;
+}
+
+.code-probe {
+    position: absolute;
+    visibility: hidden;
+    white-space: pre;
+    pointer-events: none;
 }
 
 .divider {
@@ -255,15 +262,11 @@ body {
 
     .source-row {
         gap: 8px;
-        font-size: 13px;
+        font-size: var(--code-font-size, 13px);
         padding: 2px 12px 2px 4px;
     }
 
     .source-row {
         grid-template-columns: 32px 1px minmax(0, 1fr);
-    }
-
-    .ln {
-        font-size: 11px;
     }
 }
