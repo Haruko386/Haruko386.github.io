@@ -122,6 +122,28 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll(".reveal-on-scroll").forEach(el => observer.observe(el));
 
     const imageGrid = document.getElementById("imageGrid");
+    const galleryEnd = document.querySelector(".gallery-end");
+    let galleryEndPlayed = false;
+
+    function showGalleryEndAtBottom() {
+        if (galleryEndPlayed || !galleryEnd || !views.gallery.classList.contains("active-view") ||
+            !imageGrid || imageGrid.children.length === 0) return;
+
+        const page = document.scrollingElement || document.documentElement;
+        if (page.scrollTop === 0 || page.scrollTop + window.innerHeight < page.scrollHeight - 2) return;
+
+        galleryEndPlayed = true;
+        galleryEnd.classList.add("is-visible");
+        if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+            requestAnimationFrame(() => {
+                const animation = galleryEnd.querySelector("img[data-src]");
+                animation.src = animation.dataset.src;
+            });
+        }
+    }
+
+    window.addEventListener("scroll", showGalleryEndAtBottom, { passive: true });
+
     if (imageGrid) {
         fetch("./images.json")
             .then(response => response.json())

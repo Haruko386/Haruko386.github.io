@@ -168,6 +168,40 @@ nav .nav-item.active {
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
   z-index: 10
 }
+
+.gallery-end {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin: -1rem auto 0;
+  padding: 0 1rem 1rem;
+  text-align: center;
+  visibility: hidden;
+}
+
+.gallery-end.is-visible {
+  visibility: visible;
+}
+
+.gallery-end img {
+  display: block;
+  width: 192px;
+  height: 72px;
+  image-rendering: pixelated;
+}
+
+.gallery-end p {
+  color: var(--accent-color);
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery-end img {
+    display: none;
+  }
+}
 /* 
 .image-grid:hover img:not(:hover) {
   opacity: 0.8;
