@@ -1,4 +1,5 @@
-const CURRENT_SOURCE_URL = './haruko386.go';
+const MAIN_SOURCE = 'haruko386.go';
+const LIFE_SOURCE = 'life.go';
 
 const GO_KEYWORDS = new Set([
     'break', 'case', 'chan', 'const', 'continue', 'default', 'defer',
@@ -23,28 +24,72 @@ const GO_OPERATORS = [
 ];
 
 const codeRows = document.getElementById('code-rows');
+const sourceTitle = document.getElementById('source-title');
+const editorBody = document.getElementById('editor-body');
+const backButton = document.getElementById('back-button');
 
-const MIN_FONT_SIZE = 7;
-const VIEWPORT_MARGIN = 32;
-
-let sourceLines = [];
-let fitFrameId = 0;
+let loadId = 0;
 
 loadPage();
 setupEgg();
-setupFit();
+setupNavigation();
 
 async function loadPage() {
+    const fileName = getCurrentFile();
+    const currentLoadId = ++loadId;
+    sourceTitle.textContent = fileName;
+    editorBody.setAttribute('aria-label', `${fileName} source code`);
+    backButton.disabled = fileName === MAIN_SOURCE;
+    renderStatus(`Loading ${fileName}...`);
+
     try {
-        const source = await fetchSource(CURRENT_SOURCE_URL);
-        renderSource(source);
+        const source = await fetchSource(`./${fileName}`);
+        if (currentLoadId === loadId) {
+            renderSource(source, fileName);
+        }
     } catch (error) {
+        if (currentLoadId !== loadId) {
+            return;
+        }
         renderStatus(
-            'Unable to load haruko386.go. Open this page through a local web server.',
+            `Unable to load ${fileName}. Open this page through a local web server.`,
             true,
         );
-        console.error('Failed to load haruko386.go:', error);
+        console.error(`Failed to load ${fileName}:`, error);
     }
+}
+
+function getCurrentFile() {
+    return new URLSearchParams(window.location.search).get('file') === LIFE_SOURCE
+        ? LIFE_SOURCE
+        : MAIN_SOURCE;
+}
+
+function setupNavigation() {
+    backButton.addEventListener('click', () => navigateTo(MAIN_SOURCE));
+    codeRows.addEventListener('click', (event) => {
+        const link = event.target.closest('.source-link');
+        if (link) {
+            event.preventDefault();
+            navigateTo(LIFE_SOURCE);
+        }
+    });
+    window.addEventListener('popstate', loadPage);
+}
+
+function navigateTo(fileName) {
+    if (fileName === getCurrentFile()) {
+        return;
+    }
+
+    const url = new URL(window.location.href);
+    if (fileName === MAIN_SOURCE) {
+        url.searchParams.delete('file');
+    } else {
+        url.searchParams.set('file', fileName);
+    }
+    window.history.pushState(null, '', url);
+    loadPage();
 }
 
 async function fetchSource(url) {
@@ -57,7 +102,7 @@ async function fetchSource(url) {
     return response.text();
 }
 
-function renderSource(source) {
+function renderSource(source, fileName) {
     const normalizedSource = source.replace(/\r\n?/g, '\n');
     const content = normalizedSource.endsWith('\n')
         ? normalizedSource.slice(0, -1)
@@ -73,128 +118,15 @@ function renderSource(source) {
     const fragment = document.createDocumentFragment();
 
     lines.forEach((line, index) => {
-        fragment.appendChild(createBrowseRow(index + 1, highlightedLines[index]));
+        const linkExecute = fileName === MAIN_SOURCE &&
+            /^\s*world\.Execute\(me\)\s*$/.test(line);
+        fragment.appendChild(createBrowseRow(index + 1, highlightedLines[index], linkExecute));
     });
 
-    sourceLines = lines;
     codeRows.replaceChildren(fragment);
-    fitCodeToViewport();
 }
 
-function setupFit() {
-    window.addEventListener('resize', scheduleFit);
-    window.addEventListener('load', fitCodeToViewport);
-}
-
-function scheduleFit() {
-    if (fitFrameId) {
-        return;
-    }
-
-    fitFrameId = window.requestAnimationFrame(() => {
-        fitFrameId = 0;
-        fitCodeToViewport();
-    });
-}
-
-function fitCodeToViewport() {
-    const rows = codeRows.querySelectorAll('.source-row');
-
-    if (rows.length === 0 || sourceLines.length === 0) {
-        return;
-    }
-
-    const windowElement = codeRows.closest('.window');
-
-    if (!windowElement) {
-        return;
-    }
-
-    codeRows.style.removeProperty('--code-font-size');
-
-    const firstRow = rows[0];
-    const baseFontSize = parseFloat(getComputedStyle(firstRow).fontSize) || 14;
-    let fontSize = Math.min(
-        baseFontSize,
-        getWidthFitFontSize(firstRow, baseFontSize),
-    );
-
-    const availableHeight = Math.max(
-        document.documentElement.clientHeight - VIEWPORT_MARGIN,
-        1,
-    );
-
-    setCodeFontSize(fontSize);
-
-    for (let i = 0; i < 8 && fontSize > MIN_FONT_SIZE; i += 1) {
-        const currentHeight = windowElement.getBoundingClientRect().height;
-
-        if (currentHeight <= availableHeight) {
-            break;
-        }
-
-        fontSize = Math.max(
-            fontSize * (availableHeight / currentHeight),
-            MIN_FONT_SIZE,
-        );
-        setCodeFontSize(fontSize);
-    }
-
-    if (fontSize >= baseFontSize - 0.01) {
-        codeRows.style.removeProperty('--code-font-size');
-    }
-}
-
-function getWidthFitFontSize(firstRow, baseFontSize) {
-    const probe = document.createElement('span');
-    probe.className = 'code-probe';
-    probe.textContent = findWidestLine(sourceLines);
-    firstRow.appendChild(probe);
-
-    const rowRect = firstRow.getBoundingClientRect();
-    const codeRect = firstRow.querySelector('.code').getBoundingClientRect();
-    const naturalCodeWidth = probe.getBoundingClientRect().width;
-    probe.remove();
-
-    const chromeWidth =
-        (codeRect.left - rowRect.left) + (rowRect.right - codeRect.right);
-    const availableCodeWidth = rowRect.width - chromeWidth;
-
-    if (naturalCodeWidth <= 0 || availableCodeWidth <= 0) {
-        return baseFontSize;
-    }
-
-    if (naturalCodeWidth <= availableCodeWidth) {
-        return baseFontSize;
-    }
-
-    return Math.max(
-        (baseFontSize * availableCodeWidth) / naturalCodeWidth,
-        MIN_FONT_SIZE,
-    );
-}
-
-function setCodeFontSize(fontSize) {
-    codeRows.style.setProperty('--code-font-size', `${fontSize}px`);
-}
-
-function findWidestLine(lines) {
-    let widest = '';
-    let widestWidth = -1;
-
-    lines.forEach((line) => {
-        const width = line.replace(/\t/g, '        ').length;
-
-        if (width > widestWidth) {
-            widest = line;
-            widestWidth = width;
-        }
-    });
-
-    return widest;
-}
-
-function createBrowseRow(lineNumber, tokens) {
+function createBrowseRow(lineNumber, tokens, linkExecute) {
     const row = document.createElement('div');
     row.className = 'source-row';
 
@@ -207,7 +139,7 @@ function createBrowseRow(lineNumber, tokens) {
 
     const code = document.createElement('div');
     code.className = 'code';
-    appendTokens(code, tokens);
+    appendTokens(code, tokens, linkExecute);
 
     row.append(number, divider, code);
     return row;
@@ -363,8 +295,18 @@ function pushToken(tokens, value, className) {
     tokens.push({ value, className });
 }
 
-function appendTokens(container, tokens = []) {
+function appendTokens(container, tokens = [], linkExecute = false) {
     tokens.forEach((tokenData) => {
+        if (linkExecute && tokenData.value === 'Execute') {
+            const link = document.createElement('a');
+            link.className = 'source-link';
+            link.href = '?file=life.go';
+            link.textContent = tokenData.value;
+            link.setAttribute('aria-label', '查看 life.go 中的 Execute');
+            container.appendChild(link);
+            return;
+        }
+
         if (!tokenData.className) {
             container.appendChild(document.createTextNode(tokenData.value));
             return;

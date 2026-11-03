@@ -12,15 +12,15 @@
 <div class="window">
     <div class="title-bar">
         <div class="mac-btns">
-            <div class="mac-btn close"></div>
+            <button type="button" class="mac-btn close" id="back-button" aria-label="返回 haruko386.go" title="返回 haruko386.go" disabled></button>
             <div class="mac-btn minimize"></div>
             <div class="mac-btn maximize"></div>
         </div>
-        <div class="title">haruko386.go</div>
+        <div class="title" id="source-title">haruko386.go</div>
     </div>
 
     <div class="main-content">
-        <div class="editor-body" aria-label="haruko386.go source code">
+        <div class="editor-body" id="editor-body" aria-label="haruko386.go source code">
             <div id="code-rows" class="code-rows" aria-live="polite">
                 <div class="source-status">Loading haruko386.go...</div>
             </div>

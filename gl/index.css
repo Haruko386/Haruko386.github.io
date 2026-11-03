@@ -49,6 +49,8 @@ body {
 .mac-btn {
     width: 12px;
     height: 12px;
+    padding: 0;
+    border: 0;
     border-radius: 50%;
     opacity: 0.9;
     transition: opacity 0.2s;
@@ -56,6 +58,15 @@ body {
 
 .mac-btn:hover {
     opacity: 1;
+}
+
+.mac-btn.close:not(:disabled) {
+    cursor: pointer;
+}
+
+.mac-btn.close:focus-visible {
+    outline: 2px solid #24292f;
+    outline-offset: 3px;
 }
 
 .close {
@@ -87,7 +98,7 @@ body {
     flex-grow: 1;
     padding: 16px 0 24px 0;
     position: relative;
-    overflow-x: hidden;
+    overflow-x: auto;
     -webkit-overflow-scrolling: touch;
 }
 
@@ -105,7 +116,7 @@ body {
     gap: 12px;
     align-items: center;
     line-height: 1.6;
-    font-size: var(--code-font-size, 14px);
+    font-size: 14px;
     padding: 2px 16px 2px 8px;
     transition: background 0.1s;
 }
@@ -125,13 +136,6 @@ body {
     font-size: 0.86em;
 }
 
-.code-probe {
-    position: absolute;
-    visibility: hidden;
-    white-space: pre;
-    pointer-events: none;
-}
-
 .divider {
     align-self: stretch;
     background-color: rgba(0, 0, 0, 0.08);
@@ -141,7 +145,8 @@ body {
     min-width: 0;
     text-align: left;
     white-space: pre;
-    color: #24292f;
+    color: #f7f9fc;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.85), 0 0 1px rgba(0, 0, 0, 0.8);
 }
 
 .source-status,
@@ -156,45 +161,57 @@ body {
 }
 
 .c-orange {
-    color: #953800;
+    color: #ffe3b4;
 }
 
 /* 类型名、包名等 */
 .c-cyan {
-    color: #0550ae;
+    color: #bcefff;
     font-weight: bold;
 }
 
 /* 操作符 */
 .c-gray {
-    color: #57606a;
+    color: #e1e8f1;
 }
 
 .c-red {
-    color: #cf222e;
+    color: #ffd0dc;
 }
 
 .c-green {
-    color: #0a3069;
+    color: #c9f1d5;
 }
 
 /* 字符串 */
 .c-purple {
-    color: #cf222e;
+    color: #f1d2ff;
 }
 
 /* 关键字  */
 .c-blue {
-    color: #2f67b7;
+    color: #c4e3ff;
+}
+
+.source-link {
+    color: #c4e3ff;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    cursor: pointer;
+}
+
+.source-link:hover,
+.source-link:focus-visible {
+    color: #ffffff;
 }
 
 /* 函数名 */
 .c-white {
-    color: #24292f;
+    color: #f7f9fc;
 }
 
 .c-comment {
-    color: #a3abb5;
+    color: #d6e0ec;
     font-style: italic;
 }
 
@@ -262,7 +279,7 @@ body {
 
     .source-row {
         gap: 8px;
-        font-size: var(--code-font-size, 13px);
+        font-size: 13px;
         padding: 2px 12px 2px 4px;
     }
 

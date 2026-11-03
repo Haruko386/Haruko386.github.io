@@ -2,32 +2,30 @@
 
 type Me struct {
 	time.Time
-	Me   struct{}
-	they sync.Map
-	// she  unique.Handle[types.Error]
+	Me      struct{}
+	they    sync.Map
+	she     unique.Handle[types.Var]
 	in      <-chan any
 	freedom any
-	wg sync.WaitGroup
+	wg      sync.WaitGroup
 }
 
-func (m *Me) life() types.Nil { 
-	m.wg.Add(1)
+func main() {
+	world := &Life{} // -Infinity
+	me := &Me{}      // 2002-04/28
+
+	world.ctx = context.Background()
+
 	go func() {
-		defer m.wg.Done()
 		for {
-			m.Time = time.Now()
 			select {
-			case in := <-m.in:
-				switch m.freedom.(type) {
-				case string:
-					_ = in
-				case types.Object:
-					log.Print("Not for now")
-				}
+			case <-world.ctx.Done():
+				break
 			default:
-				m.Time = m.Add(24 * time.Hour)
+				world.Execute(me)
 			}
 		}
 	}()
-	return types.Nil{}
+
+	log.Println("Farewell, hopes you could live a happy life with happy ending")
 }
