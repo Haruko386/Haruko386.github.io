@@ -119,7 +119,7 @@ function renderSource(source, fileName) {
 
     lines.forEach((line, index) => {
         const linkExecute = fileName === MAIN_SOURCE &&
-            /^\s*world\.Execute\(me\)\s*$/.test(line);
+            /^\s*life\.Execute\(me\)\s*$/.test(line);
         fragment.appendChild(createBrowseRow(index + 1, highlightedLines[index], linkExecute));
     });
 

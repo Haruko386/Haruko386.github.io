@@ -11,18 +11,18 @@ type Me struct {
 }
 
 func main() {
-	world := &Life{} // -Infinity
-	me := &Me{}      // 2002-04/28
+	life := &Life{}
+	me := &Me{}
 
-	world.ctx = context.Background()
+	life.ctx = context.Background()
 
 	go func() {
 		for {
 			select {
-			case <-world.ctx.Done():
+			case <-life.ctx.Done():
 				break
 			default:
-				world.Execute(me)
+				life.Execute(me)
 			}
 		}
 	}()
