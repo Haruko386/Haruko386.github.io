@@ -3,8 +3,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const views = {
         gallery: document.getElementById("view-gallery"),
+        archive: document.getElementById("view-archive"),
         about: document.getElementById("view-about")
     };
+    const archiveGrid = document.getElementById("archiveGrid");
+    const archiveDetail = document.getElementById("archiveDetail");
+    const archiveTitle = document.getElementById("archiveTitle");
+    const archiveImageGrid = document.getElementById("archiveImageGrid");
+    let archiveCollections = null;
 
     function switchPage(pageId, skipScroll = false) {
         Object.values(views).forEach(el => {
@@ -38,13 +44,19 @@ document.addEventListener("DOMContentLoaded", function () {
             e.preventDefault();
             const targetPage = link.getAttribute("data-target");
             history.pushState({ page: targetPage }, "", `#${targetPage}`);
-            switchPage(targetPage, false);
+            showCurrentRoute();
         });
     });
 
-    window.addEventListener("popstate", () => {
+    window.addEventListener("popstate", showCurrentRoute);
+    window.addEventListener("hashchange", showCurrentRoute);
+
+    function showCurrentRoute() {
         const hash = window.location.hash.replace("#", "");
-        if (["gallery", "about"].includes(hash)) {
+        if (hash === "archive" || hash.startsWith("archive/")) {
+            renderArchiveRoute(hash);
+            switchPage("archive");
+        } else if (["gallery", "about"].includes(hash)) {
             switchPage(hash);
         } else if (hash) {
             switchPage("about", true);
@@ -55,20 +67,9 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
             switchPage("gallery");
         }
-    });
-
-    const hash = window.location.hash.replace("#", "");
-    if (["gallery", "about"].includes(hash)) {
-        switchPage(hash);
-    } else if (hash) {
-        switchPage("about", true);
-        setTimeout(() => {
-            const el = document.getElementById(hash);
-            if (el) el.scrollIntoView({ behavior: "smooth" });
-        }, 50);
-    } else {
-        switchPage("gallery");
     }
+
+    showCurrentRoute();
 
     const themeToggleBtn = document.getElementById("theme-toggle");
     const iconSun = document.querySelector(".icon-sun");
@@ -105,7 +106,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (hrefAttr && hrefAttr.startsWith("#")) {
                 const id = hrefAttr.replace("#", "");
                 history.pushState({}, "", `#${id}`);
-                switchPage("about", true);
+                showCurrentRoute();
             }
         });
     });
@@ -148,21 +149,100 @@ document.addEventListener("DOMContentLoaded", function () {
         fetch("./images.json")
             .then(response => response.json())
             .then(imagePaths => {
-                imageGrid.innerHTML = "";
                 const shuffledPaths = shuffleArray(imagePaths);
-
-                shuffledPaths.forEach((path, index) => {
-                    const img = document.createElement("img");
-                    img.src = path;
-                    img.alt = `Gallery Image ${index + 1}`;
-                    img.loading = "lazy";
-                    img.classList.add("reveal-on-scroll");
-
-                    img.onload = () => observer.observe(img);
-                    imageGrid.appendChild(img);
-                });
+                renderImages(imageGrid, shuffledPaths);
             })
             .catch(error => console.error("Error loading images:", error));
+    }
+
+    fetch("./archive.json")
+        .then(response => {
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            return response.json();
+        })
+        .then(collections => {
+            archiveCollections = collections;
+            renderArchiveCards();
+            renderArchiveRoute(window.location.hash.slice(1));
+        })
+        .catch(error => {
+            archiveGrid.textContent = "Unable to load archive.";
+            console.error("Error loading archive:", error);
+        });
+
+    function renderArchiveCards() {
+        const fragment = document.createDocumentFragment();
+        Object.entries(archiveCollections).forEach(([title, collection]) => {
+            if (!collection || typeof collection.cover !== "string" || !collection.cover.trim() ||
+                !Array.isArray(collection.images) || collection.images.length === 0) return;
+
+            const card = document.createElement("a");
+            card.className = "archive-card";
+            card.href = `#archive/${encodeURIComponent(title)}`;
+
+            const cover = document.createElement("img");
+            cover.src = resolveImageSource(collection.cover);
+            cover.alt = "";
+            cover.loading = "lazy";
+
+            const caption = document.createElement("span");
+            caption.textContent = title;
+            card.append(cover, caption);
+            fragment.appendChild(card);
+        });
+        archiveGrid.replaceChildren(fragment);
+    }
+
+    function renderArchiveRoute(hash) {
+        let title = null;
+        if (hash.startsWith("archive/")) {
+            try {
+                title = decodeURIComponent(hash.slice("archive/".length));
+            } catch {
+                title = null;
+            }
+        }
+
+        const collection = title && archiveCollections && archiveCollections[title];
+        const paths = collection && collection.images;
+        if (Array.isArray(paths) && paths.length > 0) {
+            archiveGrid.hidden = true;
+            archiveDetail.hidden = false;
+            archiveTitle.textContent = title;
+            renderImages(archiveImageGrid, paths);
+        } else {
+            archiveGrid.hidden = false;
+            archiveDetail.hidden = true;
+        }
+    }
+
+    function renderImages(container, paths) {
+        const fragment = document.createDocumentFragment();
+        paths.forEach((path, index) => {
+            const img = document.createElement("img");
+            img.src = resolveImageSource(path);
+            img.alt = `Gallery Image ${index + 1}`;
+            img.loading = "lazy";
+            img.classList.add("reveal-on-scroll");
+            img.onload = () => observer.observe(img);
+            fragment.appendChild(img);
+        });
+        container.replaceChildren(fragment);
+    }
+
+    function resolveImageSource(path) {
+        try {
+            const url = new URL(path);
+            if (url.hostname === "github.com") {
+                const parts = url.pathname.split("/").filter(Boolean);
+                if (parts.length >= 5 && parts[2] === "blob") {
+                    return `https://raw.githubusercontent.com/${parts[0]}/${parts[1]}/${parts.slice(3).join("/")}`;
+                }
+            }
+        } catch {
+            // Relative paths in images.json already work as image sources.
+        }
+        return path;
     }
 
     function shuffleArray(array) {

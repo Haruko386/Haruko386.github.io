@@ -81,7 +81,7 @@ nav {
   gap: 0.5rem;
 }
 
-nav .nav-item {
+.nav-item {
   text-decoration: none;
   color: var(--text-color);
   font-size: 0.9rem;
@@ -93,8 +93,8 @@ nav .nav-item {
   line-height: 1;
 }
 
-nav .nav-item:hover,
-nav .nav-item.active {
+.nav-item:hover,
+.nav-item.active {
   background-color: var(--text-color);
   color: var(--bg-color);
 }
@@ -147,6 +147,73 @@ nav .nav-item.active {
   padding: 2rem 2rem;
   max-width: 1400px;
   margin: 0 auto 4rem
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.archive-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem 1.5rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.archive-card {
+  min-width: 0;
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.archive-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  margin-bottom: 0.55rem;
+}
+
+.archive-card:hover span,
+.archive-card:focus-visible span {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.archive-card:focus-visible,
+.archive-back:focus-visible {
+  outline: 2px solid var(--text-color);
+  outline-offset: 4px;
+}
+
+.archive-detail-heading {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem 2rem 0;
+}
+
+.archive-back {
+  color: var(--accent-color);
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.archive-back:hover {
+  text-decoration: underline;
+}
+
+.archive-detail-heading h1 {
+  margin-top: 0.75rem;
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 400;
+}
+
+.archive-status {
+  grid-column: 1 / -1;
 }
 
 .image-grid img {
@@ -279,6 +346,10 @@ nav .nav-item.active {
     column-count: 2;
     padding: 2rem;
   }
+
+  .archive-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 600px) {
@@ -287,8 +358,35 @@ nav .nav-item.active {
     padding: 1rem;
   }
 
+  .archive-grid {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+
+  .archive-detail-heading {
+    padding: 1rem 1rem 0;
+  }
+
   header {
     padding: 1rem;
+  }
+
+  .logo a {
+    font-size: 0.95rem;
+  }
+
+  nav {
+    gap: 0;
+  }
+
+  .nav-item {
+    padding: 8px;
+    font-size: 0.8rem;
+  }
+
+  .icon-btn {
+    margin-left: 0.25rem;
+    padding: 6px;
   }
 
   .gallery-header h1 {
